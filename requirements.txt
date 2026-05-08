@@ -1,0 +1,7 @@
+ryu==4.34
+networkx
+pandas
+scipy
+matplotlib
+pyyaml
+numpy
