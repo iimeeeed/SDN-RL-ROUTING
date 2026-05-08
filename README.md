@@ -9,13 +9,6 @@ This project provides a platform for experimenting with Software Defined Network
 - **Validation Scripts:** Ensures topologies and port maps are consistent and correct.
 - **Performance Testing:** Use iPerf3 to measure network throughput and latency.
 
-## Requirements
-- Python 3.9.19
-- Ryu 4.34
-- Eventlet 0.30.2
-- Mininet 2.3.0
-- Open vSwitch 3.3.4
-- iPerf3 3.16
 
 ## Quick Start
 1. **Set up your environment:**
