@@ -1,0 +1,8 @@
+- pyenv Python 3.9.19
+- .venv inside the project
+- Ryu 4.34
+- eventlet 0.30.2 compatibility fix
+- Mininet 2.3.0
+- Open vSwitch 3.3.4
+- iPerf3 3.16
+- Successful built-in single-switch validation
