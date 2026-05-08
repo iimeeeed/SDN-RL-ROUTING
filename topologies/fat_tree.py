@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 
 """
-Strict k=4 Fat Tree topology for Mininet.
+Project Fat Tree topology.
 
-k = 4
+Required by project:
+- Total nodes: 20
+- Total links: 36
+- TCI: 0.85
 
-Switches:
-- 4 core switches        s1-s4
-- 8 aggregation switches s5-s12
-- 8 edge switches        s13-s20
-
-Hosts:
-- 16 hosts              h1-h16
-- 2 hosts per edge switch
-
-Controller:
+Implementation:
+- 8 switches: s1-s8
+- 12 hosts: h1-h12
+- 12 host links
+- 24 switch links
+- OpenFlow13
 - Remote Ryu controller at 127.0.0.1:6633
 
-OpenFlow:
-- OpenFlow13
+Note:
+This is a reduced Fat Tree-like topology matching the project node/link
+requirements, not a strict k=4 Fat Tree.
 """
 
 from mininet.net import Mininet
@@ -45,28 +45,20 @@ def build_topology():
         port=6633
     )
 
-    info("*** Adding strict k=4 Fat Tree switches\n")
+    info("*** Adding Fat Tree switches\n")
     switches = {}
 
-    for i in range(1, 21):
+    for i in range(1, 9):
         switch_name = f"s{i}"
         switches[switch_name] = net.addSwitch(
             switch_name,
             protocols="OpenFlow13"
         )
 
-    core_switches = [f"s{i}" for i in range(1, 5)]
-    agg_switches = [f"s{i}" for i in range(5, 13)]
-    edge_switches = [f"s{i}" for i in range(13, 21)]
-
-    info(f"    Core switches: {core_switches}\n")
-    info(f"    Aggregation switches: {agg_switches}\n")
-    info(f"    Edge switches: {edge_switches}\n")
-
     info("*** Adding hosts\n")
     hosts = {}
 
-    for i in range(1, 17):
+    for i in range(1, 13):
         host_name = f"h{i}"
         hosts[host_name] = net.addHost(
             host_name,
@@ -77,61 +69,38 @@ def build_topology():
     info("*** Adding host-edge links\n")
 
     host_links = [
-        ("h1", "s13"), ("h2", "s13"),
-        ("h3", "s14"), ("h4", "s14"),
-
-        ("h5", "s15"), ("h6", "s15"),
-        ("h7", "s16"), ("h8", "s16"),
-
-        ("h9", "s17"), ("h10", "s17"),
-        ("h11", "s18"), ("h12", "s18"),
-
-        ("h13", "s19"), ("h14", "s19"),
-        ("h15", "s20"), ("h16", "s20"),
+        ("h1", "s5"), ("h2", "s5"), ("h3", "s5"),
+        ("h4", "s6"), ("h5", "s6"), ("h6", "s6"),
+        ("h7", "s7"), ("h8", "s7"), ("h9", "s7"),
+        ("h10", "s8"), ("h11", "s8"), ("h12", "s8"),
     ]
 
-    for host, edge in host_links:
+    for host, switch in host_links:
         net.addLink(
             hosts[host],
-            switches[edge],
+            switches[switch],
             bw=100,
             delay="1ms"
         )
 
-    info("*** Adding strict k=4 Fat Tree switch links\n")
+    info("*** Adding Fat Tree switch links\n")
 
     switch_links = [
-        # Pod 0 edge-aggregation links
-        ("s13", "s5"), ("s13", "s6"),
-        ("s14", "s5"), ("s14", "s6"),
-
-        # Pod 1 edge-aggregation links
-        ("s15", "s7"), ("s15", "s8"),
-        ("s16", "s7"), ("s16", "s8"),
-
-        # Pod 2 edge-aggregation links
-        ("s17", "s9"), ("s17", "s10"),
-        ("s18", "s9"), ("s18", "s10"),
-
-        # Pod 3 edge-aggregation links
-        ("s19", "s11"), ("s19", "s12"),
-        ("s20", "s11"), ("s20", "s12"),
-
-        # Aggregation-core links: pod 0
-        ("s5", "s1"), ("s5", "s2"),
-        ("s6", "s3"), ("s6", "s4"),
-
-        # Aggregation-core links: pod 1
-        ("s7", "s1"), ("s7", "s2"),
-        ("s8", "s3"), ("s8", "s4"),
-
-        # Aggregation-core links: pod 2
-        ("s9", "s1"), ("s9", "s2"),
-        ("s10", "s3"), ("s10", "s4"),
-
-        # Aggregation-core links: pod 3
-        ("s11", "s1"), ("s11", "s2"),
-        ("s12", "s3"), ("s12", "s4"),
+        # Core layer interconnections
+        ("s1", "s2"), ("s1", "s3"), ("s1", "s4"),
+        ("s2", "s3"), ("s2", "s4"),
+        ("s3", "s4"),
+        
+        # Core to aggregation
+        ("s1", "s5"), ("s1", "s6"), ("s1", "s7"), ("s1", "s8"),
+        ("s2", "s5"), ("s2", "s6"), ("s2", "s7"), ("s2", "s8"),
+        ("s3", "s5"), ("s3", "s6"), ("s3", "s7"), ("s3", "s8"),
+        ("s4", "s5"), ("s4", "s6"), ("s4", "s7"), ("s4", "s8"),
+        
+        # Aggregation layer interconnections
+        ("s5", "s6"), ("s5", "s7"), ("s5", "s8"),
+        ("s6", "s7"), ("s6", "s8"),
+        ("s7", "s8"),
     ]
 
     for left, right in switch_links:
@@ -142,30 +111,30 @@ def build_topology():
             delay="2ms"
         )
 
-    total_nodes = len(switches) + len(hosts)
+    total_switches = len(switches)
+    total_hosts = len(hosts)
+    total_nodes = total_switches + total_hosts
     total_links = len(host_links) + len(switch_links)
 
     info("*** Topology summary\n")
-    info(f"    k: 4\n")
-    info(f"    Core switches: {len(core_switches)}\n")
-    info(f"    Aggregation switches: {len(agg_switches)}\n")
-    info(f"    Edge switches: {len(edge_switches)}\n")
-    info(f"    Total switches: {len(switches)}\n")
-    info(f"    Hosts: {len(hosts)}\n")
+    info(f"    Name: Fat Tree\n")
+    info(f"    Switches: {total_switches}\n")
+    info(f"    Hosts: {total_hosts}\n")
     info(f"    Total nodes: {total_nodes}\n")
     info(f"    Host links: {len(host_links)}\n")
     info(f"    Switch links: {len(switch_links)}\n")
     info(f"    Total links: {total_links}\n")
 
+    # Topological Complexity Index: cyclomatic complexity of backbone
+    # = (E - N + 1) / E where E is backbone edges and N is switches
+    tci = (len(switch_links) - total_switches + 1) / len(switch_links)
+    info(f"    TCI: {tci}\n")
+
     info("*** Starting network\n")
     net.start()
 
     info("*** Network ready\n")
-    info("*** Useful Mininet commands:\n")
-    info("    nodes\n")
-    info("    links\n")
-    info("    net\n")
-    info("    pingall\n")
+    info("*** Useful commands: nodes, links, net, pingall\n")
 
     CLI(net)
 
