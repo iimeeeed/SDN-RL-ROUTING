@@ -70,10 +70,17 @@ class DijkstraController(app_manager.RyuApp):
             ip: host for host, ip in self.host_to_ip.items()
         }
 
+        self.learned_flow_idle_timeout = int(
+            os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
+        )
+
         self.logger.info("Loaded topology: %s", topology_name)
         self.logger.info("Switches: %s", self.topology.SWITCHES)
         self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
-        self.logger.info("Dijkstra controller ready")
+        self.logger.info(
+            "Dijkstra controller ready learned_flow_idle_timeout=%s",
+            self.learned_flow_idle_timeout
+        )
 
     def load_topology_module(self, module_name):
         try:
@@ -230,7 +237,8 @@ class DijkstraController(app_manager.RyuApp):
                 datapath=datapath,
                 priority=10,
                 match=match,
-                actions=actions
+                actions=actions,
+                idle_timeout=self.learned_flow_idle_timeout
             )
 
     def install_bidirectional_path(self, host_a, host_b):

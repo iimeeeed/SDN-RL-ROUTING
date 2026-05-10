@@ -63,6 +63,9 @@ class ROptimizerController(app_manager.RyuApp):
 		self.host_to_mac = self.topology.HOST_TO_MAC
 		self.port_map = self.topology.PORT_MAP
 
+		self.dpid_to_switch_map = getattr(self.topology, "DPID_TO_SWITCH", None)
+		self.switch_to_dpid_map = getattr(self.topology, "SWITCH_TO_DPID", None)
+
 		self.mac_to_host = {
 			mac: host for host, mac in self.host_to_mac.items()
 		}
@@ -73,6 +76,9 @@ class ROptimizerController(app_manager.RyuApp):
 		self.alpha = 0.1
 		self.path_cutoff = int(os.environ.get("PATH_CUTOFF", "6"))
 		self.baseline_window = int(os.environ.get("BASELINE_WINDOW", "20"))
+		self.learned_flow_idle_timeout = int(
+			os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
+		)
 
 		self.policy: Dict[PolicyState, Dict[str, float]] = {}
 		self.reward_history: List[float] = []
@@ -81,10 +87,11 @@ class ROptimizerController(app_manager.RyuApp):
 		self.logger.info("Switches: %s", self.topology.SWITCHES)
 		self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
 		self.logger.info(
-			"R-Optimizer config: alpha=%s path_cutoff=%s baseline_window=%s",
+			"R-Optimizer config: alpha=%s path_cutoff=%s baseline_window=%s learned_flow_idle_timeout=%s",
 			self.alpha,
 			self.path_cutoff,
-			self.baseline_window
+			self.baseline_window,
+			self.learned_flow_idle_timeout
 		)
 
 	def load_topology_module(self, module_name):
@@ -102,9 +109,17 @@ class ROptimizerController(app_manager.RyuApp):
 			return importlib.import_module(module_name)
 
 	def dpid_to_switch(self, dpid):
+		if self.dpid_to_switch_map:
+			switch_name = self.dpid_to_switch_map.get(dpid)
+			if switch_name:
+				return switch_name
 		return f"s{dpid}"
 
 	def switch_to_dpid(self, switch_name):
+		if self.switch_to_dpid_map:
+			if switch_name in self.switch_to_dpid_map:
+				return self.switch_to_dpid_map[switch_name]
+			raise KeyError(f"Unknown switch name: {switch_name}")
 		return int(switch_name.replace("s", ""))
 
 	@set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
@@ -381,7 +396,7 @@ class ROptimizerController(app_manager.RyuApp):
 				priority=100,
 				match=match,
 				actions=actions,
-				idle_timeout=0
+				idle_timeout=self.learned_flow_idle_timeout
 			)
 
 		return success
@@ -437,7 +452,8 @@ class ROptimizerController(app_manager.RyuApp):
 		src_host = self.mac_to_host.get(src_mac)
 		dst_host = self.mac_to_host.get(dst_mac)
 
-		if eth.ethertype == ether_types.ETH_TYPE_ARP:
+		is_arp = eth.ethertype == ether_types.ETH_TYPE_ARP
+		if is_arp:
 			arp_pkt = pkt.get_protocol(arp.arp)
 
 			if src_host is None:
@@ -487,14 +503,15 @@ class ROptimizerController(app_manager.RyuApp):
 				forward_success
 			)
 
-		self.reward_history.append(reward)
-		baseline = self.compute_baseline()
-		self.logger.info(
-			"Baseline=%.3f reward_history=%s updates=%s",
-			baseline,
-			len(self.reward_history),
-			len(state_actions)
-		)
+		if not is_arp:
+			baseline = self.compute_baseline()
+			self.reward_history.append(reward)
+			self.logger.info(
+				"Baseline=%.3f reward_history=%s updates=%s",
+				baseline,
+				len(self.reward_history),
+				len(state_actions)
+			)
 
-		for state, action in state_actions:
-			self.update_policy(state, action, reward, baseline)
+			for state, action in state_actions:
+				self.update_policy(state, action, reward, baseline)

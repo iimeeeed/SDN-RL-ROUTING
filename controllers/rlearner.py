@@ -76,9 +76,11 @@ class RLearnerController(app_manager.RyuApp):
 		}
 
 		self.alpha = 0.1
-		self.gamma = 0.95
-		self.epsilon = get_epsilon(episode=0)
+		self.epsilon = get_epsilon(decision_index=0)
 		self.path_cutoff = int(os.environ.get("PATH_CUTOFF", "6"))
+		self.learned_flow_idle_timeout = int(
+			os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
+		)
 
 		self.q_table: Dict[State, Dict[Path, float]] = {}
 		self.path_cache: Dict[State, List[Path]] = {}
@@ -87,11 +89,11 @@ class RLearnerController(app_manager.RyuApp):
 		self.logger.info("Switches: %s", self.topology.SWITCHES)
 		self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
 		self.logger.info(
-			"R-Learner config: alpha=%s gamma=%s epsilon=%s path_cutoff=%s",
+			"R-Learner config: alpha=%s epsilon=%s path_cutoff=%s learned_flow_idle_timeout=%s",
 			self.alpha,
-			self.gamma,
 			self.epsilon,
-			self.path_cutoff
+			self.path_cutoff,
+			self.learned_flow_idle_timeout
 		)
 
 	def load_topology_module(self, module_name):
@@ -309,7 +311,7 @@ class RLearnerController(app_manager.RyuApp):
 				priority=100,
 				match=match,
 				actions=actions,
-				idle_timeout=0
+				idle_timeout=self.learned_flow_idle_timeout
 			)
 
 		return success
@@ -346,9 +348,7 @@ class RLearnerController(app_manager.RyuApp):
 		self.ensure_q_state(state, paths)
 
 		current_q = self.q_table[state].get(action, 0.0)
-		max_next = max(self.q_table[state].values()) if self.q_table[state] else 0.0
-
-		updated = current_q + self.alpha * (reward + self.gamma * max_next - current_q)
+		updated = current_q + self.alpha * (reward - current_q)
 		self.q_table[state][action] = updated
 		self.logger.info(
 			"Q-update state=%s action_len=%s reward=%s old_q=%.3f new_q=%.3f",
@@ -389,7 +389,8 @@ class RLearnerController(app_manager.RyuApp):
 		src_host = self.mac_to_host.get(src_mac)
 		dst_host = self.mac_to_host.get(dst_mac)
 
-		if eth.ethertype == ether_types.ETH_TYPE_ARP:
+		is_arp = eth.ethertype == ether_types.ETH_TYPE_ARP
+		if is_arp:
 			arp_pkt = pkt.get_protocol(arp.arp)
 
 			if src_host is None:
@@ -426,7 +427,8 @@ class RLearnerController(app_manager.RyuApp):
 				dst_host
 			)
 			reward = compute_reward(False)
-			self.update_q_value((src_switch, dst_switch), (), reward)
+			if not is_arp:
+				self.update_q_value((src_switch, dst_switch), (), reward)
 			return
 
 		self.logger.info(
@@ -448,4 +450,5 @@ class RLearnerController(app_manager.RyuApp):
 			install_success,
 			forward_success
 		)
-		self.update_q_value((src_switch, dst_switch), selected_path, reward)
+		if not is_arp:
+			self.update_q_value((src_switch, dst_switch), selected_path, reward)

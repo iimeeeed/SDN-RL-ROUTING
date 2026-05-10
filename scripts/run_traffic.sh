@@ -60,7 +60,7 @@ fi
 if [[ -z "$PID" ]]; then
   echo "No Mininet topology process found." >&2
   echo "Run this from the Mininet CLI instead:" >&2
-  echo "  py __import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)" >&2
+  echo "  py import sys; sys.path.insert(0, \"$ROOT\"); __import__(\"traffic.generate_traffic\", fromlist=[\"run_from_env\"]).run_from_env(net)" >&2
   exit 2
 fi
 
@@ -71,8 +71,9 @@ fi
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 
-PY_LINE="$($PYTHON_BIN - <<'PY'
+PY_LINE="$(PROJECT_ROOT="$ROOT" "$PYTHON_BIN" - <<'PY'
 import os
+root = os.environ["PROJECT_ROOT"]
 keys = [
     "TRAFFIC_PAIRS",
     "TRAFFIC_PROTOCOLS",
@@ -90,14 +91,14 @@ keys = [
     "TRAFFIC_VERBOSE",
     "TRAFFIC_SEED",
 ]
-parts = ["import os"]
+lines = ["import os, sys", f"sys.path.insert(0, {root!r})"]
 for key in keys:
     val = os.environ.get(key)
     if val is None:
         continue
-    parts.append(f"os.environ[{key!r}] = {val!r}")
-parts.append("from traffic.generate_traffic import run_from_env; run_from_env(net)")
-print("; ".join(parts))
+    lines.append(f"os.environ[{key!r}] = {val!r}")
+lines.append("__import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)")
+print(f"exec({chr(10).join(lines)!r})")
 PY
 )"
 

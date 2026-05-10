@@ -20,7 +20,7 @@ fi
 # shellcheck disable=SC1090
 source "$VENV_PATH"
 
-if command -v mn >/dev/null 2>&1; then
+if [[ "${SKIP_MININET_CLEANUP:-0}" != "1" ]] && command -v mn >/dev/null 2>&1; then
   echo "[INFO] Cleaning Mininet..."
   sudo mn -c
 fi

@@ -4,8 +4,8 @@
 Staged dual-agent controller: R-Learner exploration then R-Optimizer refinement.
 
 Usage:
-	TOPOLOGY=abilene EXPLORE_EPISODES=50 ryu-manager controllers/staged_controller.py
-	TOPOLOGY=fat_tree EXPLORE_EPISODES=50 ryu-manager controllers/staged_controller.py
+	TOPOLOGY=abilene EXPLORE_DECISIONS=50 ryu-manager controllers/staged_controller.py
+	TOPOLOGY=fat_tree EXPLORE_DECISIONS=50 ryu-manager controllers/staged_controller.py
 """
 
 import os
@@ -77,11 +77,13 @@ class StagedController(app_manager.RyuApp):
 		}
 
 		self.alpha = 0.1
-		self.gamma = 0.95
-		self.epsilon = get_epsilon(episode=0)
+		self.epsilon = get_epsilon(decision_index=0)
 		self.path_cutoff = int(os.environ.get("PATH_CUTOFF", "6"))
 		self.baseline_window = int(os.environ.get("BASELINE_WINDOW", "20"))
 		self.policy_bias = float(os.environ.get("POLICY_BIAS", "0.7"))
+		self.learned_flow_idle_timeout = int(
+			os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
+		)
 
 		self.q_table: Dict[State, Dict[Path, float]] = {}
 		self.path_cache: Dict[State, List[Path]] = {}
@@ -90,19 +92,24 @@ class StagedController(app_manager.RyuApp):
 		self.reward_history: List[float] = []
 
 		self.phase = "explore"
-		self.episode = 0
-		self.explore_episodes = int(os.environ.get("EXPLORE_EPISODES", "50"))
+		self.decision_count = 0
+		self.explore_decisions = int(
+			os.environ.get(
+				"EXPLORE_DECISIONS",
+				os.environ.get("EXPLORE_EPISODES", "50")
+			)
+		)
 
 		self.logger.info("Loaded topology: %s", topology_name)
 		self.logger.info("Switches: %s", self.topology.SWITCHES)
 		self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
 		self.logger.info(
-			"Staged config: explore_episodes=%s alpha=%s gamma=%s epsilon=%s path_cutoff=%s",
-			self.explore_episodes,
+			"Staged config: explore_decisions=%s alpha=%s epsilon=%s path_cutoff=%s learned_flow_idle_timeout=%s",
+			self.explore_decisions,
 			self.alpha,
-			self.gamma,
 			self.epsilon,
-			self.path_cutoff
+			self.path_cutoff,
+			self.learned_flow_idle_timeout
 		)
 
 	def load_topology_module(self, module_name):
@@ -281,9 +288,7 @@ class StagedController(app_manager.RyuApp):
 		self.ensure_q_state(state, paths)
 
 		current_q = self.q_table[state].get(action, 0.0)
-		max_next = max(self.q_table[state].values()) if self.q_table[state] else 0.0
-
-		updated = current_q + self.alpha * (reward + self.gamma * max_next - current_q)
+		updated = current_q + self.alpha * (reward - current_q)
 		self.q_table[state][action] = updated
 		self.logger.info(
 			"Q-update state=%s action_len=%s reward=%s old_q=%.3f new_q=%.3f",
@@ -478,7 +483,7 @@ class StagedController(app_manager.RyuApp):
 				priority=100,
 				match=match,
 				actions=actions,
-				idle_timeout=0
+				idle_timeout=self.learned_flow_idle_timeout
 			)
 
 		return success
@@ -516,7 +521,7 @@ class StagedController(app_manager.RyuApp):
 
 		return self.ip_to_host.get(arp_pkt.dst_ip)
 
-	def handle_rlearner(self, msg, src_host: str, dst_host: str) -> None:
+	def handle_rlearner(self, msg, src_host: str, dst_host: str, learn: bool = True) -> None:
 		src_switch = self.host_to_switch[src_host]
 		dst_switch = self.host_to_switch[dst_host]
 
@@ -524,7 +529,8 @@ class StagedController(app_manager.RyuApp):
 		if not selected_path:
 			self.logger.warning("No available path for %s -> %s", src_host, dst_host)
 			reward = compute_reward(False)
-			self.update_q_value((src_switch, dst_switch), (), reward)
+			if learn:
+				self.update_q_value((src_switch, dst_switch), (), reward)
 			return
 
 		self.logger.info(
@@ -545,9 +551,10 @@ class StagedController(app_manager.RyuApp):
 			install_success,
 			forward_success
 		)
-		self.update_q_value((src_switch, dst_switch), selected_path, reward)
+		if learn:
+			self.update_q_value((src_switch, dst_switch), selected_path, reward)
 
-	def handle_roptimizer(self, msg, src_host: str, dst_host: str) -> None:
+	def handle_roptimizer(self, msg, src_host: str, dst_host: str, learn: bool = True) -> None:
 		src_switch = self.host_to_switch[src_host]
 		dst_switch = self.host_to_switch[dst_host]
 
@@ -574,17 +581,18 @@ class StagedController(app_manager.RyuApp):
 				forward_success
 			)
 
-		self.reward_history.append(reward)
-		baseline = self.compute_baseline()
-		self.logger.info(
-			"Baseline=%.3f reward_history=%s updates=%s",
-			baseline,
-			len(self.reward_history),
-			len(state_actions)
-		)
+		if learn:
+			baseline = self.compute_baseline()
+			self.reward_history.append(reward)
+			self.logger.info(
+				"Baseline=%.3f reward_history=%s updates=%s",
+				baseline,
+				len(self.reward_history),
+				len(state_actions)
+			)
 
-		for state, action in state_actions:
-			self.update_policy(state, action, reward, baseline)
+			for state, action in state_actions:
+				self.update_policy(state, action, reward, baseline)
 
 	@set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
 	def packet_in_handler(self, ev):
@@ -609,7 +617,8 @@ class StagedController(app_manager.RyuApp):
 		src_host = self.mac_to_host.get(src_mac)
 		dst_host = self.mac_to_host.get(dst_mac)
 
-		if eth.ethertype == ether_types.ETH_TYPE_ARP:
+		is_arp = eth.ethertype == ether_types.ETH_TYPE_ARP
+		if is_arp:
 			arp_pkt = pkt.get_protocol(arp.arp)
 
 			if src_host is None:
@@ -632,25 +641,26 @@ class StagedController(app_manager.RyuApp):
 			return
 
 		self.logger.info(
-			"Phase=%s episode=%s/%s handling %s -> %s",
+			"Phase=%s decision=%s/%s handling %s -> %s",
 			self.phase,
-			self.episode,
-			self.explore_episodes,
+			self.decision_count,
+			self.explore_decisions,
 			src_host,
 			dst_host
 		)
 
 		if self.phase == "explore":
-			self.handle_rlearner(msg, src_host, dst_host)
-			self.episode += 1
-			if self.episode >= self.explore_episodes:
+			self.handle_rlearner(msg, src_host, dst_host, learn=not is_arp)
+			if not is_arp:
+				self.decision_count += 1
+			if self.decision_count >= self.explore_decisions:
 				self.phase = "optimize"
 				self.reward_history = []
 				self.initialize_optimizer_from_q_table()
 				self.logger.info(
-					"Switching to R-Optimizer phase at episode=%s",
-					self.episode
+					"Switching to R-Optimizer phase after decisions=%s",
+					self.decision_count
 				)
 			return
 
-		self.handle_roptimizer(msg, src_host, dst_host)
+		self.handle_roptimizer(msg, src_host, dst_host, learn=not is_arp)

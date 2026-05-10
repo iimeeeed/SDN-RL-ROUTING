@@ -4,16 +4,15 @@
 Traffic generation for Mininet topologies.
 
 Run from Mininet CLI:
-  mininet> py from traffic.generate_traffic import run; run(net)
-  mininet> py exec(open('traffic/generate_traffic.py').read())
+  mininet> py import sys; sys.path.insert(0, "/path/to/project"); __import__("traffic.generate_traffic", fromlist=["run"]).run(net)
 
-Environment variables (used when running via exec):
+Environment variables:
   TRAFFIC_PAIRS="h1-h5,h2-h4"
   TRAFFIC_PROTOCOLS="tcp|udp|both"
   TRAFFIC_PAIR_COUNT="3"
-    TRAFFIC_PAIR_MODE="ends|random|all|east_west"
-    TRAFFIC_FLOWS_PER_PAIR="1"
-    TRAFFIC_EPISODES="1"
+  TRAFFIC_PAIR_MODE="ends|random|all|east_west"
+  TRAFFIC_FLOWS_PER_PAIR="1"
+  TRAFFIC_EPISODES="1"
   TRAFFIC_DURATION="60"
   TRAFFIC_INTERVAL="1"
   TRAFFIC_LINK_BW_Mbps="100"
@@ -22,7 +21,7 @@ Environment variables (used when running via exec):
   TRAFFIC_OUTPUT="results/traffic.csv"
   TRAFFIC_PING="0"
   TRAFFIC_VERBOSE="1"
-    TRAFFIC_SEED=""
+  TRAFFIC_SEED=""
 """
 
 import argparse
@@ -42,6 +41,8 @@ except ImportError:
     subprocess = None
 
 Pair = Tuple[str, str]
+
+DEFAULT_TRAFFIC_EPISODES = 1
 
 
 def host_sort_key(name: str) -> Tuple[int, str]:
@@ -250,7 +251,7 @@ def run(net,
         pair_count: int = 3,
         pair_mode: str = "ends",
         flows_per_pair: int = 1,
-    episodes: int = 100,
+        episodes: int = DEFAULT_TRAFFIC_EPISODES,
         protocols: str = "both",
         duration: int = 60,
         interval: int = 1,
@@ -261,6 +262,11 @@ def run(net,
         ping: bool = False,
         verbose: bool = True,
         seed: Optional[int] = None) -> List[Dict[str, object]]:
+    """Run traffic batches against an existing Mininet network.
+
+    One traffic episode is one complete pass over the selected flows. If
+    episodes=3, each selected flow is run once in each of three batches.
+    """
     if subprocess is None:
         raise RuntimeError("subprocess module is required for traffic generation")
 
@@ -422,7 +428,9 @@ def run(net,
                 server.kill()
 
     if output_path:
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        output_dir = os.path.dirname(output_path)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
         fieldnames = sorted({key for row in results for key in row.keys()})
         with open(output_path, "w", newline="") as handle:
             writer = csv.DictWriter(handle, fieldnames=fieldnames)
@@ -466,7 +474,7 @@ def run_from_env(net) -> List[Dict[str, object]]:
         pair_count=int(env_default("TRAFFIC_PAIR_COUNT", "3")),
         pair_mode=env_default("TRAFFIC_PAIR_MODE", "ends"),
         flows_per_pair=int(env_default("TRAFFIC_FLOWS_PER_PAIR", "1")),
-        episodes=100,
+        episodes=int(env_default("TRAFFIC_EPISODES", str(DEFAULT_TRAFFIC_EPISODES))),
         protocols=env_default("TRAFFIC_PROTOCOLS", "both"),
         duration=int(env_default("TRAFFIC_DURATION", "60")),
         interval=int(env_default("TRAFFIC_INTERVAL", "1")),
@@ -489,7 +497,7 @@ def main(net=None) -> int:
     parser.add_argument("--pair-count", type=int, default=int(env_default("TRAFFIC_PAIR_COUNT", "3")))
     parser.add_argument("--pair-mode", default=env_default("TRAFFIC_PAIR_MODE", "ends"))
     parser.add_argument("--flows-per-pair", type=int, default=int(env_default("TRAFFIC_FLOWS_PER_PAIR", "1")))
-    parser.add_argument("--episodes", type=int, default=int(env_default("TRAFFIC_EPISODES", "1")))
+    parser.add_argument("--episodes", type=int, default=int(env_default("TRAFFIC_EPISODES", str(DEFAULT_TRAFFIC_EPISODES))))
     parser.add_argument("--duration", type=int, default=int(env_default("TRAFFIC_DURATION", "60")))
     parser.add_argument("--interval", type=int, default=int(env_default("TRAFFIC_INTERVAL", "1")))
     parser.add_argument("--link-bw-mbps", type=int, default=int(env_default("TRAFFIC_LINK_BW_Mbps", "100")))
@@ -503,7 +511,7 @@ def main(net=None) -> int:
     if net is None:
         args = parser.parse_args()
         print("This script expects a Mininet net object. Use it from the Mininet CLI.")
-        print("Example: mininet> py from traffic.generate_traffic import run; run(net)")
+        print('Example: mininet> py __import__("traffic.generate_traffic", fromlist=["run"]).run(net)')
         return 2
 
     args = parser.parse_args([])
@@ -517,7 +525,7 @@ def main(net=None) -> int:
         pair_count=args.pair_count,
         pair_mode=args.pair_mode,
         flows_per_pair=args.flows_per_pair,
-        episodes=100,
+        episodes=args.episodes,
         protocols=args.protocols,
         duration=args.duration,
         interval=args.interval,

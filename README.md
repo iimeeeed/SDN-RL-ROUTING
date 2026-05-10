@@ -64,6 +64,7 @@ override the venv with `VENV_PATH=/path/to/activate`.
 ```bash
 scripts/run_controller.sh dijkstra abilene
 scripts/run_controller.sh rlearner abilene_imp
+EXPLORE_DECISIONS=50 scripts/run_controller.sh staged_controller abilene
 ```
 
 ### Run the topology
@@ -73,12 +74,26 @@ scripts/run_topology.sh fat_tree
 scripts/run_topology.sh abilene_imp
 ```
 
-`AUTO_TRAFFIC` defaults to `0` in the script. Set `AUTO_TRAFFIC=1` to run
-traffic automatically from within the topology process.
+Topology startup is decoupled from traffic generation. It only starts the
+Mininet network and opens the CLI; run traffic separately from the Mininet CLI
+or a third terminal.
+
+From the Mininet CLI:
+```text
+mininet> py import sys; sys.path.insert(0, "/home/johndoe/Desktop/sdn-rl-routing"); __import__("traffic.generate_traffic", fromlist=["run"]).run(net, pair_count=2, protocols="both", duration=10, episodes=1, output_path="results/traffic.csv")
+```
+
+One traffic episode means one complete batch of the selected flows. For example,
+`TRAFFIC_EPISODES=3` runs the same selected flow set in three separate batches.
+
+Controllers install learned forwarding rules with `LEARNED_FLOW_IDLE_TIMEOUT=1`
+by default so repeated traffic episodes can trigger fresh routing decisions.
+Increase it for steadier forwarding, or decrease it when you want more frequent
+controller decisions during experiments.
 
 ### Run traffic from a third terminal
 ```bash
-TRAFFIC_DURATION=30 scripts/run_traffic.sh
+TRAFFIC_DURATION=30 TRAFFIC_EPISODES=1 TRAFFIC_OUTPUT=results/traffic.csv scripts/run_traffic.sh
 ```
 
 If multiple topology processes are running, pass a PID:
@@ -88,6 +103,19 @@ scripts/run_traffic.sh --pid <pid>
 
 Traffic options are controlled via `TRAFFIC_*` environment variables. See
 `traffic/README.md` for the full list.
+
+### Run a full experiment
+```bash
+python3 experiments/run_experiment.py --controllers dijkstra,rlearner,roptimizer,staged_controller --topologies abilene --duration 10 --episodes 2 --pair-count 2 --protocols both
+```
+
+For a quick smoke test:
+```bash
+python3 experiments/run_experiment.py --controllers dijkstra --topologies abilene --duration 5 --episodes 1 --pair-count 1 --protocols tcp --fail-fast
+```
+
+Each run writes logs and traffic CSV files under `results/experiments/<timestamp>/`.
+The comparison table is written to `summary.csv` in that directory.
 
 ## System Dependencies
 These are installed outside of `pip`:

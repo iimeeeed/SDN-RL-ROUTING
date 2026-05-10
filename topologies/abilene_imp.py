@@ -40,11 +40,6 @@ if project_root not in sys.path:
 from topology_data.abilene_imp import SWITCH_TO_DPID
 
 
-def should_run_traffic() -> bool:
-    value = os.environ.get("AUTO_TRAFFIC", "1")
-    return value.strip().lower() in ("1", "true", "yes", "on")
-
-
 def build_topology():
     net = Mininet(
         controller=RemoteController,
@@ -227,15 +222,6 @@ def build_topology():
     net.start()
 
     info("*** Network ready\n")
-    if should_run_traffic():
-        info("*** Starting traffic generation (AUTO_TRAFFIC=0 to skip)\n")
-        try:
-            from traffic.generate_traffic import run_from_env
-
-            results = run_from_env(net)
-            info(f"*** Traffic complete: flows={len(results)}\n")
-        except Exception as exc:
-            info(f"*** Traffic generation failed: {exc}\n")
 
     info("*** Useful commands: nodes, links, net, pingall\n")
     CLI(net)

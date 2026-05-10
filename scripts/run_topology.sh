@@ -75,34 +75,12 @@ if [[ ! -f "$TOPOLOGY_PATH" ]]; then
   exit 2
 fi
 
-: "${AUTO_TRAFFIC:=0}"
-: "${TRAFFIC_PROTOCOLS:=both}"
-: "${TRAFFIC_PAIR_COUNT:=3}"
-: "${TRAFFIC_PAIR_MODE:=ends}"
-: "${TRAFFIC_FLOWS_PER_PAIR:=1}"
-: "${TRAFFIC_EPISODES:=1}"
-: "${TRAFFIC_DURATION:=60}"
-: "${TRAFFIC_INTERVAL:=1}"
-: "${TRAFFIC_LINK_BW_Mbps:=100}"
-: "${TRAFFIC_STAGGER_MIN:=1}"
-: "${TRAFFIC_STAGGER_MAX:=3}"
-: "${TRAFFIC_OUTPUT:=results/traffic.csv}"
-: "${TRAFFIC_PING:=0}"
-: "${TRAFFIC_VERBOSE:=1}"
+if [[ "${EUID:-$(id -u)}" -eq 0 ]]; then
+  exec "$PYTHON_BIN" "$TOPOLOGY_PATH"
+fi
 
-export AUTO_TRAFFIC
-export TRAFFIC_PROTOCOLS
-export TRAFFIC_PAIR_COUNT
-export TRAFFIC_PAIR_MODE
-export TRAFFIC_FLOWS_PER_PAIR
-export TRAFFIC_EPISODES
-export TRAFFIC_DURATION
-export TRAFFIC_INTERVAL
-export TRAFFIC_LINK_BW_Mbps
-export TRAFFIC_STAGGER_MIN
-export TRAFFIC_STAGGER_MAX
-export TRAFFIC_OUTPUT
-export TRAFFIC_PING
-export TRAFFIC_VERBOSE
-
-exec sudo -E "$PYTHON_BIN" "$TOPOLOGY_PATH"
+SUDO_ARGS=(-E)
+if [[ "${NONINTERACTIVE_SUDO:-0}" == "1" ]]; then
+  SUDO_ARGS=(-n -E)
+fi
+exec sudo "${SUDO_ARGS[@]}" "$PYTHON_BIN" "$TOPOLOGY_PATH"
