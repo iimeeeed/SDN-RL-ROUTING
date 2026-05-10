@@ -27,11 +27,23 @@ This project provides a platform for experimenting with Software Defined Network
    # or
    sudo python topologies/fat_tree.py
    ```
+   Or use the helper script (auto activates venv and runs `sudo mn -c`):
+   ```bash
+   scripts/run_topology.sh abilene
+   # or
+   scripts/run_topology.sh fat_tree
+   ```
 4. **Run the Dijkstra controller:**
    ```bash
    TOPOLOGY=abilene ryu-manager controllers/dijkstra.py
    # or
    TOPOLOGY=fat_tree ryu-manager controllers/dijkstra.py
+   ```
+   Or use the helper script:
+   ```bash
+   scripts/run_controller.sh dijkstra abilene
+   # or
+   scripts/run_controller.sh dijkstra fat_tree
    ```
 5. **Test connectivity and performance:**
    Use Mininet CLI commands like `pingall` and `iperf`.
@@ -42,6 +54,46 @@ This project provides a platform for experimenting with Software Defined Network
 - `topology_data/` — Data files for topologies (used by controllers)
 - `scripts/` — Validation and utility scripts
 - `report/`, `results/` — For experiment outputs and analysis
+
+## Helper Scripts
+The scripts in `scripts/` activate `.mnvenv` (or `.venv`) automatically and
+run `sudo mn -c` at the start of each run to clear old Mininet state. You can
+override the venv with `VENV_PATH=/path/to/activate`.
+
+### Run the controller
+```bash
+scripts/run_controller.sh dijkstra abilene
+scripts/run_controller.sh rlearner abilene_imp
+```
+
+### Run the topology
+```bash
+scripts/run_topology.sh abilene
+scripts/run_topology.sh fat_tree
+scripts/run_topology.sh abilene_imp
+```
+
+`AUTO_TRAFFIC` defaults to `0` in the script. Set `AUTO_TRAFFIC=1` to run
+traffic automatically from within the topology process.
+
+### Run traffic from a third terminal
+```bash
+TRAFFIC_DURATION=30 scripts/run_traffic.sh
+```
+
+If multiple topology processes are running, pass a PID:
+```bash
+scripts/run_traffic.sh --pid <pid>
+```
+
+Traffic options are controlled via `TRAFFIC_*` environment variables. See
+`traffic/README.md` for the full list.
+
+## System Dependencies
+These are installed outside of `pip`:
+- Mininet
+- Open vSwitch
+- iPerf (or iPerf3)
 
 ## Notes
 - The topologies are designed for research and experimentation, not for production use.
