@@ -1,0 +1,22 @@
+# Master experiment configuration (Member 4 — baselines & evaluation).
+# Paths are resolved relative to the repository root unless absolute.
+
+experiment:
+  # Human-readable label used in CSV filenames and the condition column.
+  condition: ECMP
+  topology: fat_tree      # abilene | fat_tree
+  controller: ecmp        # dijkstra | ecmp  (RL controllers added later)
+  episodes: 1
+  episode_duration_sec: 60
+  results_dir: results
+
+traffic:
+  server_host: h1
+  client_host: h2
+
+# UDP load for jitter / PLR (iPerf -u -b ...).
+iperf_udp_bitrate: 50M
+
+ryu:
+  # Seconds to wait after launching ryu-manager before starting Mininet.
+  listen_wait_sec: 4

@@ -24,7 +24,12 @@ from mininet.link import TCLink
 from mininet.log import setLogLevel, info
 
 
-def build_topology():
+def create_network():
+    """
+    Build and start the Abilene Mininet instance.
+
+    Caller is responsible for ``CLI(net)`` (optional) and ``net.stop()``.
+    """
     net = Mininet(
         controller=RemoteController,
         switch=OVSSwitch,
@@ -132,12 +137,18 @@ def build_topology():
     info("*** Network ready\n")
     info("*** Useful commands: nodes, links, net, pingall\n")
 
-    CLI(net)
+    return net
 
-    info("*** Stopping network\n")
-    net.stop()
+
+def main():
+    setLogLevel("info")
+    net = create_network()
+    try:
+        CLI(net)
+    finally:
+        info("*** Stopping network\n")
+        net.stop()
 
 
 if __name__ == "__main__":
-    setLogLevel("info")
-    build_topology()
+    main()
