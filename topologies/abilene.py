@@ -17,11 +17,24 @@ Implementation:
 - Remote Ryu controller at 127.0.0.1:6633
 """
 
+import os
+import sys
+
 from mininet.net import Mininet
 from mininet.node import RemoteController, OVSSwitch
 from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel, info
+
+
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+
+def should_run_traffic() -> bool:
+    value = os.environ.get("AUTO_TRAFFIC", "1")
+    return value.strip().lower() in ("1", "true", "yes", "on")
 
 
 def build_topology():
@@ -77,7 +90,8 @@ def build_topology():
             hosts[host],
             switches[switch],
             bw=100,
-            delay="1ms"
+            delay="1ms",
+            r2q=10000
         )
 
     info("*** Adding Abilene backbone links\n")
@@ -104,7 +118,8 @@ def build_topology():
             switches[left],
             switches[right],
             bw=1000,
-            delay="3ms"
+            delay="3ms",
+            r2q=100000
         )
 
     total_switches = len(switches)
@@ -130,6 +145,15 @@ def build_topology():
     net.start()
 
     info("*** Network ready\n")
+    if should_run_traffic():
+        info("*** Starting traffic generation (AUTO_TRAFFIC=0 to skip)\n")
+        try:
+            from traffic.generate_traffic import run_from_env
+
+            results = run_from_env(net)
+            info(f"*** Traffic complete: flows={len(results)}\n")
+        except Exception as exc:
+            info(f"*** Traffic generation failed: {exc}\n")
     info("*** Useful commands: nodes, links, net, pingall\n")
 
     CLI(net)

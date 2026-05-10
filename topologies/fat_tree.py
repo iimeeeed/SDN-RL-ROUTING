@@ -21,11 +21,24 @@ This is a reduced Fat Tree-like topology matching the project node/link
 requirements, not a strict k=4 Fat Tree.
 """
 
+import os
+import sys
+
 from mininet.net import Mininet
 from mininet.node import RemoteController, OVSSwitch
 from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import setLogLevel, info
+
+
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+
+def should_run_traffic() -> bool:
+    value = os.environ.get("AUTO_TRAFFIC", "1")
+    return value.strip().lower() in ("1", "true", "yes", "on")
 
 
 def build_topology():
@@ -134,6 +147,15 @@ def build_topology():
     net.start()
 
     info("*** Network ready\n")
+    if should_run_traffic():
+        info("*** Starting traffic generation (AUTO_TRAFFIC=0 to skip)\n")
+        try:
+            from traffic.generate_traffic import run_from_env
+
+            results = run_from_env(net)
+            info(f"*** Traffic complete: flows={len(results)}\n")
+        except Exception as exc:
+            info(f"*** Traffic generation failed: {exc}\n")
     info("*** Useful commands: nodes, links, net, pingall\n")
 
     CLI(net)
