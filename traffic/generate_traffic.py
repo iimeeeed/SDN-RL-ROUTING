@@ -22,14 +22,18 @@ Environment variables:
   TRAFFIC_PING="0"
   TRAFFIC_VERBOSE="1"
   TRAFFIC_SEED=""
+  TRAFFIC_FEEDBACK_GRACE="0.2"
+  TRAFFIC_CONCURRENT="0"
 """
 
 import argparse
 import csv
 import itertools
+import json
 import os
 import random
 import re
+import socket
 import sys
 import time
 from datetime import datetime
@@ -43,6 +47,35 @@ except ImportError:
 Pair = Tuple[str, str]
 
 DEFAULT_TRAFFIC_EPISODES = 1
+TRAFFIC_FIELDNAMES = [
+    "timestamp",
+    "episode",
+    "src",
+    "dst",
+    "flow_id",
+    "protocol",
+    "port",
+    "duration_s",
+    "throughput_mbps",
+    "jitter_ms",
+    "loss_pct",
+    "rtt_ms",
+    "stderr",
+]
+
+
+def send_live_feedback(record: Dict[str, object],
+                       feedback_host: Optional[str],
+                       feedback_port: Optional[int]) -> None:
+    if not feedback_host or not feedback_port:
+        return
+
+    payload = json.dumps(record, sort_keys=True).encode("utf-8")
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        sock.sendto(payload, (feedback_host, feedback_port))
+    finally:
+        sock.close()
 
 
 def host_sort_key(name: str) -> Tuple[int, str]:
@@ -246,6 +279,43 @@ def start_client(host, dst_ip: str, protocol: str, port: int, duration: int,
     )
 
 
+def start_ping(host, dst_ip: str):
+    return host.popen(
+        ["ping", "-c", "20", dst_ip],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+
+
+def build_result_record(flow, stdout: str, stderr: str, ping_output: str = ""):
+    record = {
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "episode": flow["episode"],
+        "src": flow["src"],
+        "dst": flow["dst"],
+        "flow_id": flow["flow_id"],
+        "protocol": flow["protocol"],
+        "port": flow["port"],
+        "duration_s": flow["duration_s"]
+    }
+
+    if stderr:
+        record["stderr"] = stderr.strip()
+
+    if flow["protocol"] == "tcp":
+        record["throughput_mbps"] = parse_tcp_throughput(stdout)
+    else:
+        jitter_ms, loss_pct = parse_udp_metrics(stdout)
+        record["jitter_ms"] = jitter_ms
+        record["loss_pct"] = loss_pct
+
+    if ping_output:
+        record["rtt_ms"] = parse_rtt(ping_output)
+
+    return record
+
+
 def run(net,
         pairs: Optional[List[Pair]] = None,
         pair_count: int = 3,
@@ -261,7 +331,12 @@ def run(net,
         output_path: Optional[str] = None,
         ping: bool = False,
         verbose: bool = True,
-        seed: Optional[int] = None) -> List[Dict[str, object]]:
+        seed: Optional[int] = None,
+        feedback_host: Optional[str] = None,
+        feedback_port: Optional[int] = None,
+        feedback_grace: float = 0.2,
+        concurrent: bool = False,
+        done_path: Optional[str] = None) -> List[Dict[str, object]]:
     """Run traffic batches against an existing Mininet network.
 
     One traffic episode is one complete pass over the selected flows. If
@@ -297,6 +372,7 @@ def run(net,
         )
         print("[traffic] protocols:", ", ".join(selected_protocols))
         print("[traffic] duration_s:", duration, "interval_s:", interval)
+        print("[traffic] concurrent:", concurrent)
 
     if not selected_pairs:
         raise ValueError("No host pairs available for traffic generation")
@@ -306,15 +382,19 @@ def run(net,
     flows = []
     tcp_index = 0
     udp_index = 0
+    flow_group_index = 0
 
     for src, dst in selected_pairs:
         for _ in range(flows_per_pair):
+            flow_group_id = f"{src}-{dst}-g{flow_group_index}"
+            flow_group_index += 1
             if "tcp" in selected_protocols:
                 flows.append({
                     "src": src,
                     "dst": dst,
                     "protocol": "tcp",
-                    "port": 5001 + tcp_index
+                    "port": 5001 + tcp_index,
+                    "flow_group_id": flow_group_id
                 })
                 tcp_index += 1
             if "udp" in selected_protocols:
@@ -322,9 +402,30 @@ def run(net,
                     "src": src,
                     "dst": dst,
                     "protocol": "udp",
-                    "port": 6001 + udp_index
+                    "port": 6001 + udp_index,
+                    "flow_group_id": flow_group_id
                 })
                 udp_index += 1
+
+    csv_handle = None
+    csv_writer = None
+    if output_path:
+        output_dir = os.path.dirname(output_path)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
+        if done_path is None:
+            done_path = output_path + ".done"
+        for stale_path in (output_path, done_path, output_path + ".partial"):
+            try:
+                os.remove(stale_path)
+            except FileNotFoundError:
+                pass
+        csv_handle = open(output_path, "w", newline="", buffering=1)
+        csv_writer = csv.DictWriter(csv_handle, fieldnames=TRAFFIC_FIELDNAMES)
+        csv_writer.writeheader()
+        csv_handle.flush()
+        if verbose:
+            print("[traffic] writing incremental CSV", output_path)
 
     servers = []
     for flow in flows:
@@ -337,107 +438,127 @@ def run(net,
                 f"[traffic] server {flow['protocol']} {flow['dst']} port={flow['port']}"
             )
 
-    results = []
-    for episode_index in range(episodes):
+    def write_result(record):
+        results.append(record)
+        if csv_writer is not None:
+            csv_writer.writerow(record)
+            csv_handle.flush()
+        send_live_feedback(record, feedback_host, feedback_port)
         if verbose:
-            print(f"[traffic] starting episode {episode_index + 1}/{episodes}")
-
-        episode_flows = list(flows)
-        rng.shuffle(episode_flows)
-
-        for index, flow in enumerate(episode_flows):
-            if index > 0:
-                time.sleep(rng.uniform(stagger_min, stagger_max))
-
-            src_host = net.get(flow["src"])
-            dst_ip = net.get(flow["dst"]).IP()
-
-            client = start_client(
-                src_host,
-                dst_ip,
-                flow["protocol"],
-                flow["port"],
-                duration,
-                interval,
-                udp_bw_mbps
-            )
-            flow["client"] = client
-            if verbose:
+            if record["protocol"] == "tcp":
                 print(
-                    f"[traffic] client {flow['protocol']} {flow['src']}->{flow['dst']} "
-                    f"port={flow['port']}"
+                    "[traffic] result",
+                    record["src"],
+                    "->",
+                    record["dst"],
+                    "tcp throughput_mbps=",
+                    record.get("throughput_mbps")
                 )
-
-        for flow in episode_flows:
-            stdout, stderr = flow["client"].communicate()
-            record = {
-                "timestamp": datetime.utcnow().isoformat() + "Z",
-                "episode": episode_index + 1,
-                "src": flow["src"],
-                "dst": flow["dst"],
-                "protocol": flow["protocol"],
-                "port": flow["port"],
-                "duration_s": duration
-            }
-
-            if stderr:
-                record["stderr"] = stderr.strip()
-
-            if flow["protocol"] == "tcp":
-                record["throughput_mbps"] = parse_tcp_throughput(stdout)
             else:
-                jitter_ms, loss_pct = parse_udp_metrics(stdout)
-                record["jitter_ms"] = jitter_ms
-                record["loss_pct"] = loss_pct
-
-            if ping:
-                ping_output = net.get(flow["src"]).cmd(
-                    f"ping -c 20 {net.get(flow['dst']).IP()}"
+                print(
+                    "[traffic] result",
+                    record["src"],
+                    "->",
+                    record["dst"],
+                    "udp jitter_ms=",
+                    record.get("jitter_ms"),
+                    "loss_pct=",
+                    record.get("loss_pct")
                 )
-                record["rtt_ms"] = parse_rtt(ping_output)
 
-            results.append(record)
+    results = []
+    completed = False
+    expected_rows = episodes * len(flows)
+    try:
+        for episode_index in range(episodes):
             if verbose:
-                if flow["protocol"] == "tcp":
+                print(f"[traffic] starting episode {episode_index + 1}/{episodes}")
+
+            episode_flows = [dict(flow) for flow in flows]
+            rng.shuffle(episode_flows)
+
+            running_flows = []
+            for index, flow in enumerate(episode_flows):
+                if index > 0:
+                    time.sleep(rng.uniform(stagger_min, stagger_max))
+
+                src_host = net.get(flow["src"])
+                dst_ip = net.get(flow["dst"]).IP()
+                flow_id = f"e{episode_index + 1}-{flow['flow_group_id']}"
+                flow["episode"] = episode_index + 1
+                flow["flow_id"] = flow_id
+                flow["duration_s"] = duration
+
+                send_live_feedback({
+                    "event": "flow_start",
+                    "episode": episode_index + 1,
+                    "flow_id": flow_id,
+                    "src": flow["src"],
+                    "dst": flow["dst"],
+                    "protocol": flow["protocol"],
+                    "port": flow["port"],
+                    "duration_s": duration,
+                }, feedback_host, feedback_port)
+                if feedback_host and feedback_port and feedback_grace > 0:
+                    time.sleep(feedback_grace)
+
+                client = start_client(
+                    src_host,
+                    dst_ip,
+                    flow["protocol"],
+                    flow["port"],
+                    duration,
+                    interval,
+                    udp_bw_mbps
+                )
+                flow["client"] = client
+                if ping:
+                    flow["ping_client"] = start_ping(src_host, dst_ip)
+                if verbose:
                     print(
-                        "[traffic] result",
-                        flow["src"],
-                        "->",
-                        flow["dst"],
-                        "tcp throughput_mbps=",
-                        record.get("throughput_mbps")
-                    )
-                else:
-                    print(
-                        "[traffic] result",
-                        flow["src"],
-                        "->",
-                        flow["dst"],
-                        "udp jitter_ms=",
-                        record.get("jitter_ms"),
-                        "loss_pct=",
-                        record.get("loss_pct")
+                        f"[traffic] client {flow['protocol']} {flow['src']}->{flow['dst']} "
+                        f"port={flow['port']}"
                     )
 
-    for server in servers:
-        if server.poll() is None:
-            server.terminate()
-            try:
-                server.wait(timeout=2)
-            except Exception:
-                server.kill()
+                if concurrent:
+                    running_flows.append(flow)
+                    continue
 
-    if output_path:
-        output_dir = os.path.dirname(output_path)
-        if output_dir:
-            os.makedirs(output_dir, exist_ok=True)
-        fieldnames = sorted({key for row in results for key in row.keys()})
-        with open(output_path, "w", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(results)
-        if verbose:
-            print("[traffic] wrote", output_path)
+                stdout, stderr = client.communicate()
+                ping_output = ""
+                if flow.get("ping_client") is not None:
+                    ping_output, _ping_stderr = flow["ping_client"].communicate()
+                write_result(build_result_record(flow, stdout, stderr, ping_output))
+
+            if concurrent:
+                for flow in running_flows:
+                    stdout, stderr = flow["client"].communicate()
+                    ping_output = ""
+                    if flow.get("ping_client") is not None:
+                        ping_output, _ping_stderr = flow["ping_client"].communicate()
+                    write_result(build_result_record(flow, stdout, stderr, ping_output))
+
+        completed = len(results) == expected_rows
+        return results
+    finally:
+        for server in servers:
+            if server.poll() is None:
+                server.terminate()
+                try:
+                    server.wait(timeout=2)
+                except Exception:
+                    server.kill()
+
+        if csv_handle is not None:
+            csv_handle.close()
+            marker_path = done_path if completed else output_path + ".partial"
+            with open(marker_path, "w") as handle:
+                handle.write(f"rows={len(results)}\n")
+                handle.write(f"expected_rows={expected_rows}\n")
+                handle.write(f"complete={int(completed)}\n")
+            if verbose:
+                print("[traffic] wrote", output_path)
+                print("[traffic] wrote completion marker", marker_path)
 
     return results
 
@@ -467,6 +588,8 @@ def env_int_optional(key: str) -> Optional[int]:
 def run_from_env(net) -> List[Dict[str, object]]:
     pairs = parse_pairs(env_default("TRAFFIC_PAIRS", ""))
     output_path = env_default("TRAFFIC_OUTPUT", "") or None
+    done_path = env_default("TRAFFIC_DONE", "") or None
+    feedback_port = env_int_optional("TRAFFIC_FEEDBACK_PORT")
 
     return run(
         net=net,
@@ -484,7 +607,12 @@ def run_from_env(net) -> List[Dict[str, object]]:
         output_path=output_path,
         ping=env_bool("TRAFFIC_PING", False),
         verbose=env_bool("TRAFFIC_VERBOSE", True),
-        seed=env_int_optional("TRAFFIC_SEED")
+        seed=env_int_optional("TRAFFIC_SEED"),
+        feedback_host=env_default("TRAFFIC_FEEDBACK_HOST", "127.0.0.1"),
+        feedback_port=feedback_port,
+        feedback_grace=float(env_default("TRAFFIC_FEEDBACK_GRACE", "0.2")),
+        concurrent=env_bool("TRAFFIC_CONCURRENT", False),
+        done_path=done_path
     )
 
 
@@ -507,6 +635,10 @@ def main(net=None) -> int:
     parser.add_argument("--ping", action="store_true", default=env_bool("TRAFFIC_PING", False))
     parser.add_argument("--verbose", action="store_true", default=env_bool("TRAFFIC_VERBOSE", True))
     parser.add_argument("--seed", type=int, default=env_int_optional("TRAFFIC_SEED"))
+    parser.add_argument("--feedback-host", default=env_default("TRAFFIC_FEEDBACK_HOST", "127.0.0.1"))
+    parser.add_argument("--feedback-port", type=int, default=env_int_optional("TRAFFIC_FEEDBACK_PORT"))
+    parser.add_argument("--feedback-grace", type=float, default=float(env_default("TRAFFIC_FEEDBACK_GRACE", "0.2")))
+    parser.add_argument("--concurrent", action="store_true", default=env_bool("TRAFFIC_CONCURRENT", False))
 
     if net is None:
         args = parser.parse_args()
@@ -535,7 +667,11 @@ def main(net=None) -> int:
         output_path=output_path,
         ping=args.ping,
         verbose=args.verbose,
-        seed=args.seed
+        seed=args.seed,
+        feedback_host=args.feedback_host,
+        feedback_port=args.feedback_port,
+        feedback_grace=args.feedback_grace,
+        concurrent=args.concurrent
     )
 
     return 0

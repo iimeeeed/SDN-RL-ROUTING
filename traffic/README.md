@@ -56,6 +56,7 @@ export TRAFFIC_STAGGER_MAX="3"
 export TRAFFIC_OUTPUT="results/traffic.csv"
 export TRAFFIC_PING="0"           # 1 to also record ping RTT
 export TRAFFIC_SEED=""             # set for repeatable random pairs
+export TRAFFIC_CONCURRENT="0"       # 0 = one measured flow at a time, 1 = overlap flows
 ```
 
 Then in Mininet CLI:
@@ -70,3 +71,6 @@ If `TRAFFIC_OUTPUT` is set, results are written as CSV. Each row contains:
 - throughput_mbps (TCP)
 - jitter_ms and loss_pct (UDP)
 - rtt_ms (if ping enabled)
+
+By default, training traffic is sequential so each reward is attributable to
+one controller decision. Set `TRAFFIC_CONCURRENT=1` for contention/load tests.

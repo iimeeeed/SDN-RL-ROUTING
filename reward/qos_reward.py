@@ -32,7 +32,7 @@ history = reward_fn.get_history()           # list of past reward scalars
 from __future__ import annotations
 
 from collections import deque
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 
 # ---------------------------------------------------------------------------
@@ -92,10 +92,12 @@ class QoSReward:
         self,
         weights: Tuple[float, float, float, float] = WEIGHT_CONFIGS["balanced"],
         window: int = 20,
+        rtt_clip_ms: Optional[float] = None,
     ) -> None:
         self._validate_weights(weights)
         self.w1, self.w2, self.w3, self.w4 = weights
         self.window = window
+        self.rtt_clip_ms = rtt_clip_ms
 
         # Rolling buffers — one deque per raw metric
         self._tp_buf:  deque[float] = deque(maxlen=window)
@@ -138,6 +140,8 @@ class QoSReward:
 
         tp  = episode_log["throughput_gbps"]
         rtt = episode_log["rtt_ms"]
+        if self.rtt_clip_ms is not None:
+            rtt = min(rtt, self.rtt_clip_ms)
         jit = episode_log["jitter_ms"]
         plr = episode_log["plr_pct"]
 

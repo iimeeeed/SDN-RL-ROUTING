@@ -17,6 +17,8 @@ Implementation:
 - Remote Ryu controller at 127.0.0.1:6633
 """
 
+import os
+
 from mininet.net import Mininet
 from mininet.node import RemoteController, OVSSwitch
 from mininet.cli import CLI
@@ -24,7 +26,20 @@ from mininet.link import TCLink
 from mininet.log import setLogLevel, info
 
 
+def env_int(name, default):
+    raw = os.environ.get(name)
+    if raw is None or raw == "":
+        return default
+    return int(raw)
+
+
 def build_topology():
+    host_bw = env_int(
+        "TOPO_HOST_BW_MBPS",
+        env_int("TRAFFIC_LINK_BW_Mbps", 100),
+    )
+    backbone_bw = env_int("TOPO_BACKBONE_BW_MBPS", 1000)
+
     net = Mininet(
         controller=RemoteController,
         switch=OVSSwitch,
@@ -76,7 +91,7 @@ def build_topology():
         net.addLink(
             hosts[host],
             switches[switch],
-            bw=100,
+            bw=host_bw,
             delay="1ms",
             r2q=10000
         )
@@ -104,7 +119,7 @@ def build_topology():
         net.addLink(
             switches[left],
             switches[right],
-            bw=1000,
+            bw=backbone_bw,
             delay="3ms",
             r2q=100000
         )
@@ -122,6 +137,8 @@ def build_topology():
     info(f"    Host links: {len(host_links)}\n")
     info(f"    Backbone links: {len(backbone_links)}\n")
     info(f"    Total links: {total_links}\n")
+    info(f"    Host bw: {host_bw} Mbps\n")
+    info(f"    Backbone bw: {backbone_bw} Mbps\n")
 
     # Topological Complexity Index: cyclomatic complexity of backbone
     # = (E - N + 1) / E where E is backbone edges and N is switches

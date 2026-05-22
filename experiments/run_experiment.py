@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
-"""
-Run controller/topology traffic experiments end to end.
+"""Run controller/topology/traffic experiment matrices.
 
-The runner starts one Ryu controller, starts one Mininet topology, injects the
-traffic command through scripts/run_traffic.sh, stores per-run CSV/log files,
-and writes a compact summary CSV.
+The runner intentionally delegates network behavior to the repo's existing
+entry points:
+  - scripts/run_controller.sh
+  - scripts/run_topology.sh
+  - traffic.generate_traffic.run_from_env(net)
+
+Each matrix item writes controller/topology logs, traffic CSV, completion
+marker, and a row in results/experiments/<timestamp>/summary.csv.
 """
+
+from __future__ import annotations
 
 import argparse
 import csv
@@ -14,425 +20,648 @@ import os
 import signal
 import subprocess
 import sys
+import threading
 import time
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULTS_ROOT = ROOT / "results" / "experiments"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
+from reward.qos_reward import QoSReward, WEIGHT_CONFIGS
+
+DEFAULT_CONFIG = ROOT / "experiments" / "config.yaml"
 DEFAULT_CONTROLLERS = ["dijkstra", "rlearner", "roptimizer", "staged_controller"]
 DEFAULT_TOPOLOGIES = ["abilene"]
-BASH = os.environ.get("BASH", "bash")
 
 
-def script_cmd(script_name: str, *args: str) -> List[str]:
-    return [BASH, str(ROOT / "scripts" / script_name), *args]
+@dataclass
+class RunResult:
+    run_id: str
+    controller: str
+    topology: str
+    status: str
+    rows: int
+    expected_rows: Optional[int]
+    avg_throughput_mbps: Optional[float]
+    avg_jitter_ms: Optional[float]
+    avg_loss_pct: Optional[float]
+    avg_rtt_ms: Optional[float]
+    weighted_reward_count: int
+    avg_weighted_reward: Optional[float]
+    traffic_csv: str
+    run_dir: str
+    error: str = ""
 
 
-def parse_csv_list(raw: str) -> List[str]:
-    return [item.strip() for item in raw.split(",") if item.strip()]
+def load_config(path: Path) -> Dict[str, object]:
+    if not path.exists():
+        return {}
+    with path.open() as handle:
+        return yaml.safe_load(handle) or {}
 
 
-def timestamp() -> str:
-    return datetime.now().strftime("%Y%m%d-%H%M%S")
+def csv_list(raw: Optional[str]) -> Optional[List[str]]:
+    if raw is None:
+        return None
+    items = [item.strip() for item in raw.split(",") if item.strip()]
+    return items or None
 
 
-def make_env(args: argparse.Namespace, controller: str, topology: str,
-             output_path: Path) -> Dict[str, str]:
-    env = os.environ.copy()
-    env["PYTHONPATH"] = str(ROOT)
-    env["TOPOLOGY"] = topology
-    env["SKIP_MININET_CLEANUP"] = "1"
-    env["NONINTERACTIVE_SUDO"] = "1"
-    env["LEARNED_FLOW_IDLE_TIMEOUT"] = str(args.learned_flow_idle_timeout)
+def bool_text(value: object) -> str:
+    if isinstance(value, str):
+        return "1" if value.strip().lower() in ("1", "true", "yes", "on") else "0"
+    return "1" if bool(value) else "0"
 
-    if controller == "staged_controller":
-        env["EXPLORE_DECISIONS"] = str(args.explore_decisions)
 
-    env["TRAFFIC_PAIR_COUNT"] = str(args.pair_count)
-    env["TRAFFIC_PAIR_MODE"] = args.pair_mode
-    env["TRAFFIC_PROTOCOLS"] = args.protocols
-    env["TRAFFIC_DURATION"] = str(args.duration)
-    env["TRAFFIC_EPISODES"] = str(args.episodes)
-    env["TRAFFIC_FLOWS_PER_PAIR"] = str(args.flows_per_pair)
-    env["TRAFFIC_INTERVAL"] = str(args.interval)
-    env["TRAFFIC_LINK_BW_Mbps"] = str(args.link_bw_mbps)
-    env["TRAFFIC_STAGGER_MIN"] = str(args.stagger_min)
-    env["TRAFFIC_STAGGER_MAX"] = str(args.stagger_max)
-    env["TRAFFIC_OUTPUT"] = str(output_path)
-    env["TRAFFIC_PING"] = "1" if args.ping else "0"
-    env["TRAFFIC_VERBOSE"] = "1" if args.verbose_traffic else "0"
+def config_get(config: Dict[str, object], section: str, key: str, default):
+    section_data = config.get(section, {})
+    if isinstance(section_data, dict) and key in section_data:
+        return section_data[key]
+    return default
 
-    if args.seed is not None:
-        env["TRAFFIC_SEED"] = str(args.seed)
 
-    if args.pairs:
-        env["TRAFFIC_PAIRS"] = args.pairs
+def split_matrix(value: object, default: Iterable[str]) -> List[str]:
+    if isinstance(value, str):
+        return csv_list(value) or list(default)
+    if isinstance(value, list):
+        return [str(item) for item in value]
+    return list(default)
 
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    parser.add_argument("--controllers", help="Comma-separated controller names")
+    parser.add_argument("--topologies", help="Comma-separated topology names")
+    parser.add_argument("--results-dir")
+    parser.add_argument("--name")
+    parser.add_argument("--duration", type=int)
+    parser.add_argument("--episodes", type=int)
+    parser.add_argument("--pair-count", type=int)
+    parser.add_argument("--pair-mode")
+    parser.add_argument("--pairs")
+    parser.add_argument("--protocols")
+    parser.add_argument("--flows-per-pair", type=int)
+    parser.add_argument("--interval", type=int)
+    parser.add_argument("--link-bw-mbps", type=int)
+    parser.add_argument("--stagger-min", type=float)
+    parser.add_argument("--stagger-max", type=float)
+    parser.add_argument("--seed", type=int)
+    parser.add_argument("--feedback-grace", type=float)
+    parser.add_argument("--reward-mode", choices=["binary", "weighted"])
+    parser.add_argument(
+        "--weighted-profile",
+        choices=sorted(WEIGHT_CONFIGS.keys()),
+        help="QoS reward weights profile for weighted reward mode.",
+    )
+    parser.add_argument(
+        "--staged-checkpoint",
+        help="JSON checkpoint path used by staged_controller to load/save learning state.",
+    )
+    parser.add_argument(
+        "--no-staged-checkpoint-autosave",
+        action="store_true",
+        help="Load checkpoint if present but do not save it at controller shutdown.",
+    )
+    parser.add_argument("--controller-start-wait", type=float)
+    parser.add_argument("--topology-start-wait", type=float)
+    parser.add_argument("--traffic-timeout-buffer", type=float)
+    parser.add_argument("--stop-timeout", type=float)
+    parser.add_argument("--cleanup-timeout", type=float)
+    parser.add_argument("--ping", action="store_true", default=None)
+    parser.add_argument("--no-ping", action="store_false", dest="ping")
+    parser.add_argument("--verbose-traffic", action="store_true", default=None)
+    parser.add_argument("--quiet-traffic", action="store_false", dest="verbose_traffic")
+    parser.add_argument("--concurrent", action="store_true", default=None)
+    parser.add_argument("--sequential", action="store_false", dest="concurrent")
+    parser.add_argument("--fail-fast", action="store_true", default=None)
+    parser.add_argument("--skip-cleanup", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
+    return parser
+
+
+def stream_to_log(pipe, log_path: Path) -> None:
+    with log_path.open("w", buffering=1, errors="replace") as log:
+        while True:
+            chunk = pipe.readline()
+            if not chunk:
+                break
+            log.write(chunk)
+
+
+def start_logged_process(
+    args: List[str],
+    env: Dict[str, str],
+    cwd: Path,
+    stdout_path: Path,
+    stdin=None,
+) -> subprocess.Popen:
+    process = subprocess.Popen(
+        args,
+        cwd=str(cwd),
+        env=env,
+        stdin=stdin,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1,
+        preexec_fn=os.setsid,
+    )
+    assert process.stdout is not None
+    thread = threading.Thread(
+        target=stream_to_log,
+        args=(process.stdout, stdout_path),
+        daemon=True,
+    )
+    thread.start()
+    return process
+
+
+def run_logged_command(
+    args: List[str],
+    env: Dict[str, str],
+    cwd: Path,
+    log_path: Path,
+    timeout: float,
+) -> int:
+    with log_path.open("w", errors="replace") as log:
+        process = subprocess.run(
+            args,
+            cwd=str(cwd),
+            env=env,
+            stdout=log,
+            stderr=subprocess.STDOUT,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    return process.returncode
+
+
+def cleanup_network(run_dir: Path, label: str, timeout: float) -> None:
+    cleanup_env = os.environ.copy()
+    commands = [
+        (["sudo", "-n", "mn", "-c"], run_dir / f"cleanup_{label}_mininet.log"),
+        (["pkill", "-f", "ryu-manager"], run_dir / f"cleanup_{label}_ryu.log"),
+        (["pkill", "-f", "iperf"], run_dir / f"cleanup_{label}_iperf.log"),
+        (["pkill", "-f", "iperf3"], run_dir / f"cleanup_{label}_iperf3.log"),
+    ]
+    for command, log_path in commands:
+        try:
+            code = run_logged_command(command, cleanup_env, ROOT, log_path, timeout)
+        except FileNotFoundError as exc:
+            log_path.write_text(f"{exc}\n")
+            continue
+        except subprocess.TimeoutExpired:
+            log_path.write_text(f"timed out after {timeout} seconds\n")
+            continue
+        if command[0] == "sudo" and code != 0:
+            raise RuntimeError(
+                "Mininet cleanup requires passwordless or cached sudo. "
+                "Run `sudo -v` first, or pass --skip-cleanup."
+            )
+
+
+def stop_process(process: Optional[subprocess.Popen], timeout: float, stdin_text: str = "") -> None:
+    if process is None or process.poll() is not None:
+        return
+    if stdin_text and process.stdin is not None:
+        try:
+            process.stdin.write(stdin_text)
+            process.stdin.flush()
+        except BrokenPipeError:
+            pass
+    try:
+        process.wait(timeout=timeout)
+        return
+    except subprocess.TimeoutExpired:
+        pass
+    try:
+        os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    try:
+        process.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(os.getpgid(process.pid), signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        process.wait(timeout=timeout)
+
+
+def traffic_env(args: argparse.Namespace, config: Dict[str, object], output: Path) -> Dict[str, str]:
+    traffic = config.get("traffic", {})
+    if not isinstance(traffic, dict):
+        traffic = {}
+
+    def pick(cli_name: str, key: str, default):
+        value = getattr(args, cli_name)
+        if value is not None:
+            return value
+        return traffic.get(key, default)
+
+    pairs = pick("pairs", "pairs", "")
+    env = {
+        "TRAFFIC_PAIRS": str(pairs or ""),
+        "TRAFFIC_PROTOCOLS": str(pick("protocols", "protocols", "both")),
+        "TRAFFIC_PAIR_COUNT": str(pick("pair_count", "pair_count", 3)),
+        "TRAFFIC_PAIR_MODE": str(pick("pair_mode", "pair_mode", "ends")),
+        "TRAFFIC_FLOWS_PER_PAIR": str(pick("flows_per_pair", "flows_per_pair", 1)),
+        "TRAFFIC_EPISODES": str(pick("episodes", "episodes", 1)),
+        "TRAFFIC_DURATION": str(pick("duration", "duration", 60)),
+        "TRAFFIC_INTERVAL": str(pick("interval", "interval", 1)),
+        "TRAFFIC_LINK_BW_Mbps": str(pick("link_bw_mbps", "link_bw_mbps", 100)),
+        "TRAFFIC_STAGGER_MIN": str(pick("stagger_min", "stagger_min", 1)),
+        "TRAFFIC_STAGGER_MAX": str(pick("stagger_max", "stagger_max", 3)),
+        "TRAFFIC_OUTPUT": str(output),
+        "TRAFFIC_DONE": str(output) + ".done",
+        "TRAFFIC_PING": bool_text(pick("ping", "ping", False)),
+        "TRAFFIC_VERBOSE": bool_text(pick("verbose_traffic", "verbose", True)),
+        "TRAFFIC_FEEDBACK_HOST": "127.0.0.1",
+        "TRAFFIC_FEEDBACK_GRACE": str(pick("feedback_grace", "feedback_grace", 0.2)),
+        "TRAFFIC_CONCURRENT": bool_text(pick("concurrent", "concurrent", False)),
+    }
+    seed = pick("seed", "seed", None)
+    if seed is not None and str(seed) != "":
+        env["TRAFFIC_SEED"] = str(seed)
     return env
 
 
-def open_log(path: Path):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    return path.open("w", buffering=1)
+def controller_env(
+    args: argparse.Namespace,
+    config: Dict[str, object],
+    topology: str,
+    traffic_vars: Dict[str, str],
+) -> Dict[str, str]:
+    env = os.environ.copy()
+    env["TOPOLOGY"] = topology
+    controller_config = config.get("controller_env", {})
+    if isinstance(controller_config, dict):
+        env.update({str(key): str(value) for key, value in controller_config.items()})
+    env["SKIP_MININET_CLEANUP"] = "1"
+    env["NONINTERACTIVE_SUDO"] = "1"
+    if args.reward_mode:
+        env["REWARD_MODE"] = args.reward_mode
+    if args.weighted_profile:
+        env["WEIGHTED_PROFILE"] = args.weighted_profile
+    if args.staged_checkpoint:
+        env["STAGED_CHECKPOINT_PATH"] = str(Path(args.staged_checkpoint))
+    if args.no_staged_checkpoint_autosave:
+        env["STAGED_CHECKPOINT_AUTOSAVE"] = "0"
+    env["TRAFFIC_PROTOCOLS"] = traffic_vars["TRAFFIC_PROTOCOLS"]
+    if env.get("REWARD_MODE") == "weighted":
+        env.setdefault("REWARD_FEEDBACK_HOST", traffic_vars["TRAFFIC_FEEDBACK_HOST"])
+        env.setdefault("REWARD_FEEDBACK_PORT", "9999")
+        traffic_vars["TRAFFIC_FEEDBACK_PORT"] = env["REWARD_FEEDBACK_PORT"]
+    return env
 
 
-def start_process(name: str, cmd: List[str], env: Dict[str, str], log_path: Path,
-                  stdin_pipe: bool = False) -> subprocess.Popen:
-    log = open_log(log_path)
-    print(f"[experiment] starting {name}: {' '.join(cmd)}")
-    return subprocess.Popen(
-        cmd,
-        cwd=str(ROOT),
-        env=env,
-        stdin=subprocess.PIPE if stdin_pipe else subprocess.DEVNULL,
-        stdout=log,
-        stderr=subprocess.STDOUT,
-        text=True,
-        start_new_session=True,
+def topology_env(base_env: Dict[str, str]) -> Dict[str, str]:
+    env = base_env.copy()
+    env.setdefault("NONINTERACTIVE_SUDO", "1")
+    env.setdefault("SKIP_MININET_CLEANUP", "1")
+    return env
+
+
+def inject_traffic(topology_process: subprocess.Popen, traffic_vars: Dict[str, str]) -> None:
+    if topology_process.stdin is None:
+        raise RuntimeError("Topology process stdin is unavailable")
+    lines = [
+        "import os, sys",
+        f"sys.path.insert(0, {str(ROOT)!r})",
+    ]
+    for key, value in traffic_vars.items():
+        lines.append(f"os.environ[{key!r}] = {value!r}")
+    lines.append("__import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)")
+    payload = "exec(" + repr("\n".join(lines)) + ")"
+    topology_process.stdin.write(f"py {payload}\n")
+    topology_process.stdin.flush()
+
+
+def wait_for_marker(output: Path, timeout: float) -> str:
+    done = Path(str(output) + ".done")
+    partial = Path(str(output) + ".partial")
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if done.exists():
+            return "complete"
+        if partial.exists():
+            return "partial"
+        time.sleep(1)
+    return "timeout"
+
+
+def marker_expected_rows(output: Path) -> Optional[int]:
+    for suffix in (".done", ".partial"):
+        marker = Path(str(output) + suffix)
+        if not marker.exists():
+            continue
+        data = {}
+        with marker.open() as handle:
+            for line in handle:
+                if "=" in line:
+                    key, value = line.strip().split("=", 1)
+                    data[key] = value
+        try:
+            return int(data["expected_rows"])
+        except (KeyError, ValueError):
+            return None
+    return None
+
+
+def protocol_count(raw: str) -> int:
+    raw = (raw or "both").lower()
+    if raw == "both":
+        return 2
+    return len([item for item in raw.split(",") if item.strip()])
+
+
+def expected_rows_from_env(traffic_vars: Dict[str, str]) -> int:
+    pair_count = int(traffic_vars["TRAFFIC_PAIR_COUNT"])
+    flows_per_pair = int(traffic_vars["TRAFFIC_FLOWS_PER_PAIR"])
+    episodes = int(traffic_vars["TRAFFIC_EPISODES"])
+    protocols = protocol_count(traffic_vars["TRAFFIC_PROTOCOLS"])
+    pairs = [item for item in traffic_vars.get("TRAFFIC_PAIRS", "").split(",") if item.strip()]
+    selected_pairs = len(pairs) if pairs else pair_count
+    return episodes * selected_pairs * flows_per_pair * protocols
+
+
+def estimate_traffic_timeout(traffic_vars: Dict[str, str], buffer_seconds: float) -> float:
+    expected_rows = expected_rows_from_env(traffic_vars)
+    duration = int(traffic_vars["TRAFFIC_DURATION"])
+    stagger_max = float(traffic_vars["TRAFFIC_STAGGER_MAX"])
+    episodes = int(traffic_vars["TRAFFIC_EPISODES"])
+    rows_per_episode = max(expected_rows // max(episodes, 1), 1)
+    ping_enabled = traffic_vars.get("TRAFFIC_PING") == "1"
+    flow_runtime = max(duration, 22 if ping_enabled else duration)
+    stagger_runtime = episodes * max(rows_per_episode - 1, 0) * stagger_max
+    return expected_rows * flow_runtime + stagger_runtime + buffer_seconds
+
+
+def average(values: Iterable[Optional[str]]) -> Optional[float]:
+    nums = []
+    for value in values:
+        if value in (None, ""):
+            continue
+        try:
+            nums.append(float(value))
+        except ValueError:
+            continue
+    if not nums:
+        return None
+    return sum(nums) / len(nums)
+
+
+def weighted_rewards(rows: List[Dict[str, str]], profile: str, window: int) -> List[float]:
+    grouped: Dict[tuple, Dict[str, float]] = {}
+    for row in rows:
+        key = (row.get("episode"), row.get("flow_id"), row.get("src"), row.get("dst"))
+        metrics = grouped.setdefault(key, {})
+        protocol = row.get("protocol")
+        if protocol == "tcp" and row.get("throughput_mbps"):
+            metrics["throughput_gbps"] = float(row["throughput_mbps"]) / 1000.0
+        if protocol == "udp":
+            if row.get("jitter_ms"):
+                metrics["jitter_ms"] = float(row["jitter_ms"])
+            if row.get("loss_pct"):
+                metrics["plr_pct"] = float(row["loss_pct"])
+        if row.get("rtt_ms"):
+            current = metrics.get("rtt_ms")
+            value = float(row["rtt_ms"])
+            metrics["rtt_ms"] = value if current is None else (current + value) / 2.0
+
+    reward_fn = QoSReward(
+        weights=WEIGHT_CONFIGS.get(profile, WEIGHT_CONFIGS["balanced"]),
+        window=window,
     )
+    rewards = []
+    for _key, metrics in sorted(grouped.items()):
+        if not {"throughput_gbps", "rtt_ms", "jitter_ms", "plr_pct"} <= set(metrics):
+            continue
+        rewards.append(reward_fn.compute_reward(metrics))
+    return rewards
 
 
-def stop_process(name: str, proc: Optional[subprocess.Popen], timeout: float = 8.0) -> None:
-    if proc is None or proc.poll() is not None:
-        return
-
-    print(f"[experiment] stopping {name} pid={proc.pid}")
-    try:
-        os.killpg(proc.pid, signal.SIGTERM)
-        proc.wait(timeout=timeout)
-    except subprocess.TimeoutExpired:
-        print(f"[experiment] killing {name} pid={proc.pid}")
-        os.killpg(proc.pid, signal.SIGKILL)
-        proc.wait(timeout=timeout)
-
-
-def run_command(name: str, cmd: List[str], env: Optional[Dict[str, str]] = None,
-                timeout: Optional[int] = None) -> subprocess.CompletedProcess:
-    print(f"[experiment] running {name}: {' '.join(cmd)}")
-    return subprocess.run(
-        cmd,
-        cwd=str(ROOT),
-        env=env or os.environ.copy(),
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        timeout=timeout,
-        check=False,
-    )
-
-
-def require_cached_sudo() -> None:
-    result = run_command("sudo preflight", ["sudo", "-n", "true"], timeout=10)
-    if result.returncode == 0:
-        return
-
-    raise RuntimeError(
-        "sudo is required for Mininet, but sudo is not authenticated for "
-        "non-interactive use. Run `sudo -v` in this terminal, then rerun "
-        "the experiment."
-    )
-
-
-def wait_for_process(proc: subprocess.Popen, seconds: float, name: str) -> None:
-    time.sleep(seconds)
-    if proc.poll() is not None:
-        raise RuntimeError(f"{name} exited early with code {proc.returncode}")
-
-
-def send_mininet_command(proc: subprocess.Popen, command: str) -> None:
-    if proc.stdin is None:
-        raise RuntimeError("topology process has no writable stdin")
-    proc.stdin.write(command.rstrip() + "\n")
-    proc.stdin.flush()
-
-
-def summarize_csv(path: Path) -> Dict[str, object]:
+def summarize_csv(path: Path, profile: str = "balanced", window: int = 20) -> Dict[str, object]:
     if not path.exists():
         return {
             "rows": 0,
-            "tcp_rows": 0,
-            "udp_rows": 0,
-            "avg_tcp_throughput_mbps": "",
-            "avg_udp_jitter_ms": "",
-            "avg_udp_loss_pct": "",
-            "avg_rtt_ms": "",
+            "avg_throughput_mbps": None,
+            "avg_jitter_ms": None,
+            "avg_loss_pct": None,
+            "avg_rtt_ms": None,
+            "weighted_reward_count": 0,
+            "avg_weighted_reward": None,
         }
-
     with path.open(newline="") as handle:
         rows = list(csv.DictReader(handle))
-
-    def floats(field: str, protocol: Optional[str] = None) -> List[float]:
-        values = []
-        for row in rows:
-            if protocol and row.get("protocol") != protocol:
-                continue
-            raw = row.get(field)
-            if raw in (None, ""):
-                continue
-            try:
-                values.append(float(raw))
-            except ValueError:
-                continue
-        return values
-
-    def avg(values: Iterable[float]) -> str:
-        values = list(values)
-        if not values:
-            return ""
-        return f"{sum(values) / len(values):.6f}"
-
-    tcp_rows = [row for row in rows if row.get("protocol") == "tcp"]
-    udp_rows = [row for row in rows if row.get("protocol") == "udp"]
-
+    rewards = weighted_rewards(rows, profile, window)
     return {
         "rows": len(rows),
-        "tcp_rows": len(tcp_rows),
-        "udp_rows": len(udp_rows),
-        "avg_tcp_throughput_mbps": avg(floats("throughput_mbps", "tcp")),
-        "avg_udp_jitter_ms": avg(floats("jitter_ms", "udp")),
-        "avg_udp_loss_pct": avg(floats("loss_pct", "udp")),
-        "avg_rtt_ms": avg(floats("rtt_ms")),
+        "avg_throughput_mbps": average(row.get("throughput_mbps") for row in rows),
+        "avg_jitter_ms": average(row.get("jitter_ms") for row in rows),
+        "avg_loss_pct": average(row.get("loss_pct") for row in rows),
+        "avg_rtt_ms": average(row.get("rtt_ms") for row in rows),
+        "weighted_reward_count": len(rewards),
+        "avg_weighted_reward": average(str(reward) for reward in rewards),
     }
 
 
-def wait_for_traffic_output(path: Path, timeout: int, stable_seconds: float = 2.0) -> None:
-    deadline = time.time() + timeout
-    last_size = -1
-    stable_since = None
+def run_one(
+    run_index: int,
+    controller: str,
+    topology: str,
+    args: argparse.Namespace,
+    config: Dict[str, object],
+    output_root: Path,
+) -> RunResult:
+    run_id = f"{run_index:02d}_{controller}_{topology}"
+    run_dir = output_root / run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
+    traffic_csv = run_dir / "traffic.csv"
+    traffic_vars = traffic_env(args, config, traffic_csv)
+    ctrl_env = controller_env(args, config, topology, traffic_vars)
+    topo_env = topology_env(os.environ.copy())
+    topo_env.update(traffic_vars)
 
-    while time.time() < deadline:
-        if path.exists():
-            size = path.stat().st_size
-            if size > 0 and size == last_size:
-                if stable_since is None:
-                    stable_since = time.time()
-                elif time.time() - stable_since >= stable_seconds:
-                    return
-            else:
-                stable_since = None
-                last_size = size
-        time.sleep(0.5)
+    controller_process = None
+    topology_process = None
+    status = "failed"
+    error = ""
+    try:
+        if not args.skip_cleanup:
+            cleanup_network(run_dir, "before", float(args.cleanup_timeout))
 
-    raise RuntimeError(f"traffic output missing or incomplete: {path}")
+        controller_process = start_logged_process(
+            [str(ROOT / "scripts" / "run_controller.sh"), controller, topology],
+            ctrl_env,
+            ROOT,
+            run_dir / "controller.log",
+            stdin=subprocess.DEVNULL,
+        )
+        time.sleep(float(args.controller_start_wait))
+        if controller_process.poll() is not None:
+            raise RuntimeError(f"controller exited early with code {controller_process.returncode}")
+
+        topology_process = start_logged_process(
+            [str(ROOT / "scripts" / "run_topology.sh"), topology],
+            topo_env,
+            ROOT,
+            run_dir / "topology.log",
+            stdin=subprocess.PIPE,
+        )
+        time.sleep(float(args.topology_start_wait))
+        if topology_process.poll() is not None:
+            raise RuntimeError(f"topology exited early with code {topology_process.returncode}")
+
+        inject_traffic(topology_process, traffic_vars)
+        timeout = estimate_traffic_timeout(
+            traffic_vars,
+            float(args.traffic_timeout_buffer)
+        )
+        status = wait_for_marker(traffic_csv, timeout)
+        if status != "complete":
+            error = f"traffic status={status}"
+    except Exception as exc:
+        error = str(exc)
+    finally:
+        stop_process(topology_process, float(args.stop_timeout), stdin_text="exit\n")
+        stop_process(controller_process, float(args.stop_timeout))
+        if not args.skip_cleanup:
+            try:
+                cleanup_network(run_dir, "after", float(args.cleanup_timeout))
+            except RuntimeError as exc:
+                if not error:
+                    error = str(exc)
+
+    profile = ctrl_env.get("WEIGHTED_PROFILE", "balanced")
+    window = int(ctrl_env.get("BASELINE_WINDOW", "20"))
+    summary = summarize_csv(traffic_csv, profile, window)
+    if status == "complete" and error:
+        status = "failed"
+    return RunResult(
+        run_id=run_id,
+        controller=controller,
+        topology=topology,
+        status=status,
+        rows=int(summary["rows"]),
+        expected_rows=marker_expected_rows(traffic_csv) or expected_rows_from_env(traffic_vars),
+        avg_throughput_mbps=summary["avg_throughput_mbps"],
+        avg_jitter_ms=summary["avg_jitter_ms"],
+        avg_loss_pct=summary["avg_loss_pct"],
+        avg_rtt_ms=summary["avg_rtt_ms"],
+        weighted_reward_count=int(summary["weighted_reward_count"]),
+        avg_weighted_reward=summary["avg_weighted_reward"],
+        traffic_csv=str(traffic_csv),
+        run_dir=str(run_dir),
+        error=error,
+    )
 
 
-def write_summary(summary_path: Path, rows: List[Dict[str, object]]) -> None:
-    if not rows:
-        return
-
+def write_summary(path: Path, results: List[RunResult]) -> None:
     fieldnames = [
         "run_id",
         "controller",
         "topology",
         "status",
-        "traffic_csv",
-        "controller_log",
-        "topology_log",
-        "traffic_log",
         "rows",
-        "tcp_rows",
-        "udp_rows",
-        "avg_tcp_throughput_mbps",
-        "avg_udp_jitter_ms",
-        "avg_udp_loss_pct",
+        "expected_rows",
+        "avg_throughput_mbps",
+        "avg_jitter_ms",
+        "avg_loss_pct",
         "avg_rtt_ms",
+        "weighted_reward_count",
+        "avg_weighted_reward",
+        "traffic_csv",
+        "run_dir",
         "error",
     ]
-    with summary_path.open("w", newline="") as handle:
+    with path.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(rows)
+        for result in results:
+            writer.writerow(result.__dict__)
 
 
-def run_one(args: argparse.Namespace, experiment_dir: Path, controller: str,
-            topology: str, index: int) -> Dict[str, object]:
-    run_id = f"{index:02d}_{controller}_{topology}"
-    run_dir = experiment_dir / run_id
-    run_dir.mkdir(parents=True, exist_ok=True)
-
-    traffic_csv = run_dir / "traffic.csv"
-    controller_log = run_dir / "controller.log"
-    topology_log = run_dir / "topology.log"
-    traffic_log = run_dir / "traffic_runner.log"
-
-    env = make_env(args, controller, topology, traffic_csv)
-
-    controller_proc = None
-    topology_proc = None
-    status = "failed"
-    error = ""
-
-    try:
-        cleanup = run_command(
-            "cleanup",
-            script_cmd("clean_mininet.sh"),
-            env=env,
-            timeout=args.cleanup_timeout,
-        )
-        (run_dir / "cleanup.log").write_text(cleanup.stdout)
-
-        controller_proc = start_process(
-            "controller",
-            script_cmd("run_controller.sh", controller, topology),
-            env,
-            controller_log,
-        )
-        wait_for_process(controller_proc, args.controller_startup_delay, "controller")
-
-        topology_proc = start_process(
-            "topology",
-            script_cmd("run_topology.sh", topology),
-            env,
-            topology_log,
-            stdin_pipe=True,
-        )
-        wait_for_process(topology_proc, args.topology_startup_delay, "topology")
-
-        if args.pingall:
-            print("[experiment] running Mininet pingall")
-            send_mininet_command(topology_proc, "pingall")
-            wait_for_process(topology_proc, args.pingall_wait, "topology")
-
-        traffic = run_command(
-            "traffic",
-            script_cmd("run_traffic.sh", "--pid", str(topology_proc.pid)),
-            env=env,
-            timeout=args.traffic_timeout,
-        )
-        traffic_log.write_text(traffic.stdout)
-        if traffic.returncode != 0:
-            raise RuntimeError(f"traffic runner failed with code {traffic.returncode}")
-
-        wait_for_traffic_output(traffic_csv, args.traffic_timeout)
-
-        status = "ok"
-
-    except Exception as exc:
-        error = str(exc)
-        print(f"[experiment] {run_id} failed: {error}")
-
-    finally:
-        if topology_proc is not None and topology_proc.poll() is None:
-            try:
-                send_mininet_command(topology_proc, "exit")
-                topology_proc.wait(timeout=8)
-            except Exception:
-                stop_process("topology", topology_proc)
-
-        stop_process("controller", controller_proc)
-        cleanup = run_command(
-            "cleanup",
-            script_cmd("clean_mininet.sh"),
-            env=env,
-            timeout=args.cleanup_timeout,
-        )
-        (run_dir / "cleanup_final.log").write_text(cleanup.stdout)
-
-    summary = summarize_csv(traffic_csv)
-    summary.update({
-        "run_id": run_id,
-        "controller": controller,
-        "topology": topology,
-        "status": status,
-        "traffic_csv": str(traffic_csv),
-        "controller_log": str(controller_log),
-        "topology_log": str(topology_log),
-        "traffic_log": str(traffic_log),
-        "error": error,
-    })
-    return summary
-
-
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Run SDN routing controller experiments end to end."
+def apply_defaults(args: argparse.Namespace, config: Dict[str, object]) -> None:
+    args.results_dir = args.results_dir or str(
+        config_get(config, "experiment", "results_dir", "results/experiments")
     )
-    parser.add_argument(
-        "--controllers",
-        default=",".join(DEFAULT_CONTROLLERS),
-        help="Comma-separated controllers to test.",
+    args.name = args.name or str(config_get(config, "experiment", "name", "run"))
+    args.controller_start_wait = args.controller_start_wait or float(
+        config_get(config, "experiment", "controller_start_wait", 4)
     )
-    parser.add_argument(
-        "--topologies",
-        default=",".join(DEFAULT_TOPOLOGIES),
-        help="Comma-separated topologies to test.",
+    args.topology_start_wait = args.topology_start_wait or float(
+        config_get(config, "experiment", "topology_start_wait", 8)
     )
-    parser.add_argument("--pair-count", type=int, default=2)
-    parser.add_argument("--pair-mode", default="ends")
-    parser.add_argument("--pairs", default="")
-    parser.add_argument("--protocols", default="both")
-    parser.add_argument("--duration", type=int, default=10)
-    parser.add_argument("--episodes", type=int, default=2)
-    parser.add_argument("--flows-per-pair", type=int, default=1)
-    parser.add_argument("--interval", type=int, default=1)
-    parser.add_argument("--link-bw-mbps", type=int, default=100)
-    parser.add_argument("--stagger-min", type=float, default=0.2)
-    parser.add_argument("--stagger-max", type=float, default=0.5)
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--ping", action="store_true")
-    parser.add_argument("--verbose-traffic", action="store_true")
-    parser.add_argument("--explore-decisions", type=int, default=50)
-    parser.add_argument("--learned-flow-idle-timeout", type=int, default=1)
-    parser.add_argument("--controller-startup-delay", type=float, default=4.0)
-    parser.add_argument("--topology-startup-delay", type=float, default=6.0)
-    parser.add_argument("--pingall", action="store_true")
-    parser.add_argument("--pingall-wait", type=float, default=8.0)
-    parser.add_argument("--traffic-timeout", type=int, default=300)
-    parser.add_argument("--cleanup-timeout", type=int, default=60)
-    parser.add_argument("--output-dir", default="")
-    parser.add_argument("--fail-fast", action="store_true")
-    return parser
+    args.traffic_timeout_buffer = args.traffic_timeout_buffer or float(
+        config_get(config, "experiment", "traffic_timeout_buffer", 45)
+    )
+    args.stop_timeout = args.stop_timeout or float(
+        config_get(config, "experiment", "stop_timeout", 8)
+    )
+    args.cleanup_timeout = args.cleanup_timeout or float(
+        config_get(config, "experiment", "cleanup_timeout", 60)
+    )
+    if not args.skip_cleanup:
+        args.skip_cleanup = not bool(config_get(config, "experiment", "cleanup", True))
+    if args.fail_fast is None:
+        args.fail_fast = bool(config_get(config, "experiment", "fail_fast", False))
 
 
 def main() -> int:
-    args = build_parser().parse_args()
+    parser = build_parser()
+    args = parser.parse_args()
+    config = load_config(Path(args.config))
+    apply_defaults(args, config)
 
-    controllers = parse_csv_list(args.controllers)
-    topologies = parse_csv_list(args.topologies)
+    matrix = config.get("matrix", {})
+    if not isinstance(matrix, dict):
+        matrix = {}
+    controllers = csv_list(args.controllers) or split_matrix(
+        matrix.get("controllers"), DEFAULT_CONTROLLERS
+    )
+    topologies = csv_list(args.topologies) or split_matrix(
+        matrix.get("topologies"), DEFAULT_TOPOLOGIES
+    )
 
-    if not controllers:
-        raise SystemExit("No controllers selected")
-    if not topologies:
-        raise SystemExit("No topologies selected")
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    output_root = ROOT / args.results_dir / f"{timestamp}_{args.name}"
+    output_root.mkdir(parents=True, exist_ok=True)
 
-    experiment_dir = Path(args.output_dir) if args.output_dir else RESULTS_ROOT / timestamp()
-    if not experiment_dir.is_absolute():
-        experiment_dir = ROOT / experiment_dir
-    experiment_dir.mkdir(parents=True, exist_ok=True)
+    print(f"[experiment] output: {output_root}")
+    print(f"[experiment] controllers: {', '.join(controllers)}")
+    print(f"[experiment] topologies: {', '.join(topologies)}")
 
-    print(f"[experiment] output_dir={experiment_dir}")
-    print(f"[experiment] controllers={controllers}")
-    print(f"[experiment] topologies={topologies}")
+    if args.dry_run:
+        return 0
 
-    try:
-        require_cached_sudo()
-    except RuntimeError as exc:
-        print(f"[experiment] {exc}")
-        return 1
-
-    rows: List[Dict[str, object]] = []
+    results: List[RunResult] = []
     run_index = 1
-
     for topology in topologies:
         for controller in controllers:
-            row = run_one(args, experiment_dir, controller, topology, run_index)
-            rows.append(row)
-            write_summary(experiment_dir / "summary.csv", rows)
+            print(f"[experiment] run {run_index}: controller={controller} topology={topology}")
+            result = run_one(run_index, controller, topology, args, config, output_root)
+            results.append(result)
+            write_summary(output_root / "summary.csv", results)
+            print(
+                f"[experiment] {result.run_id} status={result.status} "
+                f"rows={result.rows}/{result.expected_rows} error={result.error}"
+            )
+            if args.fail_fast and result.status != "complete":
+                return 1
             run_index += 1
 
-            if args.fail_fast and row["status"] != "ok":
-                print("[experiment] fail-fast enabled, stopping")
-                print(f"[experiment] summary={experiment_dir / 'summary.csv'}")
-                return 1
-
-    failed = [row for row in rows if row["status"] != "ok"]
-    print(f"[experiment] summary={experiment_dir / 'summary.csv'}")
-    print(f"[experiment] completed={len(rows) - len(failed)} failed={len(failed)}")
-    return 1 if failed else 0
+    failures = [result for result in results if result.status != "complete"]
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":

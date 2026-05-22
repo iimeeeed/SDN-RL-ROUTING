@@ -90,6 +90,10 @@ keys = [
     "TRAFFIC_PING",
     "TRAFFIC_VERBOSE",
     "TRAFFIC_SEED",
+    "TRAFFIC_FEEDBACK_HOST",
+    "TRAFFIC_FEEDBACK_PORT",
+    "TRAFFIC_FEEDBACK_GRACE",
+    "TRAFFIC_CONCURRENT",
 ]
 lines = ["import os, sys", f"sys.path.insert(0, {root!r})"]
 for key in keys:

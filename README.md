@@ -91,6 +91,10 @@ by default so repeated traffic episodes can trigger fresh routing decisions.
 Increase it for steadier forwarding, or decrease it when you want more frequent
 controller decisions during experiments.
 
+Use `--reward-mode binary` for the existing success/failure reward, or
+`--reward-mode weighted` to compute weighted QoS reward from `traffic.csv`
+using `reward/qos_reward.py`.
+
 ### Run traffic from a third terminal
 ```bash
 TRAFFIC_DURATION=30 TRAFFIC_EPISODES=1 TRAFFIC_OUTPUT=results/traffic.csv scripts/run_traffic.sh
@@ -103,6 +107,9 @@ scripts/run_traffic.sh --pid <pid>
 
 Traffic options are controlled via `TRAFFIC_*` environment variables. See
 `traffic/README.md` for the full list.
+Training traffic runs one measured flow at a time by default for cleaner reward
+attribution; set `TRAFFIC_CONCURRENT=1` when you intentionally want overlapping
+load-test flows.
 
 ### Run a full experiment
 ```bash

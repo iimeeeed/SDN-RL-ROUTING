@@ -40,7 +40,21 @@ if project_root not in sys.path:
 from topology_data.abilene_imp import SWITCH_TO_DPID
 
 
+def env_int(name, default):
+    raw = os.environ.get(name)
+    if raw is None or raw == "":
+        return default
+    return int(raw)
+
+
 def build_topology():
+    core_agg_bw = env_int("TOPO_CORE_AGG_BW_MBPS", 10000)
+    agg_edge_bw = env_int("TOPO_AGG_EDGE_BW_MBPS", 1000)
+    edge_host_bw = env_int(
+        "TOPO_EDGE_HOST_BW_MBPS",
+        env_int("TRAFFIC_LINK_BW_Mbps", 100),
+    )
+
     net = Mininet(
         controller=RemoteController,
         switch=OVSSwitch,
@@ -133,7 +147,7 @@ def build_topology():
         net.addLink(
             all_sw[left],
             all_sw[right],
-            bw=10000,
+            bw=core_agg_bw,
             delay="1ms",
             r2q=100000,
         )
@@ -166,7 +180,7 @@ def build_topology():
         net.addLink(
             all_sw[left],
             all_sw[right],
-            bw=1000,
+            bw=agg_edge_bw,
             delay="1ms",
             r2q=10000,
         )
@@ -190,7 +204,7 @@ def build_topology():
         net.addLink(
             all_sw[sw_name],
             hosts[h_name],
-            bw=100,
+            bw=edge_host_bw,
             delay="1ms",
             r2q=1000,
         )
@@ -217,6 +231,9 @@ def build_topology():
     info(f"    Agg–Edge  links : {len(agg_edge_links)}\n")
     info(f"    Edge–Host links : {len(edge_host_links)}\n")
     info(f"    Total links     : {total_links}\n")
+    info(f"    Core–Agg bw     : {core_agg_bw} Mbps\n")
+    info(f"    Agg–Edge bw     : {agg_edge_bw} Mbps\n")
+    info(f"    Edge–Host bw    : {edge_host_bw} Mbps\n")
 
     info("*** Starting network\n")
     net.start()

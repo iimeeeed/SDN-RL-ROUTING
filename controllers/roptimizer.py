@@ -33,7 +33,7 @@ from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 from ryu.lib.packet import arp
 
-from reward.binary_reward import compute_reward
+from reward.controller_reward import compute_controller_reward
 
 
 PolicyState = Tuple[str, str, str]
@@ -79,6 +79,7 @@ class ROptimizerController(app_manager.RyuApp):
 		self.learned_flow_idle_timeout = int(
 			os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
 		)
+		self.reward_mode = os.environ.get("REWARD_MODE", "binary")
 
 		self.policy: Dict[PolicyState, Dict[str, float]] = {}
 		self.reward_history: List[float] = []
@@ -87,11 +88,12 @@ class ROptimizerController(app_manager.RyuApp):
 		self.logger.info("Switches: %s", self.topology.SWITCHES)
 		self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
 		self.logger.info(
-			"R-Optimizer config: alpha=%s path_cutoff=%s baseline_window=%s learned_flow_idle_timeout=%s",
+			"R-Optimizer config: alpha=%s path_cutoff=%s baseline_window=%s learned_flow_idle_timeout=%s reward_mode=%s",
 			self.alpha,
 			self.path_cutoff,
 			self.baseline_window,
-			self.learned_flow_idle_timeout
+			self.learned_flow_idle_timeout,
+			self.reward_mode
 		)
 
 	def load_topology_module(self, module_name):
@@ -483,7 +485,7 @@ class ROptimizerController(app_manager.RyuApp):
 				src_host,
 				dst_host
 			)
-			reward = compute_reward(False)
+			reward = compute_controller_reward(False, [], self.reward_mode)
 		else:
 			self.logger.info(
 				"R-Optimizer selected path %s -> %s: %s",
@@ -493,7 +495,11 @@ class ROptimizerController(app_manager.RyuApp):
 			)
 			install_success = self.install_path(path, dst_host)
 			forward_success = self.forward_current_packet(msg, path, dst_host)
-			reward = compute_reward(install_success and forward_success)
+			reward = compute_controller_reward(
+				install_success and forward_success,
+				path,
+				self.reward_mode
+			)
 			self.logger.info(
 				"Reward for %s -> %s: %s (install=%s forward=%s)",
 				src_host,
