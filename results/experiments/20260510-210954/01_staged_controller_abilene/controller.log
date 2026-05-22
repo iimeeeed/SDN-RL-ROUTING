@@ -1,0 +1,1297 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+Staged config: explore_decisions=20 alpha=0.1 epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1
+instantiating app ryu.controller.ofp_handler of OFPHandler
+Switch connected: dpid=1
+Switch connected: dpid=2
+Switch connected: dpid=3
+Switch connected: dpid=4
+Switch connected: dpid=5
+Switch connected: dpid=6
+Switch connected: dpid=7
+Phase=explore decision=0/20 handling h2 -> h4
+Exploitation selected path (best_q=0.000 candidates=44): s2 -> s5 -> s4 -> s6
+R-Learner selected path h2 -> h4: s2 -> s5 -> s4 -> s6
+Reward for h2 -> h4: 10 (install=True forward=True)
+Q-update state=('s2', 's6') action_len=4 reward=10 old_q=0.000 new_q=1.000
+Phase=explore decision=1/20 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s4 -> s2
+R-Learner selected path h4 -> h2: s6 -> s4 -> s2
+Reward for h4 -> h2: 10 (install=True forward=True)
+Q-update state=('s6', 's2') action_len=3 reward=10 old_q=0.000 new_q=1.000
+Phase=explore decision=2/20 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=0.000 new_q=1.000
+Phase=explore decision=3/20 handling h1 -> h5
+Exploitation selected path (best_q=1.000 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=1.000 new_q=1.900
+Phase=explore decision=4/20 handling h1 -> h5
+Exploitation selected path (best_q=1.900 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=1.900 new_q=2.710
+Phase=explore decision=5/20 handling h1 -> h5
+Exploitation selected path (best_q=2.710 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=2.710 new_q=3.439
+Phase=explore decision=6/20 handling h1 -> h5
+Exploitation selected path (best_q=3.439 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=3.439 new_q=4.095
+Phase=explore decision=7/20 handling h1 -> h5
+Exploitation selected path (best_q=4.095 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=4.095 new_q=4.686
+Phase=explore decision=8/20 handling h1 -> h5
+Exploitation selected path (best_q=4.686 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=4.686 new_q=5.217
+Phase=explore decision=9/20 handling h1 -> h5
+Exploitation selected path (best_q=5.217 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=5.217 new_q=5.695
+Phase=explore decision=10/20 handling h1 -> h5
+Exploitation selected path (best_q=5.695 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=5.695 new_q=6.126
+Phase=explore decision=11/20 handling h1 -> h5
+Exploitation selected path (best_q=6.126 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=6.126 new_q=6.513
+Phase=explore decision=12/20 handling h1 -> h5
+Exploitation selected path (best_q=6.513 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=6.513 new_q=6.862
+Phase=explore decision=13/20 handling h1 -> h5
+Exploitation selected path (best_q=6.862 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=6.862 new_q=7.176
+Phase=explore decision=14/20 handling h1 -> h5
+Exploitation selected path (best_q=7.176 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=7.176 new_q=7.458
+Phase=explore decision=15/20 handling h1 -> h5
+Exploitation selected path (best_q=7.458 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=7.458 new_q=7.712
+Phase=explore decision=16/20 handling h1 -> h5
+Exploitation selected path (best_q=7.712 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=7.712 new_q=7.941
+Phase=explore decision=17/20 handling h1 -> h5
+Exploitation selected path (best_q=7.941 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=7.941 new_q=8.147
+Phase=explore decision=18/20 handling h1 -> h5
+Exploitation selected path (best_q=8.147 candidates=1): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=6 reward=10 old_q=8.147 new_q=8.332
+Phase=explore decision=19/20 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=5 reward=10 old_q=0.000 new_q=1.000
+Initialized optimizer from Q-table: seeded_states=10 bias=0.70
+Switching to R-Optimizer phase after decisions=20
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=0.000 reward_history=1 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=0.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=0.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=0.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=0.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=2 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=3 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=4 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=5 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=6 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=7 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=8 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=9 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=10 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=11 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=12 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=13 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=14 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=15 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=16 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=17 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=18 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=19 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=20 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=21 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=22 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=23 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=24 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=25 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=26 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=27 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=28 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=29 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=30 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=31 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=32 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=33 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=34 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=35 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=36 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=37 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=38 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=39 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=40 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=41 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=42 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=43 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=44 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=45 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=46 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=47 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=48 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=49 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=50 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=51 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=52 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=53 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=54 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=55 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=56 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=57 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=58 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=59 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=60 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=61 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=62 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=63 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=64 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=65 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=66 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=67 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=68 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=69 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=70 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=71 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=72 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=73 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=74 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=75 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=76 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=77 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=78 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=79 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=80 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=81 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=82 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=83 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=84 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=85 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=86 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=87 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=88 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=89 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=90 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=91 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=92 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=93 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=94 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=95 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=96 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=97 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=98 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=99 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=100 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=101 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=102 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=103 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=104 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=105 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=106 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=107 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=108 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=109 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=110 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=111 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=112 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=113 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=114 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=115 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=116 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=117 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=118 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=119 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=120 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=121 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=122 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=123 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=124 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=125 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=126 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=127 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=128 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=129 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=130 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=131 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=132 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=133 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=134 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=135 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=136 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=137 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=138 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=139 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=140 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=141 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=142 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=143 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h1 -> h5
+R-Optimizer selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10 (install=True forward=True)
+Baseline=10.000 reward_history=144 updates=4
+Policy update state=('s1', 's7', 's1') action=s2 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's2') action=s4 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s1', 's7', 's6') action=s7 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h5 -> h1
+R-Optimizer selected path h5 -> h1: s7 -> s5 -> s3 -> s2 -> s1
+Reward for h5 -> h1: 10 (install=True forward=True)
+Baseline=10.000 reward_history=145 updates=4
+Policy update state=('s7', 's1', 's7') action=s5 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's5') action=s3 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's3') action=s2 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's2') action=s1 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h5 -> h1
+R-Optimizer selected path h5 -> h1: s7 -> s4 -> s6 -> s5 -> s2 -> s3 -> s1
+Reward for h5 -> h1: 10 (install=True forward=True)
+Baseline=10.000 reward_history=146 updates=6
+Policy update state=('s7', 's1', 's7') action=s4 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's4') action=s6 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's6') action=s5 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's5') action=s2 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's2') action=s3 reward=10 baseline=10.000
+Policy update state=('s7', 's1', 's3') action=s1 reward=10 baseline=10.000
+Phase=optimize decision=20/20 handling h4 -> h2
+R-Optimizer selected path h4 -> h2: s6 -> s3 -> s5 -> s7 -> s4 -> s1 -> s2
+Reward for h4 -> h2: 10 (install=True forward=True)
+Baseline=10.000 reward_history=147 updates=6
+Policy update state=('s6', 's2', 's6') action=s3 reward=10 baseline=10.000
+Policy update state=('s6', 's2', 's3') action=s5 reward=10 baseline=10.000
+Policy update state=('s6', 's2', 's5') action=s7 reward=10 baseline=10.000
+Policy update state=('s6', 's2', 's7') action=s4 reward=10 baseline=10.000
+Policy update state=('s6', 's2', 's4') action=s1 reward=10 baseline=10.000
+Policy update state=('s6', 's2', 's1') action=s2 reward=10 baseline=10.000

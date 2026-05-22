@@ -1,0 +1,446 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+Staged config: explore_decisions=5 min_weighted_explore_rewards=10 alpha=0.1 epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1 reward_mode=weighted
+Weighted QoS feedback listener started on 127.0.0.1:9999 profile=balanced
+instantiating app ryu.controller.ofp_handler of OFPHandler
+Switch connected: dpid=1
+Switch connected: dpid=2
+Switch connected: dpid=3
+Switch connected: dpid=4
+Switch connected: dpid=5
+Switch connected: dpid=6
+Switch connected: dpid=7
+Flow feedback window started key=('h2', 'h4', 1, 'e1-h2-h4-g1') protocol=tcp
+Phase=explore decision=0/5 handling h2 -> h4
+Exploitation selected path (best_q=0.000 candidates=44): s2 -> s4 -> s5 -> s3 -> s6
+R-Learner selected path h2 -> h4: s2 -> s4 -> s5 -> s3 -> s6
+Queued weighted Q feedback for h2 -> h4 (install=True forward=True)
+Phase=explore decision=1/5 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s4 -> s7 -> s5 -> s3 -> s2
+R-Learner selected path h4 -> h2: s6 -> s4 -> s7 -> s5 -> s3 -> s2
+Skipping weighted Q queue for h4 -> h2 because no flow_id window is active
+Flow feedback window started key=('h1', 'h5', 1, 'e1-h1-h5-g0') protocol=udp
+Phase=explore decision=2/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=3/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=4/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=5/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=6/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=7/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=8/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=9/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=10/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=11/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=12/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=13/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=14/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=15/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=16/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=17/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=18/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=19/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=20/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=21/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=22/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=23/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=24/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=25/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=26/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=27/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=28/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=29/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=30/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=31/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=32/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=33/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=34/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=35/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=36/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=37/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=38/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=39/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=40/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=41/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=42/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=43/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=44/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=45/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=46/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=47/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=48/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=49/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=50/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=51/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=52/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=53/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=54/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=55/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=56/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=57/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=58/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=59/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=60/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=61/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=62/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=63/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=64/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=65/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=66/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=67/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=68/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=69/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=70/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=71/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=72/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=73/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=74/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=75/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=76/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=77/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=78/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=79/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=80/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=81/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=82/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=83/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=84/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=85/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=86/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=87/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=88/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=89/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=90/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=91/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=92/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=93/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=94/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=95/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=96/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=97/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=98/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=99/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=100/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=101/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=102/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=103/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=104/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=105/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=106/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=107/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=108/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=109/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=110/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=111/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=112/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=113/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=114/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=115/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=116/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=117/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=118/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=119/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=120/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=121/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=122/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=123/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=124/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=125/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=126/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=127/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=128/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=129/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=130/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=131/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Phase=explore decision=132/5 handling h1 -> h5
+R-Learner reused active weighted path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Weighted Q feedback already pending for h1 -> h5; reused active flow window
+Flow feedback window started key=('h2', 'h4', 1, 'e1-h2-h4-g1') protocol=udp
+Flow feedback window started key=('h1', 'h5', 1, 'e1-h1-h5-g0') protocol=tcp
+Phase=explore decision=133/5 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s4 -> s5 -> s6 -> s3 -> s2 -> s1
+R-Learner selected path h5 -> h1: s7 -> s4 -> s5 -> s6 -> s3 -> s2 -> s1
+Skipping weighted Q queue for h5 -> h1 because no flow_id window is active
+Q-update state=('s2', 's6') action_len=5 reward=-0.09999999999999998 old_q=0.000 new_q=-0.010
+Live weighted QoS reward for h2 -> h4: -0.100 metrics={'throughput_gbps': 0.009609999999999999, 'jitter_ms': 0.116, 'plr_pct': 1.1, 'rtt_ms': 0.0} update=q
+Q-update state=('s1', 's7') action_len=7 reward=-0.3 old_q=0.000 new_q=-0.030
+Live weighted QoS reward for h1 -> h5: -0.300 metrics={'jitter_ms': 0.145, 'plr_pct': 0.23, 'throughput_gbps': 0.00491, 'rtt_ms': 0.0} update=q
+Flow feedback window started key=('h2', 'h4', 2, 'e2-h2-h4-g1') protocol=udp
+Flow feedback window started key=('h1', 'h5', 2, 'e2-h1-h5-g0') protocol=udp
+Flow feedback window started key=('h2', 'h4', 2, 'e2-h2-h4-g1') protocol=tcp
+Flow feedback window started key=('h1', 'h5', 2, 'e2-h1-h5-g0') protocol=tcp
+Live QoS reward -0.140 for key=('h2', 'h4', 2, 'e2-h2-h4-g1') has no pending decision
+Live QoS reward -0.147 for key=('h1', 'h5', 2, 'e2-h1-h5-g0') has no pending decision
+Flow feedback window started key=('h1', 'h5', 3, 'e3-h1-h5-g0') protocol=udp
+Flow feedback window started key=('h2', 'h4', 3, 'e3-h2-h4-g1') protocol=udp
+Flow feedback window started key=('h2', 'h4', 3, 'e3-h2-h4-g1') protocol=tcp
+Phase=explore decision=134/5 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s5 -> s7 -> s4 -> s1 -> s2
+R-Learner selected path h4 -> h2: s6 -> s5 -> s7 -> s4 -> s1 -> s2
+Skipping weighted Q queue for h4 -> h2 because no flow_id window is active
+Flow feedback window started key=('h1', 'h5', 3, 'e3-h1-h5-g0') protocol=tcp
+Live QoS reward -0.130 for key=('h2', 'h4', 3, 'e3-h2-h4-g1') has no pending decision
+Live QoS reward -0.065 for key=('h1', 'h5', 3, 'e3-h1-h5-g0') has no pending decision

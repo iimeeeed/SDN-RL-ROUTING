@@ -1,0 +1,5 @@
+dst,duration_s,episode,jitter_ms,loss_pct,port,protocol,src,throughput_mbps,timestamp
+h4,10,1,0.087,0.24,6002,udp,h2,,2026-05-10T16:12:33.185911Z
+h4,10,1,,,5002,tcp,h2,10.2,2026-05-10T16:12:35.838226Z
+h5,10,1,0.097,0.21,6001,udp,h1,,2026-05-10T16:12:36.924073Z
+h5,10,1,,,5001,tcp,h1,6.79,2026-05-10T16:12:38.796341Z

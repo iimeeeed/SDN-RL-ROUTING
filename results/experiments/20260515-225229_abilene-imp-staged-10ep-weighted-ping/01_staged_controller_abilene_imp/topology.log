@@ -1,0 +1,399 @@
+*** Adding remote Ryu controller
+*** Adding core switches (c0–c3)
+*** Adding aggregation switches (a1–a8)
+*** Adding edge switches (e1–e8)
+*** Adding hosts (h1–h16)
+*** Adding core–aggregation links
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) *** Adding aggregation–edge links
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+*** Adding edge–host links
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+*** Topology summary
+    Name            : Fat-Tree k=4
+    Core switches   : 4
+    Agg  switches   : 8
+    Edge switches   : 8
+    Total switches  : 20
+    Hosts           : 16
+    Total nodes     : 36
+    Core–Agg  links : 16
+    Agg–Edge  links : 16
+    Edge–Host links : 16
+    Total links     : 48
+*** Starting network
+*** Configuring hosts
+h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 
+*** Starting controller
+ctrl 
+*** Starting 20 switches
+c0 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c1 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c2 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c3 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) a1 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a2 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a3 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a4 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a5 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a6 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a7 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a8 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e1 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e2 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e3 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e4 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e5 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e6 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e7 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e8 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+...Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(100.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+*** Network ready
+*** Useful commands: nodes, links, net, pingall
+*** Starting CLI:
+mininet> [traffic] hosts: h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16
+[traffic] pairs: [('h1', 'h16'), ('h2', 'h15')]
+[traffic] pair_mode: ends flows_per_pair: 1 episodes: 10 seed: 1
+[traffic] protocols: tcp, udp
+[traffic] duration_s: 10 interval_s: 1
+[traffic] concurrent: False
+[traffic] writing incremental CSV /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260515-225229_abilene-imp-staged-10ep-weighted-ping/01_staged_controller_abilene_imp/traffic.csv
+[traffic] server tcp h16 port=5001
+[traffic] server udp h16 port=6001
+[traffic] server tcp h15 port=5002
+[traffic] server udp h15 port=6002
+[traffic] starting episode 1/10
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 4.447 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.456 loss_pct= 0.0
+[traffic] starting episode 2/10
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.705 loss_pct= 0.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.866 loss_pct= 0.0
+[traffic] starting episode 3/10
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 4.188 loss_pct= 0.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.062 loss_pct= 0.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.1
+[traffic] starting episode 4/10
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.408 loss_pct= 0.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.292 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] starting episode 5/10
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 2.739 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.984 loss_pct= 0.0
+[traffic] starting episode 6/10
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.1
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 0.882 loss_pct= 0.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.212 loss_pct= 0.0
+[traffic] starting episode 7/10
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 2.134 loss_pct= 0.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.231 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] starting episode 8/10
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.1
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.279 loss_pct= 0.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 1.813 loss_pct= 0.0
+[traffic] starting episode 9/10
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 0.961 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.26 loss_pct= 0.0
+[traffic] starting episode 10/10
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 2.531 loss_pct= 0.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 95.1
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 95.1
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 1.148 loss_pct= 0.0
+[traffic] wrote /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260515-225229_abilene-imp-staged-10ep-weighted-ping/01_staged_controller_abilene_imp/traffic.csv
+[traffic] wrote completion marker /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260515-225229_abilene-imp-staged-10ep-weighted-ping/01_staged_controller_abilene_imp/traffic.csv.done
+mininet> *** Stopping network
+*** Stopping 1 controllers
+ctrl 
+*** Stopping 48 links
+................................................
+*** Stopping 20 switches
+c0 c1 c2 c3 a1 a2 a3 a4 a5 a6 a7 a8 e1 e2 e3 e4 e5 e6 e7 e8 
+*** Stopping 16 hosts
+h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 
+*** Done

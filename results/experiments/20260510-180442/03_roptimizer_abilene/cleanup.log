@@ -1,0 +1,14 @@
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 2: $'\r': command not found
+[INFO] Cleaning Mininet...
+Usage: mn [options]
+(type mn -h for details)
+
+mn: error: no such option: -
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 5: $'\r': command not found
+[INFO] Killing old Ryu processes...
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 7: $'true\r': command not found
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 8: $'\r': command not found
+[INFO] Killing old iperf3 processes...
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 10: $'true\r': command not found
+/home/johndoe/Desktop/sdn-rl-routing/scripts/clean_mininet.sh: line 11: $'\r': command not found
+[INFO] Done.

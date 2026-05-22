@@ -1,0 +1,762 @@
+*** Adding remote Ryu controller
+*** Adding core switches (c0–c3)
+*** Adding aggregation switches (a1–a8)
+*** Adding edge switches (e1–e8)
+*** Adding hosts (h1–h16)
+*** Adding core–aggregation links
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) *** Adding aggregation–edge links
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+*** Adding edge–host links
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+*** Topology summary
+    Name            : Fat-Tree k=4
+    Core switches   : 4
+    Agg  switches   : 8
+    Edge switches   : 8
+    Total switches  : 20
+    Hosts           : 16
+    Total nodes     : 36
+    Core–Agg  links : 16
+    Agg–Edge  links : 16
+    Edge–Host links : 16
+    Total links     : 48
+    Core–Agg bw     : 10000 Mbps
+    Agg–Edge bw     : 1000 Mbps
+    Edge–Host bw    : 1000 Mbps
+*** Starting network
+*** Configuring hosts
+h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 
+*** Starting controller
+ctrl 
+*** Starting 20 switches
+c0 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c1 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c2 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) c3 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) a1 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a2 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a3 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a4 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a5 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a6 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a7 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+a8 Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e1 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e2 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e3 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e4 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e5 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e6 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e7 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+e8 (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+...Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) Bandwidth limit 10000 is outside supported range 0..1000 - ignoring
+(10000.00Mbit 1ms delay) (1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+(1000.00Mbit 1ms delay) *** Error: Warning: sch_htb: quantum of class 50001 is big. Consider r2q change.
+
+*** Network ready
+*** Useful commands: nodes, links, net, pingall
+*** Starting CLI:
+mininet> [traffic] hosts: h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16
+[traffic] pairs: [('h1', 'h16'), ('h2', 'h15')]
+[traffic] pair_mode: ends flows_per_pair: 1 episodes: 50 seed: 1
+[traffic] protocols: tcp, udp
+[traffic] duration_s: 10 interval_s: 1
+[traffic] concurrent: False
+[traffic] writing incremental CSV /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260516-184056_abilene-imp-rlearner-50ep-weighted-linear-1000mbps-ping/01_rlearner_abilene_imp/traffic.csv
+[traffic] server tcp h16 port=5001
+[traffic] server udp h16 port=6001
+[traffic] server tcp h15 port=5002
+[traffic] server udp h15 port=6002
+[traffic] starting episode 1/50
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 33.273 loss_pct= 0.79
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 44.404 loss_pct= 1.9
+[traffic] starting episode 2/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 42.186 loss_pct= 0.8
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 41.552 loss_pct= 0.88
+[traffic] starting episode 3/50
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 42.68 loss_pct= 2.4
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 41.043 loss_pct= 1.1
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 4/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.893 loss_pct= 0.83
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 35.386 loss_pct= 0.85
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 5/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.609 loss_pct= 0.79
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 945.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.68 loss_pct= 0.52
+[traffic] starting episode 6/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.583 loss_pct= 0.66
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 39.87 loss_pct= 0.96
+[traffic] starting episode 7/50
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.194 loss_pct= 0.92
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.761 loss_pct= 0.87
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] starting episode 8/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.324 loss_pct= 0.55
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.083 loss_pct= 1.1
+[traffic] starting episode 9/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 34.9 loss_pct= 1.4
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 942.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 858.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 33.572 loss_pct= 1.0
+[traffic] starting episode 10/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.462 loss_pct= 0.69
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 945.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.383 loss_pct= 1.2
+[traffic] starting episode 11/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.059 loss_pct= 0.58
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 35.825 loss_pct= 0.3
+[traffic] starting episode 12/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 941.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.71 loss_pct= 0.43
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 859.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 39.922 loss_pct= 0.58
+[traffic] starting episode 13/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 36.628 loss_pct= 0.76
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.976 loss_pct= 0.75
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] starting episode 14/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 37.077 loss_pct= 1.3
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.406 loss_pct= 0.58
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 15/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.951 loss_pct= 0.36
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.133 loss_pct= 1.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] starting episode 16/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 30.357 loss_pct= 4.4
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 40.561 loss_pct= 1.4
+[traffic] starting episode 17/50
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 41.897 loss_pct= 1.5
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.979 loss_pct= 0.62
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 18/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 36.106 loss_pct= 2.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 31.159 loss_pct= 0.7
+[traffic] starting episode 19/50
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 40.407 loss_pct= 0.59
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 36.982 loss_pct= 0.57
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] starting episode 20/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 39.712 loss_pct= 3.7
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.115 loss_pct= 0.38
+[traffic] starting episode 21/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.323 loss_pct= 1.7
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 39.412 loss_pct= 0.47
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 22/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.042 loss_pct= 0.77
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.975 loss_pct= 0.99
+[traffic] starting episode 23/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 39.597 loss_pct= 0.48
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 942.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 34.224 loss_pct= 0.75
+[traffic] starting episode 24/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 942.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.336 loss_pct= 0.43
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.528 loss_pct= 0.9
+[traffic] starting episode 25/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.427 loss_pct= 0.79
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 37.211 loss_pct= 0.53
+[traffic] starting episode 26/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 31.136 loss_pct= 1.3
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.723 loss_pct= 0.41
+[traffic] starting episode 27/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 33.563 loss_pct= 0.88
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 26.548 loss_pct= 4.7
+[traffic] starting episode 28/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.921 loss_pct= 1.2
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 0.0 loss_pct= 0.0
+[traffic] starting episode 29/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 37.278 loss_pct= 1.2
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 35.372 loss_pct= 0.74
+[traffic] starting episode 30/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 34.403 loss_pct= 0.46
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.202 loss_pct= 0.93
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] starting episode 31/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 34.24 loss_pct= 0.66
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 33.686 loss_pct= 0.72
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] starting episode 32/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.339 loss_pct= 0.67
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 34.351 loss_pct= 1.2
+[traffic] starting episode 33/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 36.433 loss_pct= 0.63
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.966 loss_pct= 0.36
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] starting episode 34/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.079 loss_pct= 1.2
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.93 loss_pct= 0.85
+[traffic] starting episode 35/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 37.752 loss_pct= 1.3
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 34.238 loss_pct= 0.98
+[traffic] starting episode 36/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 945.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 32.286 loss_pct= 1.1
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.369 loss_pct= 1.4
+[traffic] starting episode 37/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 42.084 loss_pct= 0.75
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.776 loss_pct= 0.94
+[traffic] starting episode 38/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 943.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 42.264 loss_pct= 1.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 43.483 loss_pct= 2.1
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] starting episode 39/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 37.681 loss_pct= 0.67
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 32.804 loss_pct= 1.4
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] starting episode 40/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 41.878 loss_pct= 1.2
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 41.847 loss_pct= 1.4
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] starting episode 41/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 43.623 loss_pct= 1.4
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 37.82 loss_pct= 0.96
+[traffic] starting episode 42/50
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 40.5 loss_pct= 2.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.103 loss_pct= 0.45
+[traffic] starting episode 43/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 44.309 loss_pct= 0.5
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 38.809 loss_pct= 0.91
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] starting episode 44/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 42.251 loss_pct= 1.6
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 41.073 loss_pct= 1.3
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] starting episode 45/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 42.916 loss_pct= 0.84
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 40.3 loss_pct= 0.77
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] starting episode 46/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 41.578 loss_pct= 1.0
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 42.494 loss_pct= 0.59
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] starting episode 47/50
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.752 loss_pct= 0.79
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 40.375 loss_pct= 1.0
+[traffic] starting episode 48/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 945.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.316 loss_pct= 1.1
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 943.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 39.871 loss_pct= 0.66
+[traffic] starting episode 49/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 41.849 loss_pct= 0.77
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 40.086 loss_pct= 0.49
+[traffic] starting episode 50/50
+[traffic] client tcp h1->h16 port=5001
+[traffic] result h1 -> h16 tcp throughput_mbps= 944.0
+[traffic] client udp h1->h16 port=6001
+[traffic] result h1 -> h16 udp jitter_ms= 38.883 loss_pct= 0.66
+[traffic] client udp h2->h15 port=6002
+[traffic] result h2 -> h15 udp jitter_ms= 25.399 loss_pct= 0.44
+[traffic] client tcp h2->h15 port=5002
+[traffic] result h2 -> h15 tcp throughput_mbps= 947.0
+[traffic] wrote /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260516-184056_abilene-imp-rlearner-50ep-weighted-linear-1000mbps-ping/01_rlearner_abilene_imp/traffic.csv
+[traffic] wrote completion marker /home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260516-184056_abilene-imp-rlearner-50ep-weighted-linear-1000mbps-ping/01_rlearner_abilene_imp/traffic.csv.done
+mininet> *** Stopping network
+*** Stopping 1 controllers
+ctrl 
+*** Stopping 48 links
+................................................
+*** Stopping 20 switches
+c0 c1 c2 c3 a1 a2 a3 a4 a5 a6 a7 a8 e1 e2 e3 e4 e5 e6 e7 e8 
+*** Stopping 16 hosts
+h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 h13 h14 h15 h16 
+*** Done

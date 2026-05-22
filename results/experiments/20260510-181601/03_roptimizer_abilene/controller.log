@@ -1,0 +1,8 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/roptimizer.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/roptimizer.py of ROptimizerController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+R-Optimizer config: alpha=0.1 path_cutoff=6 baseline_window=20 learned_flow_idle_timeout=1
+instantiating app ryu.controller.ofp_handler of OFPHandler

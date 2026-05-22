@@ -1,0 +1,8 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+Staged config: explore_decisions=20 alpha=0.1 epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1
+instantiating app ryu.controller.ofp_handler of OFPHandler

@@ -1,0 +1,1057 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+Staged config: explore_decisions=10 min_weighted_explore_rewards=10 alpha=0.1 epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1 reward_mode=weighted
+Weighted QoS feedback listener started on 127.0.0.1:9999 profile=balanced
+instantiating app ryu.controller.ofp_handler of OFPHandler
+Switch connected: dpid=1
+Switch connected: dpid=2
+Switch connected: dpid=3
+Switch connected: dpid=4
+Switch connected: dpid=5
+Switch connected: dpid=6
+Switch connected: dpid=7
+Phase=explore decision=0/10 handling h2 -> h4
+Exploitation selected path (best_q=0.000 candidates=44): s2 -> s1 -> s4 -> s5 -> s7 -> s6
+R-Learner selected path h2 -> h4: s2 -> s1 -> s4 -> s5 -> s7 -> s6
+Queued weighted Q feedback for h2 -> h4 (install=True forward=True)
+Phase=explore decision=1/10 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s4 -> s7 -> s5 -> s2
+R-Learner selected path h4 -> h2: s6 -> s4 -> s7 -> s5 -> s2
+Queued weighted Q feedback for h4 -> h2 (install=True forward=True)
+Phase=explore decision=2/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=3/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=4/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=5/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=6/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=7/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=8/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=9/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=10/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=11/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=12/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=13/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=14/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=15/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=16/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=17/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=18/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=19/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=20/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=21/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=22/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=23/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=24/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=25/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=26/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=27/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=28/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=29/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=30/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=31/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=32/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=33/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=34/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=35/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=36/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=37/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=38/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=39/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=40/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=41/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=42/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=43/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=44/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=45/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=46/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=47/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=48/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=49/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=50/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=51/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=52/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=53/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=54/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=55/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=56/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=57/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=58/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=59/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=60/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=61/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=62/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=63/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=64/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=65/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=66/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=67/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=68/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=69/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=70/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=71/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=72/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=73/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=74/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=75/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=76/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=77/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=78/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=79/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=80/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=81/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=82/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=83/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=84/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=85/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=86/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=87/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=88/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=89/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=90/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=91/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=92/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=93/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=94/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=95/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=96/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=97/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=98/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=99/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=100/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=101/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=102/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=103/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=104/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=105/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=106/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=107/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=108/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=109/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=110/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=111/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=112/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=113/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=114/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=115/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=116/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=117/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=118/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=119/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=120/10 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=121/10 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s4 -> s6 -> s3 -> s1
+R-Learner selected path h5 -> h1: s7 -> s4 -> s6 -> s3 -> s1
+Queued weighted Q feedback for h5 -> h1 (install=True forward=True)
+Q-update state=('s2', 's6') action_len=6 reward=-0.09999999999999998 old_q=0.000 new_q=-0.010
+Live weighted QoS reward for h2 -> h4: -0.100 metrics={'throughput_gbps': 0.00908, 'jitter_ms': 0.116, 'plr_pct': 1.1, 'rtt_ms': 0.0} update=q
+Q-update state=('s1', 's7') action_len=7 reward=-0.3 old_q=0.000 new_q=-0.030
+Live weighted QoS reward for h1 -> h5: -0.300 metrics={'jitter_ms': 0.16, 'plr_pct': 0.41, 'throughput_gbps': 0.00488, 'rtt_ms': 0.0} update=q
+Phase=explore decision=122/10 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s6 -> s4 -> s2 -> s1
+R-Learner selected path h5 -> h1: s7 -> s6 -> s4 -> s2 -> s1
+Queued weighted Q feedback for h5 -> h1 (install=True forward=True)
+Live QoS reward -0.150 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=7 reward=-0.17413793103448275 old_q=0.000 new_q=-0.017
+Live weighted QoS reward for h1 -> h5: -0.174 metrics={'jitter_ms': 0.109, 'plr_pct': 0.37, 'throughput_gbps': 0.00468, 'rtt_ms': 0.0} update=q
+Phase=explore decision=123/10 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s3 -> s5 -> s7 -> s4 -> s1 -> s2
+R-Learner selected path h4 -> h2: s6 -> s3 -> s5 -> s7 -> s4 -> s1 -> s2
+Queued weighted Q feedback for h4 -> h2 (install=True forward=True)
+Live QoS reward -0.145 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=5 reward=-0.09197492163009403 old_q=0.000 new_q=-0.009
+Live weighted QoS reward for h1 -> h5: -0.092 metrics={'jitter_ms': 0.102, 'plr_pct': 0.31, 'throughput_gbps': 0.00547, 'rtt_ms': 0.0} update=q
+Q-update state=('s1', 's7') action_len=5 reward=0.06078369905956113 old_q=0.000 new_q=0.006
+Live weighted QoS reward for h1 -> h5: 0.061 metrics={'throughput_gbps': 0.00899, 'jitter_ms': 0.114, 'plr_pct': 1.4, 'rtt_ms': 0.0} update=q
+Live QoS reward 0.036 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=6 reward=0.06379310344827585 old_q=0.000 new_q=0.006
+Live weighted QoS reward for h1 -> h5: 0.064 metrics={'throughput_gbps': 0.011300000000000001, 'jitter_ms': 0.116, 'plr_pct': 1.5, 'rtt_ms': 0.0} update=q
+Live QoS reward 0.066 for h2 -> h4 has no pending decision
+Phase=explore decision=124/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=125/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=126/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=127/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=128/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=129/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=130/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=131/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=132/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=133/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=134/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=135/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=136/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=137/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=138/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=139/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=140/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=141/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=142/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=143/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=144/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=145/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=146/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=147/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=148/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=149/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=150/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=151/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=152/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=153/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=154/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=155/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=156/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=157/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=158/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=159/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=160/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=161/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=162/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=163/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=164/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=165/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=166/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=167/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=168/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=169/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=170/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=171/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=172/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=173/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=174/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=175/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=176/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=177/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=178/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=179/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=180/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=181/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=182/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=183/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=184/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=185/10 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s4 -> s6 -> s5 -> s2 -> s3 -> s1
+R-Learner selected path h5 -> h1: s7 -> s4 -> s6 -> s5 -> s2 -> s3 -> s1
+Queued weighted Q feedback for h5 -> h1 (install=True forward=True)
+Live QoS reward -0.123 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=6 reward=-0.18910577948773263 old_q=0.006 new_q=-0.013
+Live weighted QoS reward for h1 -> h5: -0.189 metrics={'jitter_ms': 0.121, 'plr_pct': 0.47, 'throughput_gbps': 0.00529, 'rtt_ms': 0.0} update=q
+Phase=explore decision=186/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=187/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=188/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=189/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=190/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=191/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=192/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=193/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=194/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=195/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=196/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=197/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=198/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=199/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=200/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=201/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=202/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=203/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=204/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=205/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=206/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=207/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=208/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=209/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=210/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=211/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=212/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=213/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=214/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=215/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=216/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=217/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=218/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=219/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=220/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=221/10 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=222/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=223/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=224/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=225/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=226/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=227/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=228/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=229/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=230/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=231/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=232/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=233/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=234/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=235/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=236/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=237/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=238/10 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=239/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=240/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=241/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=242/10 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=243/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=244/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=245/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=246/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=247/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=248/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=249/10 handling h1 -> h5
+Exploitation selected path (best_q=0.006 candidates=1): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Queued weighted Q feedback for h1 -> h5 (install=True forward=True)
+Phase=explore decision=250/10 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s6 -> s3 -> s2 -> s4 -> s1
+R-Learner selected path h5 -> h1: s7 -> s6 -> s3 -> s2 -> s4 -> s1
+Queued weighted Q feedback for h5 -> h1 (install=True forward=True)
+Live QoS reward -0.112 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=5 reward=-0.12627257799671596 old_q=0.006 new_q=-0.007
+Live weighted QoS reward for h1 -> h5: -0.126 metrics={'jitter_ms': 0.114, 'plr_pct': 0.2, 'throughput_gbps': 0.0056, 'rtt_ms': 0.0} update=q
+Phase=explore decision=251/10 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s4 -> s7 -> s5 -> s3 -> s2
+R-Learner selected path h4 -> h2: s6 -> s4 -> s7 -> s5 -> s3 -> s2
+Queued weighted Q feedback for h4 -> h2 (install=True forward=True)
+Q-update state=('s1', 's7') action_len=5 reward=-0.06606732348111653 old_q=-0.007 new_q=-0.013
+Live weighted QoS reward for h1 -> h5: -0.066 metrics={'throughput_gbps': 0.0079, 'jitter_ms': 0.113, 'plr_pct': 0.94, 'rtt_ms': 0.0} update=q
+Live QoS reward -0.166 for h2 -> h4 has no pending decision
+Live QoS reward 0.069 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=5 reward=0.06393177145960202 old_q=-0.013 new_q=-0.005
+Live weighted QoS reward for h1 -> h5: 0.064 metrics={'throughput_gbps': 0.012, 'jitter_ms': 0.114, 'plr_pct': 1.5, 'rtt_ms': 0.0} update=q
+Initialized optimizer from Q-table: seeded_states=16 bias=0.70
+Switching to R-Optimizer phase after decisions=252 weighted_rewards=10
+Q-update state=('s1', 's7') action_len=5 reward=-0.1604579599963798 old_q=-0.005 new_q=-0.021
+Live weighted QoS reward for h1 -> h5: -0.160 metrics={'throughput_gbps': 0.006549999999999999, 'jitter_ms': 0.115, 'plr_pct': 0.9, 'rtt_ms': 0.0} update=q
+Live QoS reward -0.112 for h2 -> h4 has no pending decision

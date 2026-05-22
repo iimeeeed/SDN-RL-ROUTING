@@ -1,0 +1,1866 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene_imp
+Switches: ['c0', 'c1', 'c2', 'c3', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16']
+Staged config: explore_decisions=50 min_weighted_explore_rewards=10 alpha=0.1 epsilon_schedule=FixedEpsilon(epsilon=0.1) epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1 reward_mode=weighted policy_bias=0.95 optimizer_epsilon=0.0
+No staged checkpoint found at /home/johndoe/Desktop/sdn-rl-routing/results/checkpoints/staged_abilene_imp_weighted_linear_50ep_opt-eps-010.json; starting fresh
+Weighted QoS feedback listener started on 127.0.0.1:9999 profile=balanced
+instantiating app ryu.controller.ofp_handler of OFPHandler
+Switch connected: dpid=1
+Switch connected: dpid=2
+Switch connected: dpid=3
+Switch connected: dpid=4
+Switch connected: dpid=5
+Switch connected: dpid=6
+Switch connected: dpid=7
+Switch connected: dpid=8
+Switch connected: dpid=9
+Switch connected: dpid=10
+Switch connected: dpid=11
+Switch connected: dpid=12
+Switch connected: dpid=13
+Switch connected: dpid=14
+Switch connected: dpid=15
+Switch connected: dpid=16
+Switch connected: dpid=17
+Switch connected: dpid=18
+Switch connected: dpid=19
+Switch connected: dpid=20
+Flow feedback window started key=(1, 'e1-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(1, 'e1-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=20): e1 -> a1 -> c1 -> a3 -> c0 -> a7 -> e8
+R-Learner decision=1 queued weighted Q feedback for h2 -> h15 path=e1 -> a1 -> c1 -> a3 -> c0 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(1, 'e1-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(1, 'e1-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=20): e1 -> a2 -> e2 -> a1 -> c0 -> a7 -> e8
+R-Learner decision=2 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> e2 -> a1 -> c0 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(1, 'e1-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(1, 'e1-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=-0.09999999999999998 target=-0.100 old_q=0.000 new_q=-0.010
+Q-update state=('c0', 'e8') action_len=3 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a3', 'e8') action_len=4 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('c1', 'e8') action_len=5 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e8') action_len=6 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e1') action_len=2 reward=-0.09999999999999998 target=-0.100 old_q=0.000 new_q=-0.010
+Q-update state=('c1', 'e1') action_len=3 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a3', 'e1') action_len=4 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('c0', 'e1') action_len=5 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a7', 'e1') action_len=6 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=-0.09999999999999998 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: -0.100 metrics={'jitter_ms': 21.713, 'plr_pct': 1.1, 'rtt_ms': 63.355, 'throughput_gbps': 0.652} update=q
+Flow feedback window started key=(1, 'e1-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(1, 'e1-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=-0.19999999999999996 target=-0.200 old_q=-0.010 new_q=-0.029
+Q-update state=('c0', 'e8') action_len=3 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e8') action_len=4 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e2', 'e8') action_len=5 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=-0.19999999999999996 target=-0.200 old_q=0.000 new_q=-0.020
+Q-update state=('e2', 'e1') action_len=3 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e1') action_len=4 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('c0', 'e1') action_len=5 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a7', 'e1') action_len=6 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=-0.19999999999999996 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: -0.200 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3136.589, 'jitter_ms': 44.311, 'plr_pct': 1.9} update=q
+Flow feedback window started key=(2, 'e2-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(2, 'e2-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=20): e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8
+R-Learner decision=3 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(2, 'e2-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(2, 'e2-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=20): e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8
+R-Learner decision=4 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(2, 'e2-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(2, 'e2-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.24912320376515426 target=0.249 old_q=0.000 new_q=0.025
+Q-update state=('c3', 'e8') action_len=3 reward=0.24912320376515426 target=0.020 old_q=0.000 new_q=0.002
+Q-update state=('a4', 'e8') action_len=4 reward=0.24912320376515426 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('c2', 'e8') action_len=5 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.24912320376515426 target=0.249 old_q=-0.020 new_q=0.007
+Q-update state=('c2', 'e1') action_len=3 reward=0.24912320376515426 target=0.006 old_q=0.000 new_q=0.001
+Q-update state=('a4', 'e1') action_len=4 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('c3', 'e1') action_len=5 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=0.24912320376515426 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.249 metrics={'jitter_ms': 45.338, 'plr_pct': 0.56, 'rtt_ms': 72.337, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(2, 'e2-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(2, 'e2-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=0.09128642216987623 target=0.091 old_q=-0.029 new_q=-0.017
+Q-update state=('c1', 'e8') action_len=3 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e8') action_len=4 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e2', 'e8') action_len=5 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.09128642216987623 target=0.091 old_q=0.007 new_q=0.015
+Q-update state=('e2', 'e1') action_len=3 reward=0.09128642216987623 target=0.012 old_q=0.000 new_q=0.001
+Q-update state=('a1', 'e1') action_len=4 reward=0.09128642216987623 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('c1', 'e1') action_len=5 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a7', 'e1') action_len=6 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=0.09128642216987623 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: 0.091 metrics={'throughput_gbps': 0.945, 'rtt_ms': 1994.508, 'jitter_ms': 31.124, 'plr_pct': 1.1} update=q
+Flow feedback window started key=(3, 'e3-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(3, 'e3-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=2): e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8
+R-Learner decision=5 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(3, 'e3-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(3, 'e3-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploration selected path: e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8
+R-Learner decision=6 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(3, 'e3-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(3, 'e3-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=0.1973453682992967 target=0.197 old_q=-0.017 new_q=0.004
+Q-update state=('c1', 'e8') action_len=3 reward=0.1973453682992967 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e8') action_len=4 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e2', 'e8') action_len=5 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.1973453682992967 target=0.197 old_q=0.015 new_q=0.034
+Q-update state=('e2', 'e1') action_len=3 reward=0.1973453682992967 target=0.027 old_q=0.001 new_q=0.004
+Q-update state=('a1', 'e1') action_len=4 reward=0.1973453682992967 target=0.003 old_q=0.000 new_q=0.000
+Q-update state=('c1', 'e1') action_len=5 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a7', 'e1') action_len=6 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=0.1973453682992967 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: 0.197 metrics={'jitter_ms': 43.77, 'plr_pct': 1.1, 'rtt_ms': 71.522, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(3, 'e3-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(3, 'e3-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.23335824663030236 target=0.233 old_q=0.025 new_q=0.046
+Q-update state=('c3', 'e8') action_len=3 reward=0.23335824663030236 target=0.037 old_q=0.002 new_q=0.005
+Q-update state=('a4', 'e8') action_len=4 reward=0.23335824663030236 target=0.004 old_q=0.000 new_q=0.001
+Q-update state=('c2', 'e8') action_len=5 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.23335824663030236 target=0.233 old_q=0.034 new_q=0.054
+Q-update state=('c2', 'e1') action_len=3 reward=0.23335824663030236 target=0.043 old_q=0.001 new_q=0.005
+Q-update state=('a4', 'e1') action_len=4 reward=0.23335824663030236 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('c3', 'e1') action_len=5 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=0.23335824663030236 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.233 metrics={'jitter_ms': 42.538, 'plr_pct': 0.85, 'rtt_ms': 69.416, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(4, 'e4-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(4, 'e4-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=1): e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8
+R-Learner decision=7 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c2 -> a4 -> c3 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(4, 'e4-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(4, 'e4-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.03476836231648514 target=-0.035 old_q=0.046 new_q=0.038
+Q-update state=('c3', 'e8') action_len=3 reward=-0.03476836231648514 target=0.030 old_q=0.005 new_q=0.008
+Q-update state=('a4', 'e8') action_len=4 reward=-0.03476836231648514 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('c2', 'e8') action_len=5 reward=-0.03476836231648514 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=-0.03476836231648514 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=-0.03476836231648514 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=-0.03476836231648514 target=-0.035 old_q=0.054 new_q=0.045
+Q-update state=('c2', 'e1') action_len=3 reward=-0.03476836231648514 target=0.036 old_q=0.005 new_q=0.008
+Q-update state=('a4', 'e1') action_len=4 reward=-0.03476836231648514 target=0.006 old_q=0.000 new_q=0.001
+Q-update state=('c3', 'e1') action_len=5 reward=-0.03476836231648514 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=-0.03476836231648514 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=-0.03476836231648514 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: -0.035 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3216.713, 'jitter_ms': 42.724, 'plr_pct': 0.51} update=q
+Flow feedback window started key=(4, 'e4-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(4, 'e4-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploration selected path: e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=8 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(4, 'e4-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(4, 'e4-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.21971208086589394 target=0.220 old_q=0.038 new_q=0.056
+Q-update state=('c2', 'e8') action_len=3 reward=0.21971208086589394 target=0.045 old_q=0.000 new_q=0.004
+Q-update state=('a6', 'e8') action_len=4 reward=0.21971208086589394 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('c3', 'e8') action_len=5 reward=0.21971208086589394 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.21971208086589394 target=0.006 old_q=0.000 new_q=0.001
+Q-update state=('e1', 'e8') action_len=7 reward=0.21971208086589394 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.21971208086589394 target=0.220 old_q=0.045 new_q=0.062
+Q-update state=('c3', 'e1') action_len=3 reward=0.21971208086589394 target=0.050 old_q=0.000 new_q=0.005
+Q-update state=('a6', 'e1') action_len=4 reward=0.21971208086589394 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('c2', 'e1') action_len=5 reward=0.21971208086589394 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=0.21971208086589394 target=0.006 old_q=0.000 new_q=0.001
+Q-update state=('e8', 'e1') action_len=7 reward=0.21971208086589394 target=0.001 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.220 metrics={'jitter_ms': 41.427, 'plr_pct': 1.0, 'rtt_ms': 72.571, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(5, 'e5-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(5, 'e5-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=9 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(5, 'e5-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(5, 'e5-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.19768032122166557 target=0.198 old_q=0.056 new_q=0.070
+Q-update state=('c2', 'e8') action_len=3 reward=0.19768032122166557 target=0.056 old_q=0.004 new_q=0.010
+Q-update state=('a6', 'e8') action_len=4 reward=0.19768032122166557 target=0.008 old_q=0.000 new_q=0.001
+Q-update state=('c3', 'e8') action_len=5 reward=0.19768032122166557 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=0.19768032122166557 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('e1', 'e8') action_len=7 reward=0.19768032122166557 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.19768032122166557 target=0.198 old_q=0.062 new_q=0.076
+Q-update state=('c3', 'e1') action_len=3 reward=0.19768032122166557 target=0.061 old_q=0.005 new_q=0.011
+Q-update state=('a6', 'e1') action_len=4 reward=0.19768032122166557 target=0.008 old_q=0.000 new_q=0.001
+Q-update state=('c2', 'e1') action_len=5 reward=0.19768032122166557 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=0.19768032122166557 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('e8', 'e1') action_len=7 reward=0.19768032122166557 target=0.001 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.198 metrics={'jitter_ms': 41.301, 'plr_pct': 1.2, 'rtt_ms': 71.35, 'throughput_gbps': 0.943} update=q
+Flow feedback window started key=(5, 'e5-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(5, 'e5-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=10 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(5, 'e5-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(5, 'e5-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.019779913464500302 target=-0.020 old_q=0.070 new_q=0.061
+Q-update state=('c2', 'e8') action_len=3 reward=-0.019779913464500302 target=0.049 old_q=0.010 new_q=0.014
+Q-update state=('a6', 'e8') action_len=4 reward=-0.019779913464500302 target=0.011 old_q=0.001 new_q=0.002
+Q-update state=('c3', 'e8') action_len=5 reward=-0.019779913464500302 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=-0.019779913464500302 target=0.006 old_q=0.001 new_q=0.002
+Q-update state=('e1', 'e8') action_len=7 reward=-0.019779913464500302 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=-0.019779913464500302 target=-0.020 old_q=0.076 new_q=0.066
+Q-update state=('c3', 'e1') action_len=3 reward=-0.019779913464500302 target=0.053 old_q=0.011 new_q=0.015
+Q-update state=('a6', 'e1') action_len=4 reward=-0.019779913464500302 target=0.012 old_q=0.001 new_q=0.002
+Q-update state=('c2', 'e1') action_len=5 reward=-0.019779913464500302 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('a8', 'e1') action_len=6 reward=-0.019779913464500302 target=0.006 old_q=0.001 new_q=0.002
+Q-update state=('e8', 'e1') action_len=7 reward=-0.019779913464500302 target=0.001 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: -0.020 metrics={'throughput_gbps': 0.945, 'rtt_ms': 2668.967, 'jitter_ms': 43.007, 'plr_pct': 0.85} update=q
+Flow feedback window started key=(6, 'e6-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(6, 'e6-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploration selected path: e1 -> a1 -> c1 -> a7 -> e8
+R-Learner decision=11 queued weighted Q feedback for h2 -> h15 path=e1 -> a1 -> c1 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(6, 'e6-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(6, 'e6-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploration selected path: e1 -> a1 -> c0 -> a7 -> e8
+R-Learner decision=12 queued weighted Q feedback for h1 -> h16 path=e1 -> a1 -> c0 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(6, 'e6-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(6, 'e6-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=0.26255481287939597 target=0.263 old_q=0.004 new_q=0.030
+Q-update state=('c0', 'e8') action_len=3 reward=0.26255481287939597 target=0.024 old_q=0.000 new_q=0.002
+Q-update state=('a1', 'e8') action_len=4 reward=0.26255481287939597 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=5 reward=0.26255481287939597 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e1') action_len=2 reward=0.26255481287939597 target=0.263 old_q=-0.010 new_q=0.017
+Q-update state=('c0', 'e1') action_len=3 reward=0.26255481287939597 target=0.014 old_q=0.000 new_q=0.001
+Q-update state=('a7', 'e1') action_len=4 reward=0.26255481287939597 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=5 reward=0.26255481287939597 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.263 metrics={'throughput_gbps': 0.948, 'rtt_ms': 1292.772, 'jitter_ms': 24.939, 'plr_pct': 0.3} update=q
+Flow feedback window started key=(6, 'e6-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(6, 'e6-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=0.2469046228508841 target=0.247 old_q=0.030 new_q=0.052
+Q-update state=('c1', 'e8') action_len=3 reward=0.2469046228508841 target=0.042 old_q=0.000 new_q=0.004
+Q-update state=('a1', 'e8') action_len=4 reward=0.2469046228508841 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=5 reward=0.2469046228508841 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e1') action_len=2 reward=0.2469046228508841 target=0.247 old_q=0.017 new_q=0.040
+Q-update state=('c1', 'e1') action_len=3 reward=0.2469046228508841 target=0.032 old_q=0.000 new_q=0.003
+Q-update state=('a7', 'e1') action_len=4 reward=0.2469046228508841 target=0.003 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=5 reward=0.2469046228508841 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: 0.247 metrics={'throughput_gbps': 0.947, 'rtt_ms': 1323.943, 'jitter_ms': 26.724, 'plr_pct': 0.25} update=q
+Flow feedback window started key=(7, 'e7-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(7, 'e7-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=13 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(7, 'e7-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(7, 'e7-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.000 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=14 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(7, 'e7-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(7, 'e7-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.18192053013641202 target=0.182 old_q=0.061 new_q=0.073
+Q-update state=('c2', 'e8') action_len=3 reward=0.18192053013641202 target=0.059 old_q=0.014 new_q=0.018
+Q-update state=('a6', 'e8') action_len=4 reward=0.18192053013641202 target=0.014 old_q=0.002 new_q=0.003
+Q-update state=('c3', 'e8') action_len=5 reward=0.18192053013641202 target=0.003 old_q=0.000 new_q=0.001
+Q-update state=('a2', 'e8') action_len=6 reward=0.18192053013641202 target=0.006 old_q=0.002 new_q=0.002
+Q-update state=('e1', 'e8') action_len=7 reward=0.18192053013641202 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=0.18192053013641202 target=0.182 old_q=0.066 new_q=0.078
+Q-update state=('c3', 'e1') action_len=3 reward=0.18192053013641202 target=0.062 old_q=0.015 new_q=0.020
+Q-update state=('a6', 'e1') action_len=4 reward=0.18192053013641202 target=0.016 old_q=0.002 new_q=0.004
+Q-update state=('c2', 'e1') action_len=5 reward=0.18192053013641202 target=0.003 old_q=0.000 new_q=0.001
+Q-update state=('a8', 'e1') action_len=6 reward=0.18192053013641202 target=0.006 old_q=0.002 new_q=0.002
+Q-update state=('e8', 'e1') action_len=7 reward=0.18192053013641202 target=0.002 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.182 metrics={'jitter_ms': 43.1, 'plr_pct': 1.1, 'rtt_ms': 73.469, 'throughput_gbps': 0.945} update=q
+Flow feedback window started key=(7, 'e7-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(7, 'e7-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.22436874729856932 target=0.224 old_q=0.073 new_q=0.088
+Q-update state=('c2', 'e8') action_len=3 reward=0.22436874729856932 target=0.071 old_q=0.018 new_q=0.023
+Q-update state=('a6', 'e8') action_len=4 reward=0.22436874729856932 target=0.019 old_q=0.003 new_q=0.005
+Q-update state=('c3', 'e8') action_len=5 reward=0.22436874729856932 target=0.004 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e8') action_len=6 reward=0.22436874729856932 target=0.006 old_q=0.002 new_q=0.003
+Q-update state=('e1', 'e8') action_len=7 reward=0.22436874729856932 target=0.002 old_q=0.000 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=0.22436874729856932 target=0.224 old_q=0.078 new_q=0.092
+Q-update state=('c3', 'e1') action_len=3 reward=0.22436874729856932 target=0.074 old_q=0.020 new_q=0.025
+Q-update state=('a6', 'e1') action_len=4 reward=0.22436874729856932 target=0.020 old_q=0.004 new_q=0.005
+Q-update state=('c2', 'e1') action_len=5 reward=0.22436874729856932 target=0.004 old_q=0.001 new_q=0.001
+Q-update state=('a8', 'e1') action_len=6 reward=0.22436874729856932 target=0.006 old_q=0.002 new_q=0.003
+Q-update state=('e8', 'e1') action_len=7 reward=0.22436874729856932 target=0.002 old_q=0.000 new_q=0.001
+Live weighted QoS reward for h2 -> h15: 0.224 metrics={'jitter_ms': 43.622, 'plr_pct': 0.6, 'rtt_ms': 70.232, 'throughput_gbps': 0.945} update=q
+Flow feedback window started key=(8, 'e8-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(8, 'e8-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.001 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=15 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(8, 'e8-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(8, 'e8-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.001 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=16 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(8, 'e8-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(8, 'e8-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.24887745285000634 target=0.249 old_q=0.088 new_q=0.104
+Q-update state=('c2', 'e8') action_len=3 reward=0.24887745285000634 target=0.083 old_q=0.023 new_q=0.029
+Q-update state=('a6', 'e8') action_len=4 reward=0.24887745285000634 target=0.023 old_q=0.005 new_q=0.007
+Q-update state=('c3', 'e8') action_len=5 reward=0.24887745285000634 target=0.005 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e8') action_len=6 reward=0.24887745285000634 target=0.006 old_q=0.003 new_q=0.003
+Q-update state=('e1', 'e8') action_len=7 reward=0.24887745285000634 target=0.002 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=0.24887745285000634 target=0.249 old_q=0.092 new_q=0.108
+Q-update state=('c3', 'e1') action_len=3 reward=0.24887745285000634 target=0.086 old_q=0.025 new_q=0.031
+Q-update state=('a6', 'e1') action_len=4 reward=0.24887745285000634 target=0.025 old_q=0.005 new_q=0.007
+Q-update state=('c2', 'e1') action_len=5 reward=0.24887745285000634 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('a8', 'e1') action_len=6 reward=0.24887745285000634 target=0.006 old_q=0.003 new_q=0.003
+Q-update state=('e8', 'e1') action_len=7 reward=0.24887745285000634 target=0.002 old_q=0.001 new_q=0.001
+Live weighted QoS reward for h2 -> h15: 0.249 metrics={'jitter_ms': 41.826, 'plr_pct': 0.44, 'rtt_ms': 71.163, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(8, 'e8-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(8, 'e8-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.09878260598260594 target=-0.099 old_q=0.104 new_q=0.084
+Q-update state=('c2', 'e8') action_len=3 reward=-0.09878260598260594 target=0.067 old_q=0.029 new_q=0.033
+Q-update state=('a6', 'e8') action_len=4 reward=-0.09878260598260594 target=0.026 old_q=0.007 new_q=0.009
+Q-update state=('c3', 'e8') action_len=5 reward=-0.09878260598260594 target=0.007 old_q=0.001 new_q=0.002
+Q-update state=('a2', 'e8') action_len=6 reward=-0.09878260598260594 target=0.006 old_q=0.003 new_q=0.003
+Q-update state=('e1', 'e8') action_len=7 reward=-0.09878260598260594 target=0.003 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=-0.09878260598260594 target=-0.099 old_q=0.108 new_q=0.087
+Q-update state=('c3', 'e1') action_len=3 reward=-0.09878260598260594 target=0.070 old_q=0.031 new_q=0.035
+Q-update state=('a6', 'e1') action_len=4 reward=-0.09878260598260594 target=0.028 old_q=0.007 new_q=0.009
+Q-update state=('c2', 'e1') action_len=5 reward=-0.09878260598260594 target=0.007 old_q=0.001 new_q=0.002
+Q-update state=('a8', 'e1') action_len=6 reward=-0.09878260598260594 target=0.006 old_q=0.003 new_q=0.003
+Q-update state=('e8', 'e1') action_len=7 reward=-0.09878260598260594 target=0.003 old_q=0.001 new_q=0.001
+Live weighted QoS reward for h1 -> h16: -0.099 metrics={'throughput_gbps': 0.944, 'rtt_ms': 4512.698, 'jitter_ms': 43.579, 'plr_pct': 0.85} update=q
+Flow feedback window started key=(9, 'e9-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(9, 'e9-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.001 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=17 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(9, 'e9-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(9, 'e9-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.18751689218801193 target=0.188 old_q=0.084 new_q=0.094
+Q-update state=('c2', 'e8') action_len=3 reward=0.18751689218801193 target=0.076 old_q=0.033 new_q=0.037
+Q-update state=('a6', 'e8') action_len=4 reward=0.18751689218801193 target=0.030 old_q=0.009 new_q=0.011
+Q-update state=('c3', 'e8') action_len=5 reward=0.18751689218801193 target=0.009 old_q=0.002 new_q=0.003
+Q-update state=('a2', 'e8') action_len=6 reward=0.18751689218801193 target=0.006 old_q=0.003 new_q=0.004
+Q-update state=('e1', 'e8') action_len=7 reward=0.18751689218801193 target=0.003 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=0.18751689218801193 target=0.188 old_q=0.087 new_q=0.097
+Q-update state=('c3', 'e1') action_len=3 reward=0.18751689218801193 target=0.078 old_q=0.035 new_q=0.039
+Q-update state=('a6', 'e1') action_len=4 reward=0.18751689218801193 target=0.031 old_q=0.009 new_q=0.011
+Q-update state=('c2', 'e1') action_len=5 reward=0.18751689218801193 target=0.009 old_q=0.002 new_q=0.003
+Q-update state=('a8', 'e1') action_len=6 reward=0.18751689218801193 target=0.006 old_q=0.003 new_q=0.004
+Q-update state=('e8', 'e1') action_len=7 reward=0.18751689218801193 target=0.003 old_q=0.001 new_q=0.001
+Live weighted QoS reward for h1 -> h16: 0.188 metrics={'jitter_ms': 44.007, 'plr_pct': 0.98, 'rtt_ms': 71.011, 'throughput_gbps': 0.945} update=q
+Flow feedback window started key=(9, 'e9-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(9, 'e9-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.001 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=18 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(9, 'e9-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(9, 'e9-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.0051316583777303165 target=-0.005 old_q=0.094 new_q=0.084
+Q-update state=('c2', 'e8') action_len=3 reward=-0.0051316583777303165 target=0.068 old_q=0.037 new_q=0.040
+Q-update state=('a6', 'e8') action_len=4 reward=-0.0051316583777303165 target=0.032 old_q=0.011 new_q=0.013
+Q-update state=('c3', 'e8') action_len=5 reward=-0.0051316583777303165 target=0.010 old_q=0.003 new_q=0.003
+Q-update state=('a2', 'e8') action_len=6 reward=-0.0051316583777303165 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e1', 'e8') action_len=7 reward=-0.0051316583777303165 target=0.003 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=-0.0051316583777303165 target=-0.005 old_q=0.097 new_q=0.087
+Q-update state=('c3', 'e1') action_len=3 reward=-0.0051316583777303165 target=0.070 old_q=0.039 new_q=0.042
+Q-update state=('a6', 'e1') action_len=4 reward=-0.0051316583777303165 target=0.034 old_q=0.011 new_q=0.014
+Q-update state=('c2', 'e1') action_len=5 reward=-0.0051316583777303165 target=0.011 old_q=0.003 new_q=0.004
+Q-update state=('a8', 'e1') action_len=6 reward=-0.0051316583777303165 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e8', 'e1') action_len=7 reward=-0.0051316583777303165 target=0.003 old_q=0.001 new_q=0.001
+Live weighted QoS reward for h2 -> h15: -0.005 metrics={'throughput_gbps': 0.944, 'rtt_ms': 2870.107, 'jitter_ms': 42.693, 'plr_pct': 1.1} update=q
+Flow feedback window started key=(10, 'e10-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(10, 'e10-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploration selected path: e1 -> a1 -> c0 -> a5 -> c1 -> a7 -> e8
+R-Learner decision=19 queued weighted Q feedback for h1 -> h16 path=e1 -> a1 -> c0 -> a5 -> c1 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(10, 'e10-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(10, 'e10-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=0.24050118426678507 target=0.241 old_q=0.052 new_q=0.071
+Q-update state=('c1', 'e8') action_len=3 reward=0.24050118426678507 target=0.057 old_q=0.004 new_q=0.010
+Q-update state=('a5', 'e8') action_len=4 reward=0.24050118426678507 target=0.008 old_q=0.000 new_q=0.001
+Q-update state=('c0', 'e8') action_len=5 reward=0.24050118426678507 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e8') action_len=6 reward=0.24050118426678507 target=0.002 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=0.24050118426678507 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a1', 'e1') action_len=2 reward=0.24050118426678507 target=0.241 old_q=0.040 new_q=0.060
+Q-update state=('c0', 'e1') action_len=3 reward=0.24050118426678507 target=0.048 old_q=0.001 new_q=0.006
+Q-update state=('a5', 'e1') action_len=4 reward=0.24050118426678507 target=0.005 old_q=0.000 new_q=0.000
+Q-update state=('c1', 'e1') action_len=5 reward=0.24050118426678507 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('a7', 'e1') action_len=6 reward=0.24050118426678507 target=0.003 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=0.24050118426678507 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h1 -> h16: 0.241 metrics={'jitter_ms': 43.131, 'plr_pct': 0.44, 'rtt_ms': 75.715, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(10, 'e10-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(10, 'e10-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.001 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=20 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(10, 'e10-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(10, 'e10-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.016088044409333646 target=-0.016 old_q=0.084 new_q=0.074
+Q-update state=('c2', 'e8') action_len=3 reward=-0.016088044409333646 target=0.060 old_q=0.040 new_q=0.042
+Q-update state=('a6', 'e8') action_len=4 reward=-0.016088044409333646 target=0.034 old_q=0.013 new_q=0.015
+Q-update state=('c3', 'e8') action_len=5 reward=-0.016088044409333646 target=0.012 old_q=0.003 new_q=0.004
+Q-update state=('a2', 'e8') action_len=6 reward=-0.016088044409333646 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e1', 'e8') action_len=7 reward=-0.016088044409333646 target=0.003 old_q=0.001 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.016088044409333646 target=-0.016 old_q=0.087 new_q=0.077
+Q-update state=('c3', 'e1') action_len=3 reward=-0.016088044409333646 target=0.061 old_q=0.042 new_q=0.044
+Q-update state=('a6', 'e1') action_len=4 reward=-0.016088044409333646 target=0.035 old_q=0.014 new_q=0.016
+Q-update state=('c2', 'e1') action_len=5 reward=-0.016088044409333646 target=0.013 old_q=0.004 new_q=0.004
+Q-update state=('a8', 'e1') action_len=6 reward=-0.016088044409333646 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e8', 'e1') action_len=7 reward=-0.016088044409333646 target=0.003 old_q=0.001 new_q=0.002
+Live weighted QoS reward for h2 -> h15: -0.016 metrics={'throughput_gbps': 0.943, 'rtt_ms': 2933.855, 'jitter_ms': 42.097, 'plr_pct': 1.2} update=q
+Flow feedback window started key=(11, 'e11-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(11, 'e11-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=21 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(11, 'e11-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(11, 'e11-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploration selected path: e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8
+R-Learner decision=22 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> e2 -> a1 -> c1 -> a7 -> e8 (install=True forward=True)
+Flow feedback window started key=(11, 'e11-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(11, 'e11-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a7', 'e8') action_len=2 reward=-0.44237918840798 target=-0.442 old_q=0.071 new_q=0.019
+Q-update state=('c1', 'e8') action_len=3 reward=-0.44237918840798 target=0.016 old_q=0.010 new_q=0.010
+Q-update state=('a1', 'e8') action_len=4 reward=-0.44237918840798 target=0.008 old_q=0.000 new_q=0.001
+Q-update state=('e2', 'e8') action_len=5 reward=-0.44237918840798 target=0.001 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e8') action_len=6 reward=-0.44237918840798 target=0.000 old_q=0.000 new_q=0.000
+Q-update state=('e1', 'e8') action_len=7 reward=-0.44237918840798 target=0.003 old_q=0.000 new_q=0.000
+Q-update state=('a2', 'e1') action_len=2 reward=-0.44237918840798 target=-0.442 old_q=0.077 new_q=0.025
+Q-update state=('e2', 'e1') action_len=3 reward=-0.44237918840798 target=0.020 old_q=0.004 new_q=0.005
+Q-update state=('a1', 'e1') action_len=4 reward=-0.44237918840798 target=0.004 old_q=0.000 new_q=0.001
+Q-update state=('c1', 'e1') action_len=5 reward=-0.44237918840798 target=0.048 old_q=0.000 new_q=0.005
+Q-update state=('a7', 'e1') action_len=6 reward=-0.44237918840798 target=0.004 old_q=0.000 new_q=0.000
+Q-update state=('e8', 'e1') action_len=7 reward=-0.44237918840798 target=0.000 old_q=0.000 new_q=0.000
+Live weighted QoS reward for h2 -> h15: -0.442 metrics={'throughput_gbps': 0.943, 'rtt_ms': 3042.546, 'jitter_ms': 43.583, 'plr_pct': 1.4} update=q
+Flow feedback window started key=(11, 'e11-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(11, 'e11-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.2902298949275911 target=-0.290 old_q=0.074 new_q=0.038
+Q-update state=('c2', 'e8') action_len=3 reward=-0.2902298949275911 target=0.030 old_q=0.042 new_q=0.041
+Q-update state=('a6', 'e8') action_len=4 reward=-0.2902298949275911 target=0.033 old_q=0.015 new_q=0.017
+Q-update state=('c3', 'e8') action_len=5 reward=-0.2902298949275911 target=0.013 old_q=0.004 new_q=0.005
+Q-update state=('a2', 'e8') action_len=6 reward=-0.2902298949275911 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e1', 'e8') action_len=7 reward=-0.2902298949275911 target=0.003 old_q=0.002 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.2902298949275911 target=-0.290 old_q=0.025 new_q=-0.007
+Q-update state=('c3', 'e1') action_len=3 reward=-0.2902298949275911 target=0.000 old_q=0.044 new_q=0.040
+Q-update state=('a6', 'e1') action_len=4 reward=-0.2902298949275911 target=0.032 old_q=0.016 new_q=0.017
+Q-update state=('c2', 'e1') action_len=5 reward=-0.2902298949275911 target=0.014 old_q=0.004 new_q=0.005
+Q-update state=('a8', 'e1') action_len=6 reward=-0.2902298949275911 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('e8', 'e1') action_len=7 reward=-0.2902298949275911 target=0.003 old_q=0.002 new_q=0.002
+Live weighted QoS reward for h1 -> h16: -0.290 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3233.699, 'jitter_ms': 43.218, 'plr_pct': 0.42} update=q
+Flow feedback window started key=(12, 'e12-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(12, 'e12-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=23 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(12, 'e12-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(12, 'e12-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=24 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(12, 'e12-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(12, 'e12-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.18019924098815976 target=-0.180 old_q=0.038 new_q=0.016
+Q-update state=('c2', 'e8') action_len=3 reward=-0.18019924098815976 target=0.013 old_q=0.041 new_q=0.038
+Q-update state=('a6', 'e8') action_len=4 reward=-0.18019924098815976 target=0.031 old_q=0.017 new_q=0.018
+Q-update state=('c3', 'e8') action_len=5 reward=-0.18019924098815976 target=0.015 old_q=0.005 new_q=0.006
+Q-update state=('a2', 'e8') action_len=6 reward=-0.18019924098815976 target=0.006 old_q=0.004 new_q=0.005
+Q-update state=('e1', 'e8') action_len=7 reward=-0.18019924098815976 target=0.004 old_q=0.002 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.18019924098815976 target=-0.180 old_q=-0.007 new_q=-0.024
+Q-update state=('c3', 'e1') action_len=3 reward=-0.18019924098815976 target=0.000 old_q=0.040 new_q=0.036
+Q-update state=('a6', 'e1') action_len=4 reward=-0.18019924098815976 target=0.029 old_q=0.017 new_q=0.019
+Q-update state=('c2', 'e1') action_len=5 reward=-0.18019924098815976 target=0.015 old_q=0.005 new_q=0.006
+Q-update state=('a8', 'e1') action_len=6 reward=-0.18019924098815976 target=0.006 old_q=0.004 new_q=0.005
+Q-update state=('e8', 'e1') action_len=7 reward=-0.18019924098815976 target=0.004 old_q=0.002 new_q=0.002
+Live weighted QoS reward for h2 -> h15: -0.180 metrics={'jitter_ms': 42.239, 'plr_pct': 1.2, 'rtt_ms': 72.294, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(12, 'e12-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(12, 'e12-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.5178260869565217 target=-0.518 old_q=0.016 new_q=-0.037
+Q-update state=('c2', 'e8') action_len=3 reward=-0.5178260869565217 target=0.000 old_q=0.038 new_q=0.034
+Q-update state=('a6', 'e8') action_len=4 reward=-0.5178260869565217 target=0.028 old_q=0.018 new_q=0.019
+Q-update state=('c3', 'e8') action_len=5 reward=-0.5178260869565217 target=0.015 old_q=0.006 new_q=0.007
+Q-update state=('a2', 'e8') action_len=6 reward=-0.5178260869565217 target=0.006 old_q=0.005 new_q=0.005
+Q-update state=('e1', 'e8') action_len=7 reward=-0.5178260869565217 target=0.004 old_q=0.002 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.5178260869565217 target=-0.518 old_q=-0.024 new_q=-0.073
+Q-update state=('c3', 'e1') action_len=3 reward=-0.5178260869565217 target=0.000 old_q=0.036 new_q=0.032
+Q-update state=('a6', 'e1') action_len=4 reward=-0.5178260869565217 target=0.026 old_q=0.019 new_q=0.019
+Q-update state=('c2', 'e1') action_len=5 reward=-0.5178260869565217 target=0.015 old_q=0.006 new_q=0.007
+Q-update state=('a8', 'e1') action_len=6 reward=-0.5178260869565217 target=0.006 old_q=0.005 new_q=0.005
+Q-update state=('e8', 'e1') action_len=7 reward=-0.5178260869565217 target=0.004 old_q=0.002 new_q=0.002
+Live weighted QoS reward for h1 -> h16: -0.518 metrics={'throughput_gbps': 0.943, 'rtt_ms': 6089.281, 'jitter_ms': 44.882, 'plr_pct': 0.77} update=q
+Flow feedback window started key=(13, 'e13-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(13, 'e13-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=25 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(13, 'e13-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(13, 'e13-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.10744266367868438 target=-0.107 old_q=-0.037 new_q=-0.044
+Q-update state=('c2', 'e8') action_len=3 reward=-0.10744266367868438 target=0.000 old_q=0.034 new_q=0.031
+Q-update state=('a6', 'e8') action_len=4 reward=-0.10744266367868438 target=0.025 old_q=0.019 new_q=0.020
+Q-update state=('c3', 'e8') action_len=5 reward=-0.10744266367868438 target=0.016 old_q=0.007 new_q=0.008
+Q-update state=('a2', 'e8') action_len=6 reward=-0.10744266367868438 target=0.006 old_q=0.005 new_q=0.005
+Q-update state=('e1', 'e8') action_len=7 reward=-0.10744266367868438 target=0.004 old_q=0.002 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.10744266367868438 target=-0.107 old_q=-0.073 new_q=-0.077
+Q-update state=('c3', 'e1') action_len=3 reward=-0.10744266367868438 target=0.000 old_q=0.032 new_q=0.029
+Q-update state=('a6', 'e1') action_len=4 reward=-0.10744266367868438 target=0.023 old_q=0.019 new_q=0.020
+Q-update state=('c2', 'e1') action_len=5 reward=-0.10744266367868438 target=0.016 old_q=0.007 new_q=0.008
+Q-update state=('a8', 'e1') action_len=6 reward=-0.10744266367868438 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('e8', 'e1') action_len=7 reward=-0.10744266367868438 target=0.004 old_q=0.002 new_q=0.002
+Live weighted QoS reward for h1 -> h16: -0.107 metrics={'throughput_gbps': 0.944, 'rtt_ms': 1872.363, 'jitter_ms': 29.07, 'plr_pct': 0.76} update=q
+Flow feedback window started key=(13, 'e13-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(13, 'e13-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=26 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(13, 'e13-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(13, 'e13-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.14449102746001558 target=-0.144 old_q=-0.044 new_q=-0.054
+Q-update state=('c2', 'e8') action_len=3 reward=-0.14449102746001558 target=0.000 old_q=0.031 new_q=0.028
+Q-update state=('a6', 'e8') action_len=4 reward=-0.14449102746001558 target=0.022 old_q=0.020 new_q=0.020
+Q-update state=('c3', 'e8') action_len=5 reward=-0.14449102746001558 target=0.016 old_q=0.008 new_q=0.009
+Q-update state=('a2', 'e8') action_len=6 reward=-0.14449102746001558 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('e1', 'e8') action_len=7 reward=-0.14449102746001558 target=0.004 old_q=0.002 new_q=0.002
+Q-update state=('a2', 'e1') action_len=2 reward=-0.14449102746001558 target=-0.144 old_q=-0.077 new_q=-0.084
+Q-update state=('c3', 'e1') action_len=3 reward=-0.14449102746001558 target=0.000 old_q=0.029 new_q=0.026
+Q-update state=('a6', 'e1') action_len=4 reward=-0.14449102746001558 target=0.021 old_q=0.020 new_q=0.020
+Q-update state=('c2', 'e1') action_len=5 reward=-0.14449102746001558 target=0.016 old_q=0.008 new_q=0.009
+Q-update state=('a8', 'e1') action_len=6 reward=-0.14449102746001558 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('e8', 'e1') action_len=7 reward=-0.14449102746001558 target=0.004 old_q=0.002 new_q=0.002
+Live weighted QoS reward for h2 -> h15: -0.144 metrics={'jitter_ms': 43.16, 'plr_pct': 0.92, 'rtt_ms': 71.268, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(14, 'e14-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(14, 'e14-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=27 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(14, 'e14-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(14, 'e14-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.002 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=28 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(14, 'e14-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(14, 'e14-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.15784585021882522 target=-0.158 old_q=-0.054 new_q=-0.065
+Q-update state=('c2', 'e8') action_len=3 reward=-0.15784585021882522 target=0.000 old_q=0.028 new_q=0.025
+Q-update state=('a6', 'e8') action_len=4 reward=-0.15784585021882522 target=0.020 old_q=0.020 new_q=0.020
+Q-update state=('c3', 'e8') action_len=5 reward=-0.15784585021882522 target=0.016 old_q=0.009 new_q=0.009
+Q-update state=('a2', 'e8') action_len=6 reward=-0.15784585021882522 target=0.008 old_q=0.005 new_q=0.005
+Q-update state=('e1', 'e8') action_len=7 reward=-0.15784585021882522 target=0.004 old_q=0.002 new_q=0.003
+Q-update state=('a2', 'e1') action_len=2 reward=-0.15784585021882522 target=-0.158 old_q=-0.084 new_q=-0.091
+Q-update state=('c3', 'e1') action_len=3 reward=-0.15784585021882522 target=0.000 old_q=0.026 new_q=0.024
+Q-update state=('a6', 'e1') action_len=4 reward=-0.15784585021882522 target=0.019 old_q=0.020 new_q=0.020
+Q-update state=('c2', 'e1') action_len=5 reward=-0.15784585021882522 target=0.016 old_q=0.009 new_q=0.010
+Q-update state=('a8', 'e1') action_len=6 reward=-0.15784585021882522 target=0.008 old_q=0.005 new_q=0.005
+Q-update state=('e8', 'e1') action_len=7 reward=-0.15784585021882522 target=0.004 old_q=0.002 new_q=0.003
+Live weighted QoS reward for h2 -> h15: -0.158 metrics={'throughput_gbps': 0.944, 'rtt_ms': 1912.786, 'jitter_ms': 29.611, 'plr_pct': 1.1} update=q
+Flow feedback window started key=(14, 'e14-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(14, 'e14-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.1380265124105059 target=-0.138 old_q=-0.065 new_q=-0.072
+Q-update state=('c2', 'e8') action_len=3 reward=-0.1380265124105059 target=0.000 old_q=0.025 new_q=0.023
+Q-update state=('a6', 'e8') action_len=4 reward=-0.1380265124105059 target=0.018 old_q=0.020 new_q=0.020
+Q-update state=('c3', 'e8') action_len=5 reward=-0.1380265124105059 target=0.016 old_q=0.009 new_q=0.010
+Q-update state=('a2', 'e8') action_len=6 reward=-0.1380265124105059 target=0.008 old_q=0.005 new_q=0.006
+Q-update state=('e1', 'e8') action_len=7 reward=-0.1380265124105059 target=0.004 old_q=0.003 new_q=0.003
+Q-update state=('a2', 'e1') action_len=2 reward=-0.1380265124105059 target=-0.138 old_q=-0.091 new_q=-0.096
+Q-update state=('c3', 'e1') action_len=3 reward=-0.1380265124105059 target=0.000 old_q=0.024 new_q=0.021
+Q-update state=('a6', 'e1') action_len=4 reward=-0.1380265124105059 target=0.017 old_q=0.020 new_q=0.019
+Q-update state=('c2', 'e1') action_len=5 reward=-0.1380265124105059 target=0.016 old_q=0.010 new_q=0.010
+Q-update state=('a8', 'e1') action_len=6 reward=-0.1380265124105059 target=0.008 old_q=0.005 new_q=0.006
+Q-update state=('e8', 'e1') action_len=7 reward=-0.1380265124105059 target=0.005 old_q=0.003 new_q=0.003
+Live weighted QoS reward for h1 -> h16: -0.138 metrics={'jitter_ms': 43.862, 'plr_pct': 0.83, 'rtt_ms': 71.159, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(15, 'e15-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(15, 'e15-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.003 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=29 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(15, 'e15-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(15, 'e15-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.003 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=30 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(15, 'e15-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(15, 'e15-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.19954865542719105 target=-0.200 old_q=-0.072 new_q=-0.085
+Q-update state=('c2', 'e8') action_len=3 reward=-0.19954865542719105 target=0.000 old_q=0.023 new_q=0.020
+Q-update state=('a6', 'e8') action_len=4 reward=-0.19954865542719105 target=0.016 old_q=0.020 new_q=0.019
+Q-update state=('c3', 'e8') action_len=5 reward=-0.19954865542719105 target=0.016 old_q=0.010 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=-0.19954865542719105 target=0.008 old_q=0.006 new_q=0.006
+Q-update state=('e1', 'e8') action_len=7 reward=-0.19954865542719105 target=0.005 old_q=0.003 new_q=0.003
+Q-update state=('a2', 'e1') action_len=2 reward=-0.19954865542719105 target=-0.200 old_q=-0.096 new_q=-0.106
+Q-update state=('c3', 'e1') action_len=3 reward=-0.19954865542719105 target=0.000 old_q=0.021 new_q=0.019
+Q-update state=('a6', 'e1') action_len=4 reward=-0.19954865542719105 target=0.015 old_q=0.019 new_q=0.019
+Q-update state=('c2', 'e1') action_len=5 reward=-0.19954865542719105 target=0.015 old_q=0.010 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.19954865542719105 target=0.009 old_q=0.006 new_q=0.006
+Q-update state=('e8', 'e1') action_len=7 reward=-0.19954865542719105 target=0.005 old_q=0.003 new_q=0.003
+Live weighted QoS reward for h1 -> h16: -0.200 metrics={'throughput_gbps': 0.944, 'rtt_ms': 2488.993, 'jitter_ms': 39.141, 'plr_pct': 0.65} update=q
+Flow feedback window started key=(15, 'e15-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(15, 'e15-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.1874502940325513 target=-0.187 old_q=-0.085 new_q=-0.095
+Q-update state=('c2', 'e8') action_len=3 reward=-0.1874502940325513 target=0.000 old_q=0.020 new_q=0.018
+Q-update state=('a6', 'e8') action_len=4 reward=-0.1874502940325513 target=0.015 old_q=0.019 new_q=0.019
+Q-update state=('c3', 'e8') action_len=5 reward=-0.1874502940325513 target=0.015 old_q=0.011 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=-0.1874502940325513 target=0.009 old_q=0.006 new_q=0.006
+Q-update state=('e1', 'e8') action_len=7 reward=-0.1874502940325513 target=0.005 old_q=0.003 new_q=0.003
+Q-update state=('a2', 'e1') action_len=2 reward=-0.1874502940325513 target=-0.187 old_q=-0.106 new_q=-0.114
+Q-update state=('c3', 'e1') action_len=3 reward=-0.1874502940325513 target=0.000 old_q=0.019 new_q=0.017
+Q-update state=('a6', 'e1') action_len=4 reward=-0.1874502940325513 target=0.014 old_q=0.019 new_q=0.019
+Q-update state=('c2', 'e1') action_len=5 reward=-0.1874502940325513 target=0.015 old_q=0.011 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.1874502940325513 target=0.009 old_q=0.006 new_q=0.006
+Q-update state=('e8', 'e1') action_len=7 reward=-0.1874502940325513 target=0.005 old_q=0.003 new_q=0.003
+Live weighted QoS reward for h2 -> h15: -0.187 metrics={'jitter_ms': 43.603, 'plr_pct': 0.61, 'rtt_ms': 72.513, 'throughput_gbps': 0.943} update=q
+Flow feedback window started key=(16, 'e16-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(16, 'e16-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.003 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=31 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(16, 'e16-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(16, 'e16-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.13439761170515863 target=-0.134 old_q=-0.095 new_q=-0.099
+Q-update state=('c2', 'e8') action_len=3 reward=-0.13439761170515863 target=0.000 old_q=0.018 new_q=0.016
+Q-update state=('a6', 'e8') action_len=4 reward=-0.13439761170515863 target=0.013 old_q=0.019 new_q=0.018
+Q-update state=('c3', 'e8') action_len=5 reward=-0.13439761170515863 target=0.015 old_q=0.011 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=-0.13439761170515863 target=0.009 old_q=0.006 new_q=0.006
+Q-update state=('e1', 'e8') action_len=7 reward=-0.13439761170515863 target=0.005 old_q=0.003 new_q=0.003
+Q-update state=('a2', 'e1') action_len=2 reward=-0.13439761170515863 target=-0.134 old_q=-0.114 new_q=-0.116
+Q-update state=('c3', 'e1') action_len=3 reward=-0.13439761170515863 target=0.000 old_q=0.017 new_q=0.015
+Q-update state=('a6', 'e1') action_len=4 reward=-0.13439761170515863 target=0.012 old_q=0.019 new_q=0.018
+Q-update state=('c2', 'e1') action_len=5 reward=-0.13439761170515863 target=0.014 old_q=0.011 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.13439761170515863 target=0.009 old_q=0.006 new_q=0.007
+Q-update state=('e8', 'e1') action_len=7 reward=-0.13439761170515863 target=0.005 old_q=0.003 new_q=0.003
+Live weighted QoS reward for h1 -> h16: -0.134 metrics={'jitter_ms': 44.814, 'plr_pct': 0.9, 'rtt_ms': 73.778, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(16, 'e16-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(16, 'e16-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.003 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=32 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(16, 'e16-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(16, 'e16-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.37417803104301506 target=-0.374 old_q=-0.099 new_q=-0.126
+Q-update state=('c2', 'e8') action_len=3 reward=-0.37417803104301506 target=0.000 old_q=0.016 new_q=0.015
+Q-update state=('a6', 'e8') action_len=4 reward=-0.37417803104301506 target=0.012 old_q=0.018 new_q=0.018
+Q-update state=('c3', 'e8') action_len=5 reward=-0.37417803104301506 target=0.014 old_q=0.011 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.37417803104301506 target=0.009 old_q=0.006 new_q=0.007
+Q-update state=('e1', 'e8') action_len=7 reward=-0.37417803104301506 target=0.005 old_q=0.003 new_q=0.004
+Q-update state=('a2', 'e1') action_len=2 reward=-0.37417803104301506 target=-0.374 old_q=-0.116 new_q=-0.142
+Q-update state=('c3', 'e1') action_len=3 reward=-0.37417803104301506 target=0.000 old_q=0.015 new_q=0.014
+Q-update state=('a6', 'e1') action_len=4 reward=-0.37417803104301506 target=0.011 old_q=0.018 new_q=0.017
+Q-update state=('c2', 'e1') action_len=5 reward=-0.37417803104301506 target=0.014 old_q=0.011 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=-0.37417803104301506 target=0.009 old_q=0.007 new_q=0.007
+Q-update state=('e8', 'e1') action_len=7 reward=-0.37417803104301506 target=0.005 old_q=0.003 new_q=0.004
+Live weighted QoS reward for h2 -> h15: -0.374 metrics={'throughput_gbps': 0.943, 'rtt_ms': 3493.197, 'jitter_ms': 45.432, 'plr_pct': 0.77} update=q
+Flow feedback window started key=(17, 'e17-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(17, 'e17-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.004 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=33 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(17, 'e17-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(17, 'e17-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.19585806833224068 target=-0.196 old_q=-0.126 new_q=-0.133
+Q-update state=('c2', 'e8') action_len=3 reward=-0.19585806833224068 target=0.000 old_q=0.015 new_q=0.013
+Q-update state=('a6', 'e8') action_len=4 reward=-0.19585806833224068 target=0.011 old_q=0.018 new_q=0.017
+Q-update state=('c3', 'e8') action_len=5 reward=-0.19585806833224068 target=0.014 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.19585806833224068 target=0.010 old_q=0.007 new_q=0.007
+Q-update state=('e1', 'e8') action_len=7 reward=-0.19585806833224068 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('a2', 'e1') action_len=2 reward=-0.19585806833224068 target=-0.196 old_q=-0.142 new_q=-0.147
+Q-update state=('c3', 'e1') action_len=3 reward=-0.19585806833224068 target=0.000 old_q=0.014 new_q=0.012
+Q-update state=('a6', 'e1') action_len=4 reward=-0.19585806833224068 target=0.010 old_q=0.017 new_q=0.016
+Q-update state=('c2', 'e1') action_len=5 reward=-0.19585806833224068 target=0.013 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=-0.19585806833224068 target=0.009 old_q=0.007 new_q=0.007
+Q-update state=('e8', 'e1') action_len=7 reward=-0.19585806833224068 target=0.006 old_q=0.004 new_q=0.004
+Live weighted QoS reward for h2 -> h15: -0.196 metrics={'jitter_ms': 44.586, 'plr_pct': 0.77, 'rtt_ms': 71.083, 'throughput_gbps': 0.943} update=q
+Flow feedback window started key=(17, 'e17-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(17, 'e17-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.004 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=34 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(17, 'e17-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(17, 'e17-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.19983938906031137 target=0.200 old_q=-0.133 new_q=-0.100
+Q-update state=('c2', 'e8') action_len=3 reward=0.19983938906031137 target=0.000 old_q=0.013 new_q=0.012
+Q-update state=('a6', 'e8') action_len=4 reward=0.19983938906031137 target=0.010 old_q=0.017 new_q=0.016
+Q-update state=('c3', 'e8') action_len=5 reward=0.19983938906031137 target=0.013 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=0.19983938906031137 target=0.010 old_q=0.007 new_q=0.007
+Q-update state=('e1', 'e8') action_len=7 reward=0.19983938906031137 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('a2', 'e1') action_len=2 reward=0.19983938906031137 target=0.200 old_q=-0.147 new_q=-0.113
+Q-update state=('c3', 'e1') action_len=3 reward=0.19983938906031137 target=0.000 old_q=0.012 new_q=0.011
+Q-update state=('a6', 'e1') action_len=4 reward=0.19983938906031137 target=0.009 old_q=0.016 new_q=0.016
+Q-update state=('c2', 'e1') action_len=5 reward=0.19983938906031137 target=0.013 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=0.19983938906031137 target=0.010 old_q=0.007 new_q=0.007
+Q-update state=('e8', 'e1') action_len=7 reward=0.19983938906031137 target=0.006 old_q=0.004 new_q=0.004
+Live weighted QoS reward for h1 -> h16: 0.200 metrics={'jitter_ms': 0.0, 'plr_pct': 0.0, 'rtt_ms': 74.233, 'throughput_gbps': 0.944} update=q
+Flow feedback window started key=(18, 'e18-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(18, 'e18-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploration selected path: e1 -> a2 -> c3 -> a8 -> e8
+R-Learner decision=35 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(18, 'e18-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(18, 'e18-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.004 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=36 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(18, 'e18-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(18, 'e18-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.0569080489196112 target=0.057 old_q=-0.100 new_q=-0.084
+Q-update state=('c3', 'e8') action_len=3 reward=0.0569080489196112 target=0.000 old_q=0.008 new_q=0.007
+Q-update state=('a2', 'e8') action_len=4 reward=0.0569080489196112 target=0.010 old_q=0.000 new_q=0.001
+Q-update state=('e1', 'e8') action_len=5 reward=0.0569080489196112 target=0.006 old_q=0.000 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=0.0569080489196112 target=0.057 old_q=-0.113 new_q=-0.096
+Q-update state=('c3', 'e1') action_len=3 reward=0.0569080489196112 target=0.000 old_q=0.011 new_q=0.010
+Q-update state=('a8', 'e1') action_len=4 reward=0.0569080489196112 target=0.008 old_q=0.000 new_q=0.001
+Q-update state=('e8', 'e1') action_len=5 reward=0.0569080489196112 target=0.006 old_q=0.000 new_q=0.001
+Live weighted QoS reward for h1 -> h16: 0.057 metrics={'throughput_gbps': 0.947, 'rtt_ms': 3020.375, 'jitter_ms': 48.049, 'plr_pct': 0.43} update=q
+Flow feedback window started key=(18, 'e18-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(18, 'e18-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.3737724287408984 target=-0.374 old_q=-0.084 new_q=-0.113
+Q-update state=('c2', 'e8') action_len=3 reward=-0.3737724287408984 target=0.000 old_q=0.012 new_q=0.011
+Q-update state=('a6', 'e8') action_len=4 reward=-0.3737724287408984 target=0.009 old_q=0.016 new_q=0.016
+Q-update state=('c3', 'e8') action_len=5 reward=-0.3737724287408984 target=0.012 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.3737724287408984 target=0.010 old_q=0.007 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.3737724287408984 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('a2', 'e1') action_len=2 reward=-0.3737724287408984 target=-0.374 old_q=-0.096 new_q=-0.124
+Q-update state=('c3', 'e1') action_len=3 reward=-0.3737724287408984 target=0.000 old_q=0.010 new_q=0.009
+Q-update state=('a6', 'e1') action_len=4 reward=-0.3737724287408984 target=0.007 old_q=0.016 new_q=0.015
+Q-update state=('c2', 'e1') action_len=5 reward=-0.3737724287408984 target=0.012 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=-0.3737724287408984 target=0.010 old_q=0.007 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.3737724287408984 target=0.006 old_q=0.004 new_q=0.004
+Live weighted QoS reward for h2 -> h15: -0.374 metrics={'throughput_gbps': 0.944, 'rtt_ms': 7829.295, 'jitter_ms': 39.19, 'plr_pct': 0.48} update=q
+Flow feedback window started key=(19, 'e19-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(19, 'e19-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploration selected path: e1 -> a2 -> c3 -> a8 -> e8
+R-Learner decision=37 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(19, 'e19-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(19, 'e19-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.004 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=38 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(19, 'e19-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(19, 'e19-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.4607431996503569 target=-0.461 old_q=-0.113 new_q=-0.148
+Q-update state=('c2', 'e8') action_len=3 reward=-0.4607431996503569 target=0.000 old_q=0.011 new_q=0.010
+Q-update state=('a6', 'e8') action_len=4 reward=-0.4607431996503569 target=0.008 old_q=0.016 new_q=0.015
+Q-update state=('c3', 'e8') action_len=5 reward=-0.4607431996503569 target=0.012 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.4607431996503569 target=0.010 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.4607431996503569 target=0.006 old_q=0.004 new_q=0.004
+Q-update state=('a2', 'e1') action_len=2 reward=-0.4607431996503569 target=-0.461 old_q=-0.124 new_q=-0.157
+Q-update state=('c3', 'e1') action_len=3 reward=-0.4607431996503569 target=0.000 old_q=0.009 new_q=0.008
+Q-update state=('a6', 'e1') action_len=4 reward=-0.4607431996503569 target=0.007 old_q=0.015 new_q=0.014
+Q-update state=('c2', 'e1') action_len=5 reward=-0.4607431996503569 target=0.011 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=-0.4607431996503569 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.4607431996503569 target=0.006 old_q=0.004 new_q=0.004
+Live weighted QoS reward for h1 -> h16: -0.461 metrics={'throughput_gbps': 0.944, 'rtt_ms': 16748.24, 'jitter_ms': 35.474, 'plr_pct': 3.7} update=q
+Flow feedback window started key=(19, 'e19-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(19, 'e19-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.19727698808032468 target=0.197 old_q=-0.148 new_q=-0.114
+Q-update state=('c3', 'e8') action_len=3 reward=0.19727698808032468 target=0.000 old_q=0.007 new_q=0.006
+Q-update state=('a2', 'e8') action_len=4 reward=0.19727698808032468 target=0.010 old_q=0.001 new_q=0.002
+Q-update state=('e1', 'e8') action_len=5 reward=0.19727698808032468 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('a2', 'e1') action_len=2 reward=0.19727698808032468 target=0.197 old_q=-0.157 new_q=-0.122
+Q-update state=('c3', 'e1') action_len=3 reward=0.19727698808032468 target=0.000 old_q=0.008 new_q=0.007
+Q-update state=('a8', 'e1') action_len=4 reward=0.19727698808032468 target=0.006 old_q=0.001 new_q=0.001
+Q-update state=('e8', 'e1') action_len=5 reward=0.19727698808032468 target=0.006 old_q=0.001 new_q=0.001
+Live weighted QoS reward for h2 -> h15: 0.197 metrics={'jitter_ms': 49.027, 'plr_pct': 1.3, 'rtt_ms': 72.212, 'throughput_gbps': 0.947} update=q
+Flow feedback window started key=(20, 'e20-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(20, 'e20-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.004 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=39 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(20, 'e20-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(20, 'e20-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.0006296694056348445 target=0.001 old_q=-0.114 new_q=-0.102
+Q-update state=('c2', 'e8') action_len=3 reward=0.0006296694056348445 target=0.000 old_q=0.010 new_q=0.009
+Q-update state=('a6', 'e8') action_len=4 reward=0.0006296694056348445 target=0.007 old_q=0.015 new_q=0.014
+Q-update state=('c3', 'e8') action_len=5 reward=0.0006296694056348445 target=0.011 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=0.0006296694056348445 target=0.010 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.0006296694056348445 target=0.006 old_q=0.004 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=0.0006296694056348445 target=0.001 old_q=-0.122 new_q=-0.110
+Q-update state=('c3', 'e1') action_len=3 reward=0.0006296694056348445 target=0.000 old_q=0.007 new_q=0.007
+Q-update state=('a6', 'e1') action_len=4 reward=0.0006296694056348445 target=0.005 old_q=0.014 new_q=0.013
+Q-update state=('c2', 'e1') action_len=5 reward=0.0006296694056348445 target=0.011 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=0.0006296694056348445 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.0006296694056348445 target=0.006 old_q=0.004 new_q=0.005
+Live weighted QoS reward for h2 -> h15: 0.001 metrics={'throughput_gbps': 0.945, 'rtt_ms': 2746.159, 'jitter_ms': 41.75, 'plr_pct': 0.58} update=q
+Flow feedback window started key=(20, 'e20-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(20, 'e20-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=40 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(20, 'e20-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(20, 'e20-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.12299230184374477 target=-0.123 old_q=-0.102 new_q=-0.104
+Q-update state=('c2', 'e8') action_len=3 reward=-0.12299230184374477 target=0.000 old_q=0.009 new_q=0.008
+Q-update state=('a6', 'e8') action_len=4 reward=-0.12299230184374477 target=0.006 old_q=0.014 new_q=0.013
+Q-update state=('c3', 'e8') action_len=5 reward=-0.12299230184374477 target=0.011 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.12299230184374477 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.12299230184374477 target=0.006 old_q=0.005 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=-0.12299230184374477 target=-0.123 old_q=-0.110 new_q=-0.111
+Q-update state=('c3', 'e1') action_len=3 reward=-0.12299230184374477 target=0.000 old_q=0.007 new_q=0.006
+Q-update state=('a6', 'e1') action_len=4 reward=-0.12299230184374477 target=0.005 old_q=0.013 new_q=0.012
+Q-update state=('c2', 'e1') action_len=5 reward=-0.12299230184374477 target=0.010 old_q=0.012 new_q=0.012
+Q-update state=('a8', 'e1') action_len=6 reward=-0.12299230184374477 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.12299230184374477 target=0.006 old_q=0.005 new_q=0.005
+Live weighted QoS reward for h1 -> h16: -0.123 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3425.31, 'jitter_ms': 41.37, 'plr_pct': 0.89} update=q
+Flow feedback window started key=(21, 'e21-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(21, 'e21-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=41 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(21, 'e21-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(21, 'e21-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.091471258306998 target=-0.091 old_q=-0.104 new_q=-0.103
+Q-update state=('c2', 'e8') action_len=3 reward=-0.091471258306998 target=0.000 old_q=0.008 new_q=0.007
+Q-update state=('a6', 'e8') action_len=4 reward=-0.091471258306998 target=0.006 old_q=0.013 new_q=0.012
+Q-update state=('c3', 'e8') action_len=5 reward=-0.091471258306998 target=0.010 old_q=0.012 new_q=0.012
+Q-update state=('a2', 'e8') action_len=6 reward=-0.091471258306998 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.091471258306998 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=-0.091471258306998 target=-0.091 old_q=-0.111 new_q=-0.109
+Q-update state=('c3', 'e1') action_len=3 reward=-0.091471258306998 target=0.000 old_q=0.006 new_q=0.005
+Q-update state=('a6', 'e1') action_len=4 reward=-0.091471258306998 target=0.004 old_q=0.012 new_q=0.012
+Q-update state=('c2', 'e1') action_len=5 reward=-0.091471258306998 target=0.009 old_q=0.012 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.091471258306998 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.091471258306998 target=0.006 old_q=0.005 new_q=0.005
+Live weighted QoS reward for h2 -> h15: -0.091 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3189.969, 'jitter_ms': 41.064, 'plr_pct': 0.24} update=q
+Flow feedback window started key=(21, 'e21-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(21, 'e21-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=42 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(21, 'e21-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(21, 'e21-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.16751341129410846 target=-0.168 old_q=-0.103 new_q=-0.109
+Q-update state=('c2', 'e8') action_len=3 reward=-0.16751341129410846 target=0.000 old_q=0.007 new_q=0.006
+Q-update state=('a6', 'e8') action_len=4 reward=-0.16751341129410846 target=0.005 old_q=0.012 new_q=0.012
+Q-update state=('c3', 'e8') action_len=5 reward=-0.16751341129410846 target=0.009 old_q=0.012 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=-0.16751341129410846 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.16751341129410846 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=-0.16751341129410846 target=-0.168 old_q=-0.109 new_q=-0.115
+Q-update state=('c3', 'e1') action_len=3 reward=-0.16751341129410846 target=0.000 old_q=0.005 new_q=0.005
+Q-update state=('a6', 'e1') action_len=4 reward=-0.16751341129410846 target=0.004 old_q=0.012 new_q=0.011
+Q-update state=('c2', 'e1') action_len=5 reward=-0.16751341129410846 target=0.009 old_q=0.011 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.16751341129410846 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.16751341129410846 target=0.007 old_q=0.005 new_q=0.005
+Live weighted QoS reward for h1 -> h16: -0.168 metrics={'jitter_ms': 42.805, 'plr_pct': 0.9, 'rtt_ms': 74.606, 'throughput_gbps': 0.943} update=q
+Flow feedback window started key=(22, 'e22-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(22, 'e22-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=43 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(22, 'e22-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(22, 'e22-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=44 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(22, 'e22-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(22, 'e22-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.24675826818340021 target=-0.247 old_q=-0.109 new_q=-0.123
+Q-update state=('c2', 'e8') action_len=3 reward=-0.24675826818340021 target=0.000 old_q=0.006 new_q=0.006
+Q-update state=('a6', 'e8') action_len=4 reward=-0.24675826818340021 target=0.005 old_q=0.012 new_q=0.011
+Q-update state=('c3', 'e8') action_len=5 reward=-0.24675826818340021 target=0.009 old_q=0.011 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=-0.24675826818340021 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.24675826818340021 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=-0.24675826818340021 target=-0.247 old_q=-0.115 new_q=-0.128
+Q-update state=('c3', 'e1') action_len=3 reward=-0.24675826818340021 target=0.000 old_q=0.005 new_q=0.004
+Q-update state=('a6', 'e1') action_len=4 reward=-0.24675826818340021 target=0.003 old_q=0.011 new_q=0.010
+Q-update state=('c2', 'e1') action_len=5 reward=-0.24675826818340021 target=0.008 old_q=0.011 new_q=0.011
+Q-update state=('a8', 'e1') action_len=6 reward=-0.24675826818340021 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.24675826818340021 target=0.007 old_q=0.005 new_q=0.005
+Live weighted QoS reward for h2 -> h15: -0.247 metrics={'throughput_gbps': 0.905, 'rtt_ms': 6732.723, 'jitter_ms': 35.522, 'plr_pct': 0.45} update=q
+Flow feedback window started key=(22, 'e22-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(22, 'e22-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.1406910007662923 target=0.141 old_q=-0.123 new_q=-0.097
+Q-update state=('c2', 'e8') action_len=3 reward=0.1406910007662923 target=0.000 old_q=0.006 new_q=0.005
+Q-update state=('a6', 'e8') action_len=4 reward=0.1406910007662923 target=0.004 old_q=0.011 new_q=0.010
+Q-update state=('c3', 'e8') action_len=5 reward=0.1406910007662923 target=0.008 old_q=0.011 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=0.1406910007662923 target=0.009 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.1406910007662923 target=0.007 old_q=0.005 new_q=0.005
+Q-update state=('a2', 'e1') action_len=2 reward=0.1406910007662923 target=0.141 old_q=-0.128 new_q=-0.101
+Q-update state=('c3', 'e1') action_len=3 reward=0.1406910007662923 target=0.000 old_q=0.004 new_q=0.004
+Q-update state=('a6', 'e1') action_len=4 reward=0.1406910007662923 target=0.003 old_q=0.010 new_q=0.009
+Q-update state=('c2', 'e1') action_len=5 reward=0.1406910007662923 target=0.007 old_q=0.011 new_q=0.010
+Q-update state=('a8', 'e1') action_len=6 reward=0.1406910007662923 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.1406910007662923 target=0.007 old_q=0.005 new_q=0.005
+Live weighted QoS reward for h1 -> h16: 0.141 metrics={'throughput_gbps': 0.943, 'rtt_ms': 4411.508, 'jitter_ms': 39.893, 'plr_pct': 0.52} update=q
+Flow feedback window started key=(23, 'e23-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(23, 'e23-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=45 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(23, 'e23-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(23, 'e23-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Exploitation selected path (best_q=0.005 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=46 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(23, 'e23-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(23, 'e23-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.22593904774916013 target=0.226 old_q=-0.097 new_q=-0.064
+Q-update state=('c2', 'e8') action_len=3 reward=0.22593904774916013 target=0.000 old_q=0.005 new_q=0.005
+Q-update state=('a6', 'e8') action_len=4 reward=0.22593904774916013 target=0.004 old_q=0.010 new_q=0.010
+Q-update state=('c3', 'e8') action_len=5 reward=0.22593904774916013 target=0.008 old_q=0.011 new_q=0.011
+Q-update state=('a2', 'e8') action_len=6 reward=0.22593904774916013 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.22593904774916013 target=0.007 old_q=0.005 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=0.22593904774916013 target=0.226 old_q=-0.101 new_q=-0.068
+Q-update state=('c3', 'e1') action_len=3 reward=0.22593904774916013 target=0.000 old_q=0.004 new_q=0.004
+Q-update state=('a6', 'e1') action_len=4 reward=0.22593904774916013 target=0.003 old_q=0.009 new_q=0.009
+Q-update state=('c2', 'e1') action_len=5 reward=0.22593904774916013 target=0.007 old_q=0.010 new_q=0.010
+Q-update state=('a8', 'e1') action_len=6 reward=0.22593904774916013 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.22593904774916013 target=0.007 old_q=0.005 new_q=0.006
+Live weighted QoS reward for h2 -> h15: 0.226 metrics={'jitter_ms': 36.083, 'plr_pct': 1.1, 'rtt_ms': 72.273, 'throughput_gbps': 0.945} update=q
+Flow feedback window started key=(23, 'e23-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(23, 'e23-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.006099396000536425 target=0.006 old_q=-0.064 new_q=-0.057
+Q-update state=('c2', 'e8') action_len=3 reward=0.006099396000536425 target=0.000 old_q=0.005 new_q=0.004
+Q-update state=('a6', 'e8') action_len=4 reward=0.006099396000536425 target=0.003 old_q=0.010 new_q=0.009
+Q-update state=('c3', 'e8') action_len=5 reward=0.006099396000536425 target=0.007 old_q=0.011 new_q=0.010
+Q-update state=('a2', 'e8') action_len=6 reward=0.006099396000536425 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.006099396000536425 target=0.007 old_q=0.006 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=0.006099396000536425 target=0.006 old_q=-0.068 new_q=-0.061
+Q-update state=('c3', 'e1') action_len=3 reward=0.006099396000536425 target=0.000 old_q=0.004 new_q=0.003
+Q-update state=('a6', 'e1') action_len=4 reward=0.006099396000536425 target=0.003 old_q=0.009 new_q=0.008
+Q-update state=('c2', 'e1') action_len=5 reward=0.006099396000536425 target=0.006 old_q=0.010 new_q=0.010
+Q-update state=('a8', 'e1') action_len=6 reward=0.006099396000536425 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.006099396000536425 target=0.007 old_q=0.006 new_q=0.006
+Live weighted QoS reward for h1 -> h16: 0.006 metrics={'throughput_gbps': 0.942, 'rtt_ms': 9024.648, 'jitter_ms': 32.712, 'plr_pct': 2.1} update=q
+Flow feedback window started key=(24, 'e24-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(24, 'e24-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.006 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=47 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(24, 'e24-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(24, 'e24-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.006 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=48 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(24, 'e24-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(24, 'e24-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.0969082086364173 target=0.097 old_q=-0.057 new_q=-0.042
+Q-update state=('c2', 'e8') action_len=3 reward=0.0969082086364173 target=0.000 old_q=0.004 new_q=0.004
+Q-update state=('a6', 'e8') action_len=4 reward=0.0969082086364173 target=0.003 old_q=0.009 new_q=0.008
+Q-update state=('c3', 'e8') action_len=5 reward=0.0969082086364173 target=0.007 old_q=0.010 new_q=0.010
+Q-update state=('a2', 'e8') action_len=6 reward=0.0969082086364173 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.0969082086364173 target=0.007 old_q=0.006 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=0.0969082086364173 target=0.097 old_q=-0.061 new_q=-0.045
+Q-update state=('c3', 'e1') action_len=3 reward=0.0969082086364173 target=0.000 old_q=0.003 new_q=0.003
+Q-update state=('a6', 'e1') action_len=4 reward=0.0969082086364173 target=0.002 old_q=0.008 new_q=0.008
+Q-update state=('c2', 'e1') action_len=5 reward=0.0969082086364173 target=0.006 old_q=0.010 new_q=0.009
+Q-update state=('a8', 'e1') action_len=6 reward=0.0969082086364173 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.0969082086364173 target=0.006 old_q=0.006 new_q=0.006
+Live weighted QoS reward for h1 -> h16: 0.097 metrics={'throughput_gbps': 0.942, 'rtt_ms': 74.215, 'jitter_ms': 34.455, 'plr_pct': 4.9} update=q
+Flow feedback window started key=(24, 'e24-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(24, 'e24-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.03224527981050958 target=-0.032 old_q=-0.042 new_q=-0.041
+Q-update state=('c2', 'e8') action_len=3 reward=-0.03224527981050958 target=0.000 old_q=0.004 new_q=0.003
+Q-update state=('a6', 'e8') action_len=4 reward=-0.03224527981050958 target=0.003 old_q=0.008 new_q=0.008
+Q-update state=('c3', 'e8') action_len=5 reward=-0.03224527981050958 target=0.006 old_q=0.010 new_q=0.009
+Q-update state=('a2', 'e8') action_len=6 reward=-0.03224527981050958 target=0.008 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.03224527981050958 target=0.007 old_q=0.006 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=-0.03224527981050958 target=-0.032 old_q=-0.045 new_q=-0.044
+Q-update state=('c3', 'e1') action_len=3 reward=-0.03224527981050958 target=0.000 old_q=0.003 new_q=0.003
+Q-update state=('a6', 'e1') action_len=4 reward=-0.03224527981050958 target=0.002 old_q=0.008 new_q=0.007
+Q-update state=('c2', 'e1') action_len=5 reward=-0.03224527981050958 target=0.006 old_q=0.009 new_q=0.009
+Q-update state=('a8', 'e1') action_len=6 reward=-0.03224527981050958 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.03224527981050958 target=0.006 old_q=0.006 new_q=0.006
+Live weighted QoS reward for h2 -> h15: -0.032 metrics={'throughput_gbps': 0.943, 'rtt_ms': 10114.445, 'jitter_ms': 34.757, 'plr_pct': 3.5} update=q
+Flow feedback window started key=(25, 'e25-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(25, 'e25-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Exploitation selected path (best_q=0.006 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=49 queued weighted Q feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(25, 'e25-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(25, 'e25-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Exploitation selected path (best_q=0.006 candidates=1): e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8
+R-Learner decision=50 queued weighted Q feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(25, 'e25-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(25, 'e25-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=0.08114195573620284 target=0.081 old_q=-0.041 new_q=-0.029
+Q-update state=('c2', 'e8') action_len=3 reward=0.08114195573620284 target=0.000 old_q=0.003 new_q=0.003
+Q-update state=('a6', 'e8') action_len=4 reward=0.08114195573620284 target=0.002 old_q=0.008 new_q=0.007
+Q-update state=('c3', 'e8') action_len=5 reward=0.08114195573620284 target=0.006 old_q=0.009 new_q=0.009
+Q-update state=('a2', 'e8') action_len=6 reward=0.08114195573620284 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=0.08114195573620284 target=0.007 old_q=0.006 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=0.08114195573620284 target=0.081 old_q=-0.044 new_q=-0.031
+Q-update state=('c3', 'e1') action_len=3 reward=0.08114195573620284 target=0.000 old_q=0.003 new_q=0.002
+Q-update state=('a6', 'e1') action_len=4 reward=0.08114195573620284 target=0.002 old_q=0.007 new_q=0.006
+Q-update state=('c2', 'e1') action_len=5 reward=0.08114195573620284 target=0.005 old_q=0.009 new_q=0.009
+Q-update state=('a8', 'e1') action_len=6 reward=0.08114195573620284 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=0.08114195573620284 target=0.006 old_q=0.006 new_q=0.006
+Live weighted QoS reward for h2 -> h15: 0.081 metrics={'throughput_gbps': 0.94, 'rtt_ms': 75.49, 'jitter_ms': 33.375, 'plr_pct': 8.4} update=q
+Flow feedback window started key=(25, 'e25-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(25, 'e25-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Q-update state=('a8', 'e8') action_len=2 reward=-0.0917585027372206 target=-0.092 old_q=-0.029 new_q=-0.035
+Q-update state=('c2', 'e8') action_len=3 reward=-0.0917585027372206 target=0.000 old_q=0.003 new_q=0.003
+Q-update state=('a6', 'e8') action_len=4 reward=-0.0917585027372206 target=0.002 old_q=0.007 new_q=0.007
+Q-update state=('c3', 'e8') action_len=5 reward=-0.0917585027372206 target=0.005 old_q=0.009 new_q=0.009
+Q-update state=('a2', 'e8') action_len=6 reward=-0.0917585027372206 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e1', 'e8') action_len=7 reward=-0.0917585027372206 target=0.006 old_q=0.006 new_q=0.006
+Q-update state=('a2', 'e1') action_len=2 reward=-0.0917585027372206 target=-0.092 old_q=-0.031 new_q=-0.037
+Q-update state=('c3', 'e1') action_len=3 reward=-0.0917585027372206 target=0.000 old_q=0.002 new_q=0.002
+Q-update state=('a6', 'e1') action_len=4 reward=-0.0917585027372206 target=0.002 old_q=0.006 new_q=0.006
+Q-update state=('c2', 'e1') action_len=5 reward=-0.0917585027372206 target=0.005 old_q=0.009 new_q=0.008
+Q-update state=('a8', 'e1') action_len=6 reward=-0.0917585027372206 target=0.007 old_q=0.008 new_q=0.008
+Q-update state=('e8', 'e1') action_len=7 reward=-0.0917585027372206 target=0.006 old_q=0.006 new_q=0.006
+Live weighted QoS reward for h1 -> h16: -0.092 metrics={'throughput_gbps': 0.938, 'rtt_ms': 11336.19, 'jitter_ms': 28.543, 'plr_pct': 6.5} update=q
+Initialized optimizer from Q-table: seeded_states=92 bias=0.95
+Switching to R-Optimizer phase after packet_in_events=203461 new_routing_decisions=50 weighted_rewards=50
+Flow feedback window started key=(26, 'e26-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(26, 'e26-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=51 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(26, 'e26-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(26, 'e26-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=52 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(26, 'e26-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(26, 'e26-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.12965116518647513 baseline=0.000
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.12965116518647513 baseline=0.000
+Live weighted QoS reward for h1 -> h16: 0.130 metrics={'jitter_ms': 34.248, 'plr_pct': 5.0, 'rtt_ms': 76.062, 'throughput_gbps': 0.939} update=policy
+Flow feedback window started key=(26, 'e26-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(26, 'e26-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.14341711921676878 baseline=0.130
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.14341711921676878 baseline=0.130
+Live weighted QoS reward for h2 -> h15: -0.143 metrics={'throughput_gbps': 0.94, 'rtt_ms': 16059.06, 'jitter_ms': 30.305, 'plr_pct': 5.4} update=policy
+Flow feedback window started key=(27, 'e27-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(27, 'e27-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=53 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(27, 'e27-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(27, 'e27-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=54 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(27, 'e27-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(27, 'e27-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.10595816736461823 baseline=-0.007
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.10595816736461823 baseline=-0.007
+Live weighted QoS reward for h2 -> h15: -0.106 metrics={'throughput_gbps': 0.943, 'rtt_ms': 14400.294, 'jitter_ms': 30.15, 'plr_pct': 6.6} update=policy
+Flow feedback window started key=(27, 'e27-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(27, 'e27-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.17844677198094522 baseline=-0.040
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.17844677198094522 baseline=-0.040
+Live weighted QoS reward for h1 -> h16: 0.178 metrics={'throughput_gbps': 0.941, 'rtt_ms': 78.7, 'jitter_ms': 30.997, 'plr_pct': 8.2} update=policy
+Flow feedback window started key=(28, 'e28-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(28, 'e28-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=55 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(28, 'e28-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(28, 'e28-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=56 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(28, 'e28-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(28, 'e28-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.014435750013645832 baseline=0.015
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.014435750013645832 baseline=0.015
+Live weighted QoS reward for h1 -> h16: -0.014 metrics={'jitter_ms': 50.601, 'plr_pct': 93.0, 'throughput_gbps': 0.935, 'rtt_ms': 80.552} update=policy
+Flow feedback window started key=(28, 'e28-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(28, 'e28-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2856913710412722 baseline=0.009
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2856913710412722 baseline=0.009
+Live weighted QoS reward for h2 -> h15: 0.286 metrics={'throughput_gbps': 0.938, 'jitter_ms': 30.427, 'plr_pct': 10.0, 'rtt_ms': 0.0} update=policy
+Flow feedback window started key=(29, 'e29-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(29, 'e29-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=57 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(29, 'e29-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(29, 'e29-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=58 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(29, 'e29-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(29, 'e29-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.3114765695551297 baseline=0.055
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.3114765695551297 baseline=0.055
+Live weighted QoS reward for h1 -> h16: 0.311 metrics={'jitter_ms': 31.552, 'plr_pct': 11.0, 'throughput_gbps': 0.944, 'rtt_ms': 1182.498} update=policy
+Flow feedback window started key=(29, 'e29-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(29, 'e29-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.32263851569697993 baseline=0.092
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.32263851569697993 baseline=0.092
+Live weighted QoS reward for h2 -> h15: 0.323 metrics={'throughput_gbps': 0.939, 'rtt_ms': 101.827, 'jitter_ms': 27.187, 'plr_pct': 9.8} update=policy
+Flow feedback window started key=(30, 'e30-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(30, 'e30-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=59 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(30, 'e30-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(30, 'e30-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=60 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(30, 'e30-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(30, 'e30-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.356226991727072 baseline=0.121
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.356226991727072 baseline=0.121
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.356226991727072 baseline=0.121
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.356226991727072 baseline=0.121
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.356226991727072 baseline=0.121
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.356226991727072 baseline=0.121
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.356226991727072 baseline=0.121
+Live weighted QoS reward for h2 -> h15: 0.356 metrics={'throughput_gbps': 0.943, 'rtt_ms': 81.475, 'jitter_ms': 27.185, 'plr_pct': 14.0} update=policy
+Flow feedback window started key=(30, 'e30-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(30, 'e30-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.21743992310288596 baseline=0.147
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.21743992310288596 baseline=0.147
+Live weighted QoS reward for h1 -> h16: 0.217 metrics={'jitter_ms': 29.64, 'plr_pct': 7.3, 'throughput_gbps': 0.935, 'rtt_ms': 2966.488} update=policy
+Flow feedback window started key=(31, 'e31-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(31, 'e31-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=61 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(31, 'e31-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(31, 'e31-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=62 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(31, 'e31-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(31, 'e31-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2777241184100345 baseline=0.154
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2777241184100345 baseline=0.154
+Live weighted QoS reward for h1 -> h16: 0.278 metrics={'jitter_ms': 32.736, 'plr_pct': 9.9, 'rtt_ms': 74.986, 'throughput_gbps': 0.938} update=policy
+Flow feedback window started key=(31, 'e31-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(31, 'e31-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.30689173610147547 baseline=0.165
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.30689173610147547 baseline=0.165
+Live weighted QoS reward for h2 -> h15: 0.307 metrics={'jitter_ms': 30.42, 'plr_pct': 7.2, 'rtt_ms': 77.363, 'throughput_gbps': 0.939} update=policy
+Flow feedback window started key=(32, 'e32-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(32, 'e32-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=63 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(32, 'e32-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(32, 'e32-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=64 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(32, 'e32-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(32, 'e32-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.09463528872736379 baseline=0.177
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.09463528872736379 baseline=0.177
+Live weighted QoS reward for h2 -> h15: -0.095 metrics={'jitter_ms': 30.927, 'plr_pct': 13.0, 'throughput_gbps': 0.933, 'rtt_ms': 2699.115} update=policy
+Flow feedback window started key=(32, 'e32-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(32, 'e32-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.18613096718493496 baseline=0.156
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.18613096718493496 baseline=0.156
+Live weighted QoS reward for h1 -> h16: -0.186 metrics={'throughput_gbps': 0.937, 'rtt_ms': 16750.727, 'jitter_ms': 27.701, 'plr_pct': 11.0} update=policy
+Flow feedback window started key=(33, 'e33-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(33, 'e33-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=65 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(33, 'e33-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(33, 'e33-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.10925147548931745 baseline=0.132
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.10925147548931745 baseline=0.132
+Live weighted QoS reward for h2 -> h15: 0.109 metrics={'throughput_gbps': 0.937, 'rtt_ms': 78.863, 'jitter_ms': 30.581, 'plr_pct': 10.0} update=policy
+Flow feedback window started key=(33, 'e33-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(33, 'e33-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=66 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(33, 'e33-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(33, 'e33-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.37716140591689745 baseline=0.130
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.37716140591689745 baseline=0.130
+Live weighted QoS reward for h1 -> h16: 0.377 metrics={'jitter_ms': 29.101, 'plr_pct': 9.0, 'rtt_ms': 75.214, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(34, 'e34-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(34, 'e34-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=67 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(34, 'e34-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(34, 'e34-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.26301705674702813 baseline=0.146
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.26301705674702813 baseline=0.146
+Live weighted QoS reward for h1 -> h16: 0.263 metrics={'jitter_ms': 42.69, 'plr_pct': 0.5, 'rtt_ms': 72.374, 'throughput_gbps': 0.943} update=policy
+Flow feedback window started key=(34, 'e34-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(34, 'e34-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=68 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(34, 'e34-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(34, 'e34-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.19742236871068441 baseline=0.152
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.19742236871068441 baseline=0.152
+Live weighted QoS reward for h2 -> h15: 0.197 metrics={'throughput_gbps': 0.943, 'rtt_ms': 4776.816, 'jitter_ms': 39.777, 'plr_pct': 0.43} update=policy
+Flow feedback window started key=(35, 'e35-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(35, 'e35-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=69 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(35, 'e35-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(35, 'e35-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=70 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(35, 'e35-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(35, 'e35-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.07211954237007132 baseline=0.155
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.07211954237007132 baseline=0.155
+Live weighted QoS reward for h1 -> h16: -0.072 metrics={'jitter_ms': 38.149, 'plr_pct': 0.8, 'rtt_ms': 71.803, 'throughput_gbps': 0.859} update=policy
+Flow feedback window started key=(35, 'e35-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(35, 'e35-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.225091944493065 baseline=0.143
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.225091944493065 baseline=0.143
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.225091944493065 baseline=0.143
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.225091944493065 baseline=0.143
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.225091944493065 baseline=0.143
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.225091944493065 baseline=0.143
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.225091944493065 baseline=0.143
+Live weighted QoS reward for h2 -> h15: 0.225 metrics={'throughput_gbps': 0.943, 'rtt_ms': 3847.315, 'jitter_ms': 42.93, 'plr_pct': 0.7} update=policy
+Flow feedback window started key=(36, 'e36-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(36, 'e36-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=71 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(36, 'e36-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(36, 'e36-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.38049227974806676 baseline=0.147
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.38049227974806676 baseline=0.147
+Live weighted QoS reward for h2 -> h15: 0.380 metrics={'throughput_gbps': 0.944, 'rtt_ms': 1037.657, 'jitter_ms': 13.815, 'plr_pct': 1.0} update=policy
+Flow feedback window started key=(36, 'e36-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(36, 'e36-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=72 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(36, 'e36-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(36, 'e36-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.21654869009098698 baseline=0.160
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.21654869009098698 baseline=0.160
+Live weighted QoS reward for h1 -> h16: 0.217 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3569.903, 'jitter_ms': 42.819, 'plr_pct': 1.2} update=policy
+Flow feedback window started key=(37, 'e37-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(37, 'e37-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=73 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(37, 'e37-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(37, 'e37-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=74 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(37, 'e37-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(37, 'e37-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2906605786065466 baseline=0.178
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2906605786065466 baseline=0.178
+Live weighted QoS reward for h1 -> h16: 0.291 metrics={'jitter_ms': 39.086, 'plr_pct': 0.61, 'rtt_ms': 72.356, 'throughput_gbps': 0.943} update=policy
+Flow feedback window started key=(37, 'e37-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(37, 'e37-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.19918894183370137 baseline=0.197
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.19918894183370137 baseline=0.197
+Live weighted QoS reward for h2 -> h15: 0.199 metrics={'throughput_gbps': 0.944, 'rtt_ms': 4663.434, 'jitter_ms': 42.476, 'plr_pct': 0.69} update=policy
+Flow feedback window started key=(38, 'e38-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(38, 'e38-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=75 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(38, 'e38-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(38, 'e38-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.0770446709707921 baseline=0.198
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.0770446709707921 baseline=0.198
+Live weighted QoS reward for h1 -> h16: 0.077 metrics={'throughput_gbps': 0.943, 'rtt_ms': 10852.011, 'jitter_ms': 35.567, 'plr_pct': 1.5} update=policy
+Flow feedback window started key=(38, 'e38-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(38, 'e38-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=76 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(38, 'e38-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(38, 'e38-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2737984045977677 baseline=0.203
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2737984045977677 baseline=0.203
+Live weighted QoS reward for h2 -> h15: 0.274 metrics={'jitter_ms': 38.31, 'plr_pct': 0.31, 'rtt_ms': 72.012, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(39, 'e39-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(39, 'e39-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=77 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(39, 'e39-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(39, 'e39-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=78 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(39, 'e39-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(39, 'e39-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.1883090392127653 baseline=0.202
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.1883090392127653 baseline=0.202
+Live weighted QoS reward for h2 -> h15: 0.188 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3264.025, 'jitter_ms': 43.605, 'plr_pct': 0.7} update=policy
+Flow feedback window started key=(39, 'e39-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(39, 'e39-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.26124442353025046 baseline=0.196
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.26124442353025046 baseline=0.196
+Live weighted QoS reward for h1 -> h16: 0.261 metrics={'jitter_ms': 39.861, 'plr_pct': 0.57, 'rtt_ms': 74.742, 'throughput_gbps': 0.943} update=policy
+Flow feedback window started key=(40, 'e40-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(40, 'e40-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=79 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(40, 'e40-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(40, 'e40-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2074250005144771 baseline=0.193
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2074250005144771 baseline=0.193
+Live weighted QoS reward for h1 -> h16: 0.207 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3808.14, 'jitter_ms': 38.291, 'plr_pct': 0.49} update=policy
+Flow feedback window started key=(40, 'e40-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(40, 'e40-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=80 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(40, 'e40-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(40, 'e40-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2631058538086428 baseline=0.186
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2631058538086428 baseline=0.186
+Live weighted QoS reward for h2 -> h15: 0.263 metrics={'jitter_ms': 40.453, 'plr_pct': 0.54, 'rtt_ms': 74.392, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(41, 'e41-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(41, 'e41-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=81 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(41, 'e41-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(41, 'e41-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=82 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(41, 'e41-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(41, 'e41-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.280569714181576 baseline=0.188
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.280569714181576 baseline=0.188
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.280569714181576 baseline=0.188
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.280569714181576 baseline=0.188
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.280569714181576 baseline=0.188
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.280569714181576 baseline=0.188
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.280569714181576 baseline=0.188
+Live weighted QoS reward for h1 -> h16: 0.281 metrics={'jitter_ms': 36.232, 'plr_pct': 0.46, 'rtt_ms': 76.041, 'throughput_gbps': 0.943} update=policy
+Flow feedback window started key=(41, 'e41-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(41, 'e41-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.17781323000383312 baseline=0.188
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.17781323000383312 baseline=0.188
+Live weighted QoS reward for h2 -> h15: 0.178 metrics={'throughput_gbps': 0.943, 'rtt_ms': 3665.778, 'jitter_ms': 43.905, 'plr_pct': 0.55} update=policy
+Flow feedback window started key=(42, 'e42-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(42, 'e42-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=83 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(42, 'e42-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(42, 'e42-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2162143985056381 baseline=0.182
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2162143985056381 baseline=0.182
+Live weighted QoS reward for h2 -> h15: 0.216 metrics={'throughput_gbps': 0.944, 'rtt_ms': 2573.683, 'jitter_ms': 40.276, 'plr_pct': 0.8} update=policy
+Flow feedback window started key=(42, 'e42-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(42, 'e42-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=84 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(42, 'e42-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(42, 'e42-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.16687336905276187 baseline=0.197
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.16687336905276187 baseline=0.197
+Live weighted QoS reward for h1 -> h16: 0.167 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3926.078, 'jitter_ms': 37.946, 'plr_pct': 0.67} update=policy
+Flow feedback window started key=(43, 'e43-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(43, 'e43-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=85 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(43, 'e43-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(43, 'e43-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=86 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(43, 'e43-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(43, 'e43-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.2586481636792729 baseline=0.215
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.2586481636792729 baseline=0.215
+Live weighted QoS reward for h2 -> h15: 0.259 metrics={'jitter_ms': 40.335, 'plr_pct': 0.84, 'rtt_ms': 71.661, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(43, 'e43-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(43, 'e43-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.1828689998961915 baseline=0.222
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.1828689998961915 baseline=0.222
+Live weighted QoS reward for h1 -> h16: 0.183 metrics={'jitter_ms': 40.927, 'plr_pct': 0.96, 'rtt_ms': 73.231, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(44, 'e44-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(44, 'e44-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=87 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(44, 'e44-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(44, 'e44-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.20503062241845893 baseline=0.213
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.20503062241845893 baseline=0.213
+Live weighted QoS reward for h1 -> h16: 0.205 metrics={'jitter_ms': 40.283, 'plr_pct': 0.81, 'rtt_ms': 67.971, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(44, 'e44-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(44, 'e44-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=88 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(44, 'e44-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(44, 'e44-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.13932799421687916 baseline=0.210
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.13932799421687916 baseline=0.210
+Live weighted QoS reward for h2 -> h15: 0.139 metrics={'jitter_ms': 38.505, 'plr_pct': 1.4, 'rtt_ms': 75.027, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(45, 'e45-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(45, 'e45-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=89 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(45, 'e45-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(45, 'e45-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=90 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(45, 'e45-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(45, 'e45-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.17162013958125621 baseline=0.207
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.17162013958125621 baseline=0.207
+Live weighted QoS reward for h1 -> h16: -0.172 metrics={'jitter_ms': 38.212, 'plr_pct': 1.6, 'throughput_gbps': 0.944, 'rtt_ms': 14015.741} update=policy
+Flow feedback window started key=(45, 'e45-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(45, 'e45-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.30019719281290125 baseline=0.202
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.30019719281290125 baseline=0.202
+Live weighted QoS reward for h2 -> h15: -0.300 metrics={'jitter_ms': 44.521, 'plr_pct': 35.0, 'throughput_gbps': 0.943, 'rtt_ms': 77.139} update=policy
+Flow feedback window started key=(46, 'e46-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(46, 'e46-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=91 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(46, 'e46-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(46, 'e46-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=92 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(46, 'e46-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(46, 'e46-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.21617426640196083 baseline=0.176
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.21617426640196083 baseline=0.176
+Live weighted QoS reward for h2 -> h15: 0.216 metrics={'throughput_gbps': 0.944, 'rtt_ms': 6819.709, 'jitter_ms': 37.843, 'plr_pct': 0.42} update=policy
+Flow feedback window started key=(46, 'e46-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(46, 'e46-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.3804214764100047 baseline=0.167
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.3804214764100047 baseline=0.167
+Live weighted QoS reward for h1 -> h16: 0.380 metrics={'jitter_ms': 36.663, 'plr_pct': 0.56, 'rtt_ms': 74.341, 'throughput_gbps': 0.945} update=policy
+Flow feedback window started key=(47, 'e47-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(47, 'e47-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+R-Optimizer decision=93 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(47, 'e47-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(47, 'e47-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=94 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(47, 'e47-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(47, 'e47-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.06301099945464224 baseline=0.176
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.06301099945464224 baseline=0.176
+Live weighted QoS reward for h1 -> h16: -0.063 metrics={'jitter_ms': 39.062, 'plr_pct': 1.3, 'throughput_gbps': 0.943, 'rtt_ms': 76.385} update=policy
+Flow feedback window started key=(47, 'e47-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(47, 'e47-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.14904483039971383 baseline=0.158
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.14904483039971383 baseline=0.158
+Live weighted QoS reward for h2 -> h15: -0.149 metrics={'throughput_gbps': 0.943, 'rtt_ms': 4899.933, 'jitter_ms': 38.242, 'plr_pct': 0.38} update=policy
+Flow feedback window started key=(48, 'e48-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(48, 'e48-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=95 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(48, 'e48-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(48, 'e48-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.12373948667062908 baseline=0.141
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.12373948667062908 baseline=0.141
+Live weighted QoS reward for h1 -> h16: 0.124 metrics={'throughput_gbps': 0.944, 'rtt_ms': 3613.518, 'jitter_ms': 0.0, 'plr_pct': 0.0} update=policy
+Flow feedback window started key=(48, 'e48-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(48, 'e48-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+R-Optimizer decision=96 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(48, 'e48-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(48, 'e48-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.2829562691367603 baseline=0.143
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.2829562691367603 baseline=0.143
+Live weighted QoS reward for h2 -> h15: -0.283 metrics={'throughput_gbps': 0.943, 'rtt_ms': 7162.521, 'jitter_ms': 37.509, 'plr_pct': 0.93} update=policy
+Flow feedback window started key=(49, 'e49-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(49, 'e49-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=97 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(49, 'e49-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(49, 'e49-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=98 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(49, 'e49-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(49, 'e49-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.0683146774153359 baseline=0.115
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.0683146774153359 baseline=0.115
+Live weighted QoS reward for h2 -> h15: 0.068 metrics={'jitter_ms': 37.16, 'plr_pct': 1.5, 'rtt_ms': 70.64, 'throughput_gbps': 0.944} update=policy
+Flow feedback window started key=(49, 'e49-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(49, 'e49-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.13194815505005977 baseline=0.109
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.13194815505005977 baseline=0.109
+Live weighted QoS reward for h1 -> h16: -0.132 metrics={'throughput_gbps': 0.944, 'rtt_ms': 9546.563, 'jitter_ms': 34.579, 'plr_pct': 2.7} update=policy
+Flow feedback window started key=(50, 'e50-h1-h16-g0') protocol=tcp
+Invalidated measured flow rules key=(50, 'e50-h1-h16-g0') hosts=h1<->h16 protocol=tcp port=5001 datapaths=20
+R-Optimizer decision=99 queued weighted policy feedback for h1 -> h16 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(50, 'e50-h1-h16-g0') protocol=udp
+Invalidated measured flow rules key=(50, 'e50-h1-h16-g0') hosts=h1<->h16 protocol=udp port=6001 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=0.0595574522112826 baseline=0.089
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=0.0595574522112826 baseline=0.089
+Live weighted QoS reward for h1 -> h16: 0.060 metrics={'throughput_gbps': 0.945, 'rtt_ms': 9990.802, 'jitter_ms': 34.773, 'plr_pct': 2.3} update=policy
+Flow feedback window started key=(50, 'e50-h2-h15-g1') protocol=udp
+Invalidated measured flow rules key=(50, 'e50-h2-h15-g1') hosts=h2<->h15 protocol=udp port=6002 datapaths=20
+R-Optimizer decision=100 queued weighted policy feedback for h2 -> h15 path=e1 -> a2 -> c3 -> a6 -> c2 -> a8 -> e8 (install=True forward=True)
+Flow feedback window started key=(50, 'e50-h2-h15-g1') protocol=tcp
+Invalidated measured flow rules key=(50, 'e50-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=20
+Policy update state=('e1', 'e8', 'e1') action=a2 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e1', 'e8', 'a2') action=c3 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e1', 'e8', 'c3') action=a6 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e1', 'e8', 'a6') action=c2 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e1', 'e8', 'c2') action=a8 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e1', 'e8', 'a8') action=e8 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'e8') action=a8 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'a8') action=c2 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'c2') action=a6 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'a6') action=c3 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'c3') action=a2 reward=-0.14447491728043765 baseline=0.082
+Policy update state=('e8', 'e1', 'a2') action=e1 reward=-0.14447491728043765 baseline=0.082
+Live weighted QoS reward for h2 -> h15: -0.144 metrics={'jitter_ms': 32.25, 'plr_pct': 8.3, 'rtt_ms': 79.45, 'throughput_gbps': 0.943} update=policy

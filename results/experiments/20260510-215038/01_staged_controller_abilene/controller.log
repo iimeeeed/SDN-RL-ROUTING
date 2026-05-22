@@ -1,0 +1,894 @@
+loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
+loading app ryu.controller.ofp_handler
+instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
+Loaded topology: abilene
+Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
+Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
+Staged config: explore_decisions=5 alpha=0.1 epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1 reward_mode=weighted
+Weighted QoS feedback listener started on 127.0.0.1:9999 profile=balanced
+instantiating app ryu.controller.ofp_handler of OFPHandler
+Switch connected: dpid=1
+Switch connected: dpid=2
+Switch connected: dpid=3
+Switch connected: dpid=4
+Switch connected: dpid=5
+Switch connected: dpid=6
+Switch connected: dpid=7
+Phase=explore decision=0/5 handling h2 -> h4
+Exploration selected path: s2 -> s5 -> s3 -> s1 -> s4 -> s7 -> s6
+R-Learner selected path h2 -> h4: s2 -> s5 -> s3 -> s1 -> s4 -> s7 -> s6
+Reward for h2 -> h4: 10.0 (install=True forward=True)
+Phase=explore decision=1/5 handling h4 -> h2
+Exploration selected path: s6 -> s5 -> s4 -> s1 -> s2
+R-Learner selected path h4 -> h2: s6 -> s5 -> s4 -> s1 -> s2
+Reward for h4 -> h2: 10.0 (install=True forward=True)
+Phase=explore decision=2/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=3/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=4/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=5/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=6/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=7/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=8/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=9/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=10/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=11/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=12/5 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=13/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=14/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=15/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=16/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=17/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=18/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=19/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=20/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=21/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=22/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=23/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=24/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=25/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=26/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=27/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=28/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=29/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=30/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=31/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=32/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=33/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=34/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=35/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=36/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=37/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=38/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=39/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=40/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=41/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=42/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=43/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=44/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=45/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=46/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=47/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=48/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=49/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=50/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=51/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=52/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=53/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=54/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=55/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=56/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=57/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=58/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=59/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=60/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=61/5 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=62/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=63/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=64/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=65/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=66/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=67/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=68/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=69/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=70/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=71/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=72/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=73/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=74/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=75/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=76/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=77/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=78/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=79/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=80/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=81/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=82/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=83/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=84/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=85/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=86/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=87/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=88/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=89/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=90/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=91/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=92/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=93/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=94/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=95/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=96/5 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=97/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=98/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=99/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=100/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=101/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=102/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=103/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=104/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=105/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=106/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=107/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=108/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=109/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=110/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=111/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=112/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=113/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=114/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=115/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=116/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=117/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=118/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=119/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=120/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=121/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=122/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=123/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=124/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=125/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=126/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=127/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=128/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=129/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=130/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=131/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=132/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=133/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=134/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=135/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=136/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=137/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=138/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=139/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=140/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=141/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=142/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=143/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=144/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=145/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=64): s1 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=146/5 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s5 -> s4 -> s2 -> s3 -> s1
+R-Learner selected path h5 -> h1: s7 -> s5 -> s4 -> s2 -> s3 -> s1
+Reward for h5 -> h1: 10.0 (install=True forward=True)
+Q-update state=('s2', 's6') action_len=7 reward=-0.09999999999999998 old_q=0.000 new_q=-0.010
+Live weighted QoS reward for h2 -> h4: -0.100 metrics={'throughput_gbps': 0.00897, 'jitter_ms': 0.116, 'plr_pct': 1.3, 'rtt_ms': 0.0} update=q
+Q-update state=('s1', 's7') action_len=6 reward=-0.3 old_q=0.000 new_q=-0.030
+Live weighted QoS reward for h1 -> h5: -0.300 metrics={'jitter_ms': 0.157, 'plr_pct': 0.6, 'throughput_gbps': 0.00504, 'rtt_ms': 0.0} update=q
+Phase=explore decision=147/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=148/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=149/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=150/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=151/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=152/5 handling h1 -> h5
+Exploration selected path: s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=153/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=154/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=155/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=156/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s3 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=157/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=158/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=159/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=160/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=161/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=162/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=163/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=164/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=165/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=166/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=167/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=168/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=169/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=170/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=171/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=172/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=173/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s3 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=174/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=175/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=176/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=177/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=178/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=179/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=180/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=181/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=182/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=183/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s4 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=184/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=185/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=186/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=187/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=188/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=189/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=190/5 handling h1 -> h5
+Exploration selected path: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=191/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=192/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=193/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s4 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=194/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=195/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s6 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=196/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s2 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=197/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s5 -> s2 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=198/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=199/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=200/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=201/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=202/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s6 -> s3 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=203/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=204/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s2 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s2 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=205/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=206/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s5 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s5 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=207/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=208/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s3 -> s6 -> s5 -> s4 -> s7
+R-Learner selected path h1 -> h5: s1 -> s3 -> s6 -> s5 -> s4 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=209/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s4 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=210/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s4 -> s5 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=211/5 handling h1 -> h5
+Exploitation selected path (best_q=0.000 candidates=63): s1 -> s4 -> s2 -> s3 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s4 -> s2 -> s3 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=212/5 handling h1 -> h5
+Exploration selected path: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+R-Learner selected path h1 -> h5: s1 -> s2 -> s3 -> s5 -> s6 -> s7
+Reward for h1 -> h5: 10.0 (install=True forward=True)
+Phase=explore decision=213/5 handling h5 -> h1
+Exploitation selected path (best_q=0.000 candidates=64): s7 -> s4 -> s6 -> s3 -> s2 -> s1
+R-Learner selected path h5 -> h1: s7 -> s4 -> s6 -> s3 -> s2 -> s1
+Reward for h5 -> h1: 10.0 (install=True forward=True)
+Live QoS reward -0.150 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=6 reward=-0.18040129813393246 old_q=0.000 new_q=-0.018
+Live weighted QoS reward for h1 -> h5: -0.180 metrics={'jitter_ms': 0.119, 'plr_pct': 0.38, 'throughput_gbps': 0.00519, 'rtt_ms': 0.0} update=q
+Phase=explore decision=214/5 handling h4 -> h2
+Exploitation selected path (best_q=0.000 candidates=44): s6 -> s3 -> s1 -> s4 -> s2
+R-Learner selected path h4 -> h2: s6 -> s3 -> s1 -> s4 -> s2
+Reward for h4 -> h2: 10.0 (install=True forward=True)
+Live QoS reward -0.139 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=6 reward=-0.07977800430399822 old_q=0.000 new_q=-0.008
+Live weighted QoS reward for h1 -> h5: -0.080 metrics={'jitter_ms': 0.1, 'plr_pct': 0.36, 'throughput_gbps': 0.00584, 'rtt_ms': 0.0} update=q
+Q-update state=('s1', 's7') action_len=7 reward=0.03471591823595689 old_q=0.000 new_q=0.003
+Live weighted QoS reward for h1 -> h5: 0.035 metrics={'throughput_gbps': 0.00843, 'jitter_ms': 0.115, 'plr_pct': 1.1, 'rtt_ms': 0.0} update=q
+Initialized optimizer from Q-table: seeded_states=16 bias=0.70
+Switching to R-Optimizer phase after decisions=215 weighted_rewards=5
+Live QoS reward 0.077 for h2 -> h4 has no pending decision
+Q-update state=('s1', 's7') action_len=7 reward=0.06315789473684211 old_q=0.000 new_q=0.006
+Live weighted QoS reward for h1 -> h5: 0.063 metrics={'throughput_gbps': 0.011300000000000001, 'jitter_ms': 0.114, 'plr_pct': 1.5, 'rtt_ms': 0.0} update=q
+Live QoS reward 0.077 for h2 -> h4 has no pending decision
