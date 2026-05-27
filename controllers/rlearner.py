@@ -11,8 +11,10 @@ Usage:
 import os
 import sys
 import json
+import math
 import socket
 import threading
+import time
 from collections import defaultdict
 
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +33,7 @@ from ryu.controller import ofp_event
 from ryu.controller.handler import CONFIG_DISPATCHER, MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.ofproto import ofproto_v1_3
+from ryu.lib import hub
 
 from ryu.lib.packet import packet
 from ryu.lib.packet import ethernet
@@ -46,7 +49,7 @@ from reward.qos_reward import QoSReward, WEIGHT_CONFIGS
 
 
 Path = Tuple[str, ...]
-State = Tuple[str, str, str, str]
+State = Tuple[str, ...]
 
 
 class RLearnerController(app_manager.RyuApp):
@@ -75,6 +78,7 @@ class RLearnerController(app_manager.RyuApp):
 
 		self.dpid_to_switch_map = getattr(self.topology, "DPID_TO_SWITCH", None)
 		self.switch_to_dpid_map = getattr(self.topology, "SWITCH_TO_DPID", None)
+		self.port_to_link = self.build_port_to_link_map()
 
 		self.mac_to_host = {
 			mac: host for host, mac in self.host_to_mac.items()
@@ -83,11 +87,70 @@ class RLearnerController(app_manager.RyuApp):
 			ip: host for host, ip in self.host_to_ip.items()
 		}
 
-		self.alpha = 0.1
+		self.alpha = float(os.environ.get("Q_ALPHA", "0.1"))
 		self.epsilon_schedule = build_epsilon_schedule()
 		self.epsilon_step = 0
 		self.epsilon = self.epsilon_schedule.get_epsilon(self.epsilon_step)
 		self.path_cutoff = int(os.environ.get("PATH_CUTOFF", "6"))
+		self.max_candidate_paths = int(os.environ.get("MAX_CANDIDATE_PATHS", "8"))
+		self.max_path_weight_delta = float(
+			os.environ.get("MAX_PATH_WEIGHT_DELTA", "1")
+		)
+		self.filter_transit_host_switches = (
+			os.environ.get("FILTER_TRANSIT_HOST_SWITCHES", "1")
+			.strip()
+			.lower()
+			in ("1", "true", "yes", "on")
+		)
+		self.action_selection = os.environ.get("RLEARNER_SELECTION", "ucb").lower()
+		self.ucb_c = float(os.environ.get("UCB_C", "0.35"))
+		self.path_overlap_penalty = float(
+			os.environ.get("PATH_OVERLAP_PENALTY", "0.0")
+		)
+		self.path_utilization_penalty = float(
+			os.environ.get("PATH_UTILIZATION_PENALTY", "0.0")
+		)
+		self.use_congestion_state = (
+			os.environ.get("USE_CONGESTION_STATE", "0")
+			.strip()
+			.lower()
+			in ("1", "true", "yes", "on")
+		)
+		self.warmup_trials_per_action = int(
+			os.environ.get("WARMUP_TRIALS_PER_ACTION", "0")
+		)
+		self.action_reward_window = max(
+			int(os.environ.get("ACTION_REWARD_WINDOW", "1")),
+			1
+		)
+		self.port_stats_interval = float(os.environ.get("PORT_STATS_INTERVAL", "0"))
+		self.link_capacity_mbps = float(os.environ.get("LINK_CAPACITY_MBPS", "1000"))
+		self.utilization_bucket_size = float(
+			os.environ.get("UTILIZATION_BUCKET_SIZE", "0.25")
+		)
+		self.active_flow_bucket_size = int(
+			os.environ.get("ACTIVE_FLOW_BUCKET_SIZE", "2")
+		)
+		self.use_advantage_reward = (
+			os.environ.get("USE_ADVANTAGE_REWARD", "1")
+			.strip()
+			.lower()
+			in ("1", "true", "yes", "on")
+		)
+		self.reward_baseline_scope = (
+			os.environ.get("REWARD_BASELINE_SCOPE", "pair")
+			.strip()
+			.lower()
+		)
+		self.advantage_reward_scale = float(
+			os.environ.get("ADVANTAGE_REWARD_SCALE", "1.0")
+		)
+		self.bad_reward_direct_threshold = float(
+			os.environ.get("BAD_REWARD_DIRECT_THRESHOLD", "-1.1")
+		)
+		self.reward_baseline_alpha = float(
+			os.environ.get("REWARD_BASELINE_ALPHA", "0.05")
+		)
 		self.learned_flow_idle_timeout = int(
 			os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
 		)
@@ -102,13 +165,27 @@ class RLearnerController(app_manager.RyuApp):
 		self.qos_rtt_clip_ms = (
 			float(rtt_clip_raw) if rtt_clip_raw.strip() else None
 		)
+		self.qos_reward_normalization = os.environ.get(
+			"QOS_REWARD_NORMALIZATION",
+			"absolute"
+		).lower()
 
 		self.q_table: Dict[State, Dict[Path, float]] = {}
-		self.path_cache: Dict[State, List[Path]] = {}
+		self.path_cache: Dict[Tuple[str, str], List[Path]] = {}
+		self.action_counts = defaultdict(lambda: defaultdict(int))
+		self.warmup_action_counts = defaultdict(lambda: defaultdict(int))
+		self.state_counts = defaultdict(int)
+		self.reward_baselines = {}
+		self.action_reward_buffers = defaultdict(list)
+		self.recent_pair_metrics = {}
+		self.port_stats = {}
+		self.port_utilization = defaultdict(float)
+		self.host_switches = set(self.host_to_switch.values())
 		self.qos_reward = QoSReward(
 			weights=WEIGHT_CONFIGS[self.weighted_profile],
 			window=self.baseline_window,
-			rtt_clip_ms=self.qos_rtt_clip_ms
+			rtt_clip_ms=self.qos_rtt_clip_ms,
+			normalization=self.qos_reward_normalization
 		)
 		self.pending_feedback = defaultdict(list)
 		self.feedback_metrics = {}
@@ -124,18 +201,38 @@ class RLearnerController(app_manager.RyuApp):
 		self.logger.info("Switches: %s", self.topology.SWITCHES)
 		self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
 		self.logger.info(
-			"R-Learner config: alpha=%s epsilon_schedule=%s epsilon=%s path_cutoff=%s learned_flow_idle_timeout=%s reward_mode=%s weighted_profile=%s qos_rtt_clip_ms=%s",
+			"R-Learner config: alpha=%s epsilon_schedule=%s epsilon=%s path_cutoff=%s max_candidate_paths=%s max_path_weight_delta=%s filter_transit_host_switches=%s action_selection=%s ucb_c=%s path_overlap_penalty=%s path_utilization_penalty=%s use_congestion_state=%s warmup_trials_per_action=%s action_reward_window=%s port_stats_interval=%s link_capacity_mbps=%s use_advantage_reward=%s reward_baseline_scope=%s advantage_reward_scale=%s bad_reward_direct_threshold=%s reward_baseline_alpha=%s learned_flow_idle_timeout=%s reward_mode=%s weighted_profile=%s qos_reward_normalization=%s qos_rtt_clip_ms=%s",
 			self.alpha,
 			self.epsilon_schedule,
 			self.epsilon,
 			self.path_cutoff,
+			self.max_candidate_paths,
+			self.max_path_weight_delta,
+			self.filter_transit_host_switches,
+			self.action_selection,
+			self.ucb_c,
+			self.path_overlap_penalty,
+			self.path_utilization_penalty,
+			self.use_congestion_state,
+			self.warmup_trials_per_action,
+			self.action_reward_window,
+			self.port_stats_interval,
+			self.link_capacity_mbps,
+			self.use_advantage_reward,
+			self.reward_baseline_scope,
+			self.advantage_reward_scale,
+			self.bad_reward_direct_threshold,
+			self.reward_baseline_alpha,
 			self.learned_flow_idle_timeout,
 			self.reward_mode,
 			self.weighted_profile,
+			self.qos_reward_normalization,
 			self.qos_rtt_clip_ms
 		)
 		if self.reward_mode == "weighted":
 			self.start_feedback_listener()
+		if self.port_stats_interval > 0:
+			self.monitor_thread = hub.spawn(self.port_stats_monitor)
 
 	def load_topology_module(self, module_name):
 		try:
@@ -164,6 +261,25 @@ class RLearnerController(app_manager.RyuApp):
 				return self.switch_to_dpid_map[switch_name]
 			raise KeyError(f"Unknown switch name: {switch_name}")
 		return int(switch_name.replace("s", ""))
+
+	def build_port_to_link_map(self) -> Dict[Tuple[int, int], Tuple[str, str]]:
+		port_to_link = {}
+		switches = set(self.topology.SWITCHES)
+		for switch, neighbors in self.port_map.items():
+			if switch not in switches:
+				continue
+			try:
+				dpid = self.switch_to_dpid(switch)
+			except KeyError:
+				continue
+			for neighbor, port_no in neighbors.items():
+				if neighbor not in switches:
+					continue
+				port_to_link[(dpid, int(port_no))] = (switch, neighbor)
+		return port_to_link
+
+	def canonical_link(self, src_switch: str, dst_switch: str) -> Tuple[str, str]:
+		return tuple(sorted((src_switch, dst_switch)))
 
 	def parse_expected_protocols(self, raw: str) -> set:
 		raw = (raw or "both").lower()
@@ -212,6 +328,42 @@ class RLearnerController(app_manager.RyuApp):
 		)
 
 		self.logger.info("Switch connected: dpid=%s", datapath.id)
+
+	def port_stats_monitor(self) -> None:
+		while True:
+			for datapath in list(self.datapaths.values()):
+				self.request_port_stats(datapath)
+			hub.sleep(self.port_stats_interval)
+
+	def request_port_stats(self, datapath) -> None:
+		parser = datapath.ofproto_parser
+		ofproto = datapath.ofproto
+		request = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_ANY)
+		datapath.send_msg(request)
+
+	@set_ev_cls(ofp_event.EventOFPPortStatsReply, MAIN_DISPATCHER)
+	def port_stats_reply_handler(self, ev):
+		now = time.time()
+		dpid = ev.msg.datapath.id
+		for stat in ev.msg.body:
+			key = (dpid, stat.port_no)
+			link = self.port_to_link.get(key)
+			if link is None:
+				continue
+			total_bytes = stat.tx_bytes + stat.rx_bytes
+			previous = self.port_stats.get(key)
+			self.port_stats[key] = (now, total_bytes)
+			if previous is None:
+				continue
+			prev_time, prev_bytes = previous
+			elapsed = max(now - prev_time, 1e-6)
+			mbps = max((total_bytes - prev_bytes) * 8.0 / elapsed / 1_000_000.0, 0.0)
+			utilization = mbps / max(self.link_capacity_mbps, 1.0)
+			canonical = self.canonical_link(*link)
+			self.port_utilization[canonical] = max(
+				self.port_utilization[canonical] * 0.7,
+				min(utilization, 2.0)
+			)
 
 	def delete_flows_by_match(self, match_builder) -> int:
 		deleted = 0
@@ -376,7 +528,7 @@ class RLearnerController(app_manager.RyuApp):
 		if src_switch == dst_switch:
 			paths = [(src_switch,)]
 		else:
-			paths = [
+			all_paths = [
 				tuple(path)
 				for path in nx.all_simple_paths(
 					self.graph,
@@ -385,9 +537,141 @@ class RLearnerController(app_manager.RyuApp):
 					cutoff=self.path_cutoff
 				)
 			]
+			paths = self.filter_candidate_paths(
+				all_paths,
+				src_switch,
+				dst_switch
+			)
+			if self.max_candidate_paths > 0:
+				paths = paths[:self.max_candidate_paths]
 
 		self.path_cache[state] = paths
 		return paths
+
+	def filter_candidate_paths(
+		self,
+		paths: List[Path],
+		src_switch: str,
+		dst_switch: str,
+	) -> List[Path]:
+		if not paths:
+			return []
+
+		candidates = list(paths)
+		if self.filter_transit_host_switches:
+			filtered = [
+				path for path in candidates
+				if not self.has_transit_host_switch(path, src_switch, dst_switch)
+			]
+			if len(filtered) >= 2:
+				candidates = filtered
+
+		if self.max_path_weight_delta >= 0:
+			min_weight = min(self.path_weight(path) for path in candidates)
+			near_shortest = [
+				path for path in candidates
+				if self.path_weight(path) <= min_weight + self.max_path_weight_delta
+			]
+			if near_shortest:
+				candidates = near_shortest
+
+		return sorted(
+			candidates,
+			key=lambda path: (
+				self.path_weight(path),
+				len(path),
+				path
+			)
+		)
+
+	def has_transit_host_switch(
+		self,
+		path: Path,
+		src_switch: str,
+		dst_switch: str,
+	) -> bool:
+		for switch in path[1:-1]:
+			if switch in self.host_switches and switch not in (src_switch, dst_switch):
+				return True
+		return False
+
+	def path_weight(self, path: Path) -> float:
+		if len(path) < 2:
+			return 0.0
+		return sum(
+			self.graph[path[index]][path[index + 1]].get("weight", 1)
+			for index in range(len(path) - 1)
+		)
+
+	def q_state(self, src_host: str, dst_host: str) -> State:
+		if not self.use_congestion_state:
+			return (src_host, dst_host)
+
+		src_switch = self.host_to_switch[src_host]
+		dst_switch = self.host_to_switch[dst_host]
+		paths = self.get_all_paths(src_switch, dst_switch)
+		max_util = max(
+			(self.path_max_utilization(path) for path in paths),
+			default=0.0
+		)
+		active_flows = max(
+			(self.path_active_flow_count(path, {src_host, dst_host}) for path in paths),
+			default=0
+		)
+		metrics = self.recent_pair_metrics.get(self.host_pair_key(src_host, dst_host), {})
+		return (
+			src_host,
+			dst_host,
+			f"util{self.bucket(max_util, self.utilization_bucket_size, 4)}",
+			f"active{self.bucket(active_flows, self.active_flow_bucket_size, 4)}",
+			f"rtt{self.bucket(metrics.get('rtt_ms', 0.0), 50.0, 6)}",
+			f"loss{self.bucket(metrics.get('plr_pct', 0.0), 0.5, 6)}",
+		)
+
+	def state_switches(self, state: State):
+		return self.host_to_switch[state[0]], self.host_to_switch[state[1]]
+
+	def bucket(self, value: float, size: float, max_bucket: int) -> int:
+		if size <= 0:
+			return 0
+		return min(int(value / size), max_bucket)
+
+	def path_edges(self, path: Path) -> set:
+		return {
+			self.canonical_link(path[index], path[index + 1])
+			for index in range(len(path) - 1)
+		}
+
+	def path_max_utilization(self, path: Path) -> float:
+		if len(path) < 2:
+			return 0.0
+		return max(
+			(self.port_utilization.get(edge, 0.0) for edge in self.path_edges(path)),
+			default=0.0
+		)
+
+	def path_active_flow_count(self, path: Path, ignore_hosts=None) -> int:
+		if not path:
+			return 0
+		ignore_hosts = ignore_hosts or set()
+		path_edges = self.path_edges(path)
+		path_switches = set(path)
+		seen_flow_keys = set()
+		count = 0
+		with self.feedback_lock:
+			active_items = list(self.active_weighted_paths.items())
+		for (flow_key, src_host, dst_host), active_path in active_items:
+			if flow_key in seen_flow_keys:
+				continue
+			seen_flow_keys.add(flow_key)
+			if {src_host, dst_host} == set(ignore_hosts):
+				continue
+			if path_edges.intersection(self.path_edges(active_path)):
+				count += 1
+				continue
+			if path_switches.intersection(active_path):
+				count += 1
+		return count
 
 	def ensure_q_state(self, state: State, paths: List[Path]) -> None:
 		if state not in self.q_table:
@@ -405,7 +689,7 @@ class RLearnerController(app_manager.RyuApp):
 		src_switch: str,
 		dst_switch: str,
 	) -> Path:
-		state = (src_host, dst_host, src_switch, dst_switch)
+		state = self.q_state(src_host, dst_host)
 		paths = self.get_all_paths(src_switch, dst_switch)
 
 		if not paths:
@@ -421,26 +705,63 @@ class RLearnerController(app_manager.RyuApp):
 		self.epsilon = self.epsilon_schedule.get_epsilon(self.epsilon_step)
 		self.epsilon_step += 1
 		self.logger.info(
-			"Selecting path for %s -> %s (paths=%s epsilon_step=%s epsilon=%s)",
+			"Selecting path for %s -> %s state=%s (paths=%s epsilon_step=%s epsilon=%s)",
 			src_switch,
 			dst_switch,
+			state,
 			len(paths),
 			self.epsilon_step - 1,
 			self.epsilon
 		)
 
+		warmup_path = self.warmup_path(state, paths)
+		if warmup_path is not None:
+			self.logger.info(
+				"Warmup selected path (trials=%s/%s util=%.3f active=%s): %s",
+				self.action_counts[state][warmup_path],
+				self.warmup_trials_per_action,
+				self.path_max_utilization(warmup_path),
+				self.path_active_flow_count(warmup_path, set(state[:2])),
+				" -> ".join(warmup_path)
+			)
+			return warmup_path
+
 		if random.random() < self.epsilon:
 			choice = random.choice(paths)
 			self.logger.info(
-				"Exploration selected path: %s",
+				"Exploration selected path (util=%.3f active=%s): %s",
+				self.path_max_utilization(choice),
+				self.path_active_flow_count(choice, set(state[:2])),
 				" -> ".join(choice)
 			)
 			return choice
 
-		max_value = max(self.q_table[state].get(path, 0.0) for path in paths)
+		if self.action_selection == "ucb":
+			choice, score = self.select_ucb_path(state, paths)
+			penalty = self.active_path_overlap_penalty(choice, state)
+			self.logger.info(
+				"UCB selected path (score=%.3f state_trials=%s action_trials=%s q=%.3f overlap_penalty=%.3f util=%.3f active=%s): %s",
+				score,
+				self.state_counts[state],
+				self.action_counts[state][choice],
+				self.q_table[state].get(choice, 0.0),
+				penalty,
+				self.path_max_utilization(choice),
+				self.path_active_flow_count(choice, set(state[:2])),
+				" -> ".join(choice)
+			)
+			return choice
+
+		path_scores = {
+			path: self.q_table[state].get(path, 0.0)
+			- self.active_path_overlap_penalty(path, state)
+			- self.path_utilization_penalty * self.path_max_utilization(path)
+			for path in paths
+		}
+		max_value = max(path_scores.values())
 		best_paths = [
 			path for path in paths
-			if self.q_table[state].get(path, 0.0) == max_value
+			if path_scores[path] == max_value
 		]
 		choice = random.choice(best_paths)
 		self.logger.info(
@@ -450,6 +771,71 @@ class RLearnerController(app_manager.RyuApp):
 			" -> ".join(choice)
 		)
 		return choice
+
+	def select_ucb_path(self, state: State, paths: List[Path]):
+		total = max(self.state_counts[state], 1)
+		best_score = None
+		best_paths = []
+		for path in paths:
+			q_value = self.q_table[state].get(path, 0.0)
+			trials = self.action_counts[state][path]
+			bonus = self.ucb_c * math.sqrt(math.log(total + 1) / (trials + 1))
+			penalty = self.active_path_overlap_penalty(path, state)
+			util_penalty = self.path_utilization_penalty * self.path_max_utilization(path)
+			score = q_value + bonus - penalty - util_penalty
+			if best_score is None or score > best_score:
+				best_score = score
+				best_paths = [path]
+			elif score == best_score:
+				best_paths.append(path)
+		return random.choice(best_paths), best_score
+
+	def warmup_path(self, state: State, paths: List[Path]):
+		if self.warmup_trials_per_action <= 0:
+			return None
+		warmup_state = self.reward_buffer_state(state)
+		under_sampled = [
+			path for path in paths
+			if self.warmup_action_counts[warmup_state][path] < self.warmup_trials_per_action
+		]
+		if not under_sampled:
+			return None
+		return sorted(
+			under_sampled,
+			key=lambda path: (
+				self.warmup_action_counts[warmup_state][path],
+				self.path_max_utilization(path),
+				self.path_active_flow_count(path, set(state[:2])),
+				path,
+			)
+		)[0]
+
+	def active_path_overlap_penalty(self, path: Path, state: State = None) -> float:
+		if self.path_overlap_penalty <= 0 or not path:
+			return 0.0
+
+		path_edges = set(zip(path, path[1:]))
+		path_edges |= {(dst, src) for src, dst in path_edges}
+		path_switches = set(path)
+		seen_flow_keys = set()
+		overlap_units = 0
+
+		with self.feedback_lock:
+			active_items = list(self.active_weighted_paths.items())
+
+		for (flow_key, src_host, dst_host), active_path in active_items:
+			if flow_key in seen_flow_keys:
+				continue
+			seen_flow_keys.add(flow_key)
+			if state is not None and {src_host, dst_host} == set(state):
+				continue
+			active_edges = set(zip(active_path, active_path[1:]))
+			active_edges |= {(dst, src) for src, dst in active_edges}
+			shared_edges = path_edges.intersection(active_edges)
+			shared_switches = path_switches.intersection(active_path)
+			overlap_units += (2 * len(shared_edges)) + len(shared_switches)
+
+		return self.path_overlap_penalty * overlap_units
 
 	def install_path(
 		self,
@@ -558,53 +944,115 @@ class RLearnerController(app_manager.RyuApp):
 		self.packet_out(datapath, msg, out_port)
 		return True
 
-	def update_q_value(self, state: State, action: Path, reward: float) -> None:
-		src_host, dst_host, _src_switch, dst_switch = state
-		if not action or len(action) < 2:
-			paths = self.get_all_paths(state[2], state[3])
-			self.ensure_q_state(state, paths)
-			current_q = self.q_table[state].get(action, 0.0)
-			updated = current_q + self.alpha * (reward - current_q)
-			self.q_table[state][action] = updated
+	def update_q_value(
+		self,
+		state: State,
+		action: Path,
+		reward: float,
+		count_observation: bool = True,
+	) -> None:
+		state = self.normalize_state(state)
+		src_switch, dst_switch = self.state_switches(state)
+		paths = self.get_all_paths(src_switch, dst_switch)
+		self.ensure_q_state(state, paths)
+		target = self.reward_target(state, reward)
+		current_q = self.q_table[state].get(action, 0.0)
+		updated = current_q + self.alpha * (target - current_q)
+		self.q_table[state][action] = updated
+		if count_observation:
+			self.state_counts[state] += 1
+			self.action_counts[state][action] += 1
+		self.logger.info(
+			"Q-update state=%s action_len=%s reward=%.3f target=%.3f baseline=%.3f old_q=%.3f new_q=%.3f action_trials=%s",
+			state,
+			len(action),
+			reward,
+			target,
+			self.reward_baselines.get(self.reward_baseline_state(state), 0.0),
+			current_q,
+			updated,
+			self.action_counts[state][action]
+		)
+
+	def observe_action_reward(self, state: State, action: Path, reward: float) -> None:
+		state = self.normalize_state(state)
+		buffer_state = self.reward_buffer_state(state)
+		self.state_counts[state] += 1
+		self.action_counts[state][action] += 1
+		self.warmup_action_counts[buffer_state][action] += 1
+		key = (buffer_state, action)
+		buffer = self.action_reward_buffers[key]
+		buffer.append(reward)
+		if len(buffer) < self.action_reward_window:
 			self.logger.info(
-				"Q-update state=%s action_len=%s reward=%s old_q=%.3f new_q=%.3f",
+				"Q-buffer state=%s action_len=%s reward=%.3f buffered=%s/%s",
 				state,
 				len(action),
 				reward,
-				current_q,
-				updated
+				len(buffer),
+				self.action_reward_window
 			)
 			return
+		smoothed_reward = sum(buffer) / len(buffer)
+		self.action_reward_buffers[key] = []
+		self.logger.info(
+			"Q-smoothed reward state=%s action_len=%s reward=%.3f samples=%s",
+			state,
+			len(action),
+			smoothed_reward,
+			self.action_reward_window
+		)
+		self.update_q_value(
+			state,
+			action,
+			smoothed_reward,
+			count_observation=False
+		)
 
-		for index in range(len(action) - 2, -1, -1):
-			current_switch = action[index]
-			next_switch = action[index + 1]
-			step_state = (src_host, dst_host, current_switch, dst_switch)
-			step_action = tuple(action[index:])
-			paths = self.get_all_paths(current_switch, dst_switch)
-			self.ensure_q_state(step_state, paths)
+	def reward_buffer_state(self, state: State) -> State:
+		return tuple(state[:2])
 
-			if next_switch == dst_switch:
-				target = reward
-			else:
-				next_state = (src_host, dst_host, next_switch, dst_switch)
-				next_paths = self.get_all_paths(next_switch, dst_switch)
-				self.ensure_q_state(next_state, next_paths)
-				next_max = max(self.q_table[next_state].values()) if self.q_table[next_state] else 0.0
-				target = self.gamma * next_max
+	def reward_baseline_state(self, state: State) -> State:
+		if self.reward_baseline_scope == "full":
+			return tuple(state)
+		if self.reward_baseline_scope == "pair":
+			return self.reward_buffer_state(state)
+		self.logger.warning(
+			"Unknown REWARD_BASELINE_SCOPE=%s, falling back to pair",
+			self.reward_baseline_scope
+		)
+		self.reward_baseline_scope = "pair"
+		return self.reward_buffer_state(state)
 
-			current_q = self.q_table[step_state].get(step_action, 0.0)
-			updated = current_q + self.alpha * (target - current_q)
-			self.q_table[step_state][step_action] = updated
-			self.logger.info(
-				"Q-update state=%s action_len=%s reward=%s target=%.3f old_q=%.3f new_q=%.3f",
-				step_state,
-				len(step_action),
-				reward,
-				target,
-				current_q,
-				updated
+	def normalize_state(self, state) -> State:
+		return tuple(state)
+
+	def reward_target(self, state: State, reward: float) -> float:
+		if not self.use_advantage_reward:
+			return reward
+
+		baseline_state = self.reward_baseline_state(state)
+		if baseline_state not in self.reward_baselines:
+			self.reward_baselines[baseline_state] = reward
+			if reward <= self.bad_reward_direct_threshold:
+				return reward
+			return 0.0
+
+		baseline = self.reward_baselines[baseline_state]
+		if reward <= self.bad_reward_direct_threshold:
+			self.reward_baselines[baseline_state] = (
+				(1.0 - self.reward_baseline_alpha) * baseline
+				+ self.reward_baseline_alpha * reward
 			)
+			return reward
+
+		target = (reward - baseline) * self.advantage_reward_scale
+		target = max(-1.0, min(1.0, target))
+		self.reward_baselines[baseline_state] = (
+			(1.0 - self.reward_baseline_alpha) * baseline
+			+ self.reward_baseline_alpha * reward
+		)
+		return target
 
 	def start_feedback_listener(self) -> None:
 		thread = threading.Thread(target=self.feedback_loop, daemon=True)
@@ -780,8 +1228,14 @@ class RLearnerController(app_manager.RyuApp):
 			)
 			if key is None:
 				return False
-			if self.pending_feedback.get(key):
-				return False
+			for pending_update in self.pending_feedback.get(key, []):
+				if (
+					pending_update.get("state") == update.get("state")
+					and pending_update.get("action") == update.get("action")
+					and pending_update.get("reverse_state") == update.get("reverse_state")
+					and pending_update.get("reverse_action") == update.get("reverse_action")
+				):
+					return False
 			self.pending_feedback[key].append(update)
 			self.pending_by_host_pair[self.host_pair_key(src_host, dst_host)].add(key)
 			exact_key = self.packet_flow_key(
@@ -855,6 +1309,9 @@ class RLearnerController(app_manager.RyuApp):
 			metrics.setdefault("jitter_ms", 0.0)
 			metrics.setdefault("plr_pct", 0.0)
 			reward = self.qos_reward.compute_reward(metrics)
+			self.recent_pair_metrics[
+				self.host_pair_key(src_host, dst_host)
+			] = dict(metrics)
 
 			pending = self.pending_feedback.get(feedback_key, [])
 			if not pending:
@@ -865,28 +1322,31 @@ class RLearnerController(app_manager.RyuApp):
 				)
 				return
 
-			update = pending.pop(0)
-			if not pending:
-				self.pending_feedback.pop(feedback_key, None)
-				self.pending_by_host_pair[
-					self.host_pair_key(src_host, dst_host)
-				].discard(feedback_key)
-				if not self.pending_by_host_pair[self.host_pair_key(src_host, dst_host)]:
-					self.pending_by_host_pair.pop(self.host_pair_key(src_host, dst_host), None)
-				for active_key in list(self.active_weighted_paths.keys()):
-					if active_key[0] == feedback_key:
-						self.active_weighted_paths.pop(active_key, None)
-				self.clear_flow_key(feedback_key)
+			updates = list(pending)
+			self.pending_feedback.pop(feedback_key, None)
+			self.pending_by_host_pair[
+				self.host_pair_key(src_host, dst_host)
+			].discard(feedback_key)
+			if not self.pending_by_host_pair[self.host_pair_key(src_host, dst_host)]:
+				self.pending_by_host_pair.pop(self.host_pair_key(src_host, dst_host), None)
+			for active_key in list(self.active_weighted_paths.keys()):
+				if active_key[0] == feedback_key:
+					self.active_weighted_paths.pop(active_key, None)
+			self.clear_flow_key(feedback_key)
 
-		self.update_q_value(update["state"], update["action"], reward)
-		if "reverse_state" in update and "reverse_action" in update:
-			self.update_q_value(update["reverse_state"], update["reverse_action"], reward)
+		for update in updates:
+			self.observe_action_reward(update["state"], update["action"], reward)
+			if "reverse_state" in update and "reverse_action" in update:
+				self.observe_action_reward(update["reverse_state"], update["reverse_action"], reward)
 		self.logger.info(
-			"Live weighted QoS reward for %s -> %s: %.3f metrics=%s update=q",
+			"Live weighted QoS reward for %s -> %s: %.3f metrics=%s updates=%s util=%.3f active=%s",
 			src_host,
 			dst_host,
 			reward,
-			metrics
+			metrics,
+			len(updates),
+			self.path_max_utilization(updates[0]["action"]) if updates else 0.0,
+			self.path_active_flow_count(updates[0]["action"], {src_host, dst_host}) if updates else 0
 		)
 
 	def resolve_arp_destination(self, arp_pkt):
@@ -1021,7 +1481,7 @@ class RLearnerController(app_manager.RyuApp):
 			reward = compute_controller_reward(False, (), self.reward_mode)
 			if self.reward_mode != "weighted":
 				self.update_q_value(
-					(src_host, dst_host, src_switch, dst_switch),
+					self.q_state(src_host, dst_host),
 					(),
 					reward
 				)
@@ -1074,9 +1534,9 @@ class RLearnerController(app_manager.RyuApp):
 				)
 				return
 			queued = self.remember_pending_feedback(src_host, dst_host, {
-				"state": (src_host, dst_host, src_switch, dst_switch),
+				"state": self.q_state(src_host, dst_host),
 				"action": selected_path,
-				"reverse_state": (dst_host, src_host, dst_switch, src_switch),
+				"reverse_state": self.q_state(dst_host, src_host),
 				"reverse_action": tuple(reversed(selected_path)),
 			}, selected_path, traffic_protocol, traffic_src_port, traffic_dst_port)
 			if queued:
@@ -1100,7 +1560,7 @@ class RLearnerController(app_manager.RyuApp):
 			forward_success
 		)
 		self.update_q_value(
-			(src_host, dst_host, src_switch, dst_switch),
+			self.q_state(src_host, dst_host),
 			selected_path,
 			reward
 		)

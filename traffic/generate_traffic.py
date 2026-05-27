@@ -377,7 +377,15 @@ def run(net,
     if not selected_pairs:
         raise ValueError("No host pairs available for traffic generation")
 
-    udp_bw_mbps = max(int(link_bw_mbps * 0.9), 1)
+    udp_bw_override = os.environ.get("TRAFFIC_UDP_BW_MBPS", "").strip()
+    if udp_bw_override:
+        udp_bw_mbps = max(int(float(udp_bw_override)), 1)
+    else:
+        udp_bw_ratio = float(os.environ.get("TRAFFIC_UDP_BW_RATIO", "0.9"))
+        udp_bw_mbps = max(int(link_bw_mbps * udp_bw_ratio), 1)
+    if verbose:
+        print("[traffic] udp_bw_mbps:", udp_bw_mbps)
+    concurrent_start_spread = float(os.environ.get("TRAFFIC_CONCURRENT_START_SPREAD", "0"))
 
     flows = []
     tcp_index = 0
@@ -477,18 +485,67 @@ def run(net,
             episode_flows = [dict(flow) for flow in flows]
             rng.shuffle(episode_flows)
 
-            running_flows = []
+            for flow in episode_flows:
+                flow_id = f"e{episode_index + 1}-{flow['flow_group_id']}"
+                flow["episode"] = episode_index + 1
+                flow["flow_id"] = flow_id
+                flow["duration_s"] = duration
+
+            if concurrent:
+                for flow in episode_flows:
+                    send_live_feedback({
+                        "event": "flow_start",
+                        "episode": episode_index + 1,
+                        "flow_id": flow["flow_id"],
+                        "src": flow["src"],
+                        "dst": flow["dst"],
+                        "protocol": flow["protocol"],
+                        "port": flow["port"],
+                        "duration_s": duration,
+                    }, feedback_host, feedback_port)
+                if feedback_host and feedback_port and feedback_grace > 0:
+                    time.sleep(feedback_grace)
+
+                running_flows = []
+                for index, flow in enumerate(episode_flows):
+                    if index > 0 and concurrent_start_spread > 0:
+                        time.sleep(rng.uniform(0, concurrent_start_spread))
+
+                    src_host = net.get(flow["src"])
+                    dst_ip = net.get(flow["dst"]).IP()
+                    client = start_client(
+                        src_host,
+                        dst_ip,
+                        flow["protocol"],
+                        flow["port"],
+                        duration,
+                        interval,
+                        udp_bw_mbps
+                    )
+                    flow["client"] = client
+                    if ping:
+                        flow["ping_client"] = start_ping(src_host, dst_ip)
+                    if verbose:
+                        print(
+                            f"[traffic] concurrent client {flow['protocol']} "
+                            f"{flow['src']}->{flow['dst']} port={flow['port']}"
+                        )
+                    running_flows.append(flow)
+
+                for flow in running_flows:
+                    stdout, stderr = flow["client"].communicate()
+                    ping_output = ""
+                    if flow.get("ping_client") is not None:
+                        ping_output, _ping_stderr = flow["ping_client"].communicate()
+                    write_result(build_result_record(flow, stdout, stderr, ping_output))
+                continue
+
             for index, flow in enumerate(episode_flows):
                 if index > 0:
                     time.sleep(rng.uniform(stagger_min, stagger_max))
 
                 src_host = net.get(flow["src"])
                 dst_ip = net.get(flow["dst"]).IP()
-                flow_id = f"e{episode_index + 1}-{flow['flow_group_id']}"
-                flow["episode"] = episode_index + 1
-                flow["flow_id"] = flow_id
-                flow["duration_s"] = duration
-
                 send_live_feedback({
                     "event": "flow_start",
                     "episode": episode_index + 1,
@@ -520,23 +577,11 @@ def run(net,
                         f"port={flow['port']}"
                     )
 
-                if concurrent:
-                    running_flows.append(flow)
-                    continue
-
                 stdout, stderr = client.communicate()
                 ping_output = ""
                 if flow.get("ping_client") is not None:
                     ping_output, _ping_stderr = flow["ping_client"].communicate()
                 write_result(build_result_record(flow, stdout, stderr, ping_output))
-
-            if concurrent:
-                for flow in running_flows:
-                    stdout, stderr = flow["client"].communicate()
-                    ping_output = ""
-                    if flow.get("ping_client") is not None:
-                        ping_output, _ping_stderr = flow["ping_client"].communicate()
-                    write_result(build_result_record(flow, stdout, stderr, ping_output))
 
         completed = len(results) == expected_rows
         return results

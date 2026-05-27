@@ -22,6 +22,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -289,6 +290,12 @@ def traffic_env(args: argparse.Namespace, config: Dict[str, object], output: Pat
         "TRAFFIC_FEEDBACK_GRACE": str(pick("feedback_grace", "feedback_grace", 0.2)),
         "TRAFFIC_CONCURRENT": bool_text(pick("concurrent", "concurrent", False)),
     }
+    if os.environ.get("TRAFFIC_UDP_BW_MBPS"):
+        env["TRAFFIC_UDP_BW_MBPS"] = os.environ["TRAFFIC_UDP_BW_MBPS"]
+    if os.environ.get("TRAFFIC_UDP_BW_RATIO"):
+        env["TRAFFIC_UDP_BW_RATIO"] = os.environ["TRAFFIC_UDP_BW_RATIO"]
+    if os.environ.get("TRAFFIC_CONCURRENT_START_SPREAD"):
+        env["TRAFFIC_CONCURRENT_START_SPREAD"] = os.environ["TRAFFIC_CONCURRENT_START_SPREAD"]
     seed = pick("seed", "seed", None)
     if seed is not None and str(seed) != "":
         env["TRAFFIC_SEED"] = str(seed)
@@ -305,7 +312,10 @@ def controller_env(
     env["TOPOLOGY"] = topology
     controller_config = config.get("controller_env", {})
     if isinstance(controller_config, dict):
-        env.update({str(key): str(value) for key, value in controller_config.items()})
+        for key, value in controller_config.items():
+            # Shell environment is the experimenter's explicit override.
+            # Keep config.yaml as defaults so sudo -E env ... commands are honored.
+            env.setdefault(str(key), str(value))
     env["SKIP_MININET_CLEANUP"] = "1"
     env["NONINTERACTIVE_SUDO"] = "1"
     if args.reward_mode:
@@ -331,22 +341,64 @@ def topology_env(base_env: Dict[str, str]) -> Dict[str, str]:
     return env
 
 
-def inject_traffic(topology_process: subprocess.Popen, traffic_vars: Dict[str, str]) -> None:
+def inject_traffic(
+    topology_process: subprocess.Popen,
+    traffic_vars: Dict[str, str],
+    run_dir: Path,
+) -> None:
     if topology_process.stdin is None:
         raise RuntimeError("Topology process stdin is unavailable")
+    output = Path(traffic_vars["TRAFFIC_OUTPUT"])
+    traffic_script = run_dir / "injected_traffic.py"
     lines = [
-        "import os, sys",
+        "import os, sys, traceback",
         f"sys.path.insert(0, {str(ROOT)!r})",
     ]
     for key, value in traffic_vars.items():
         lines.append(f"os.environ[{key!r}] = {value!r}")
-    lines.append("__import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)")
-    payload = "exec(" + repr("\n".join(lines)) + ")"
-    topology_process.stdin.write(f"py {payload}\n")
+    lines.extend([
+        "try:",
+        "\t__import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)",
+        "except BaseException:",
+        f"\twith open({str(output) + '.partial'!r}, 'w') as handle:",
+        "\t\thandle.write('complete=0\\n')",
+        "\t\thandle.write('error=injected traffic exception\\n')",
+        "\t\ttraceback.print_exc(file=handle)",
+        "\traise",
+    ])
+    traffic_script.write_text("\n".join(lines) + "\n")
+    topology_process.stdin.write(f"py exec(open({str(traffic_script)!r}).read())\n")
     topology_process.stdin.flush()
 
 
-def wait_for_marker(output: Path, timeout: float) -> str:
+def write_partial_marker(output: Path, rows: int, expected_rows: int, error: str) -> None:
+    partial = Path(str(output) + ".partial")
+    if partial.exists() or Path(str(output) + ".done").exists():
+        return
+    with partial.open("w") as handle:
+        handle.write(f"rows={rows}\n")
+        handle.write(f"expected_rows={expected_rows}\n")
+        handle.write("complete=0\n")
+        handle.write(f"error={error}\n")
+
+
+def count_csv_rows(output: Path) -> int:
+    if not output.exists():
+        return 0
+    try:
+        with output.open(newline="") as handle:
+            return max(sum(1 for _line in handle) - 1, 0)
+    except OSError:
+        return 0
+
+
+def wait_for_marker(
+    output: Path,
+    timeout: float,
+    topology_process: Optional[subprocess.Popen] = None,
+    controller_process: Optional[subprocess.Popen] = None,
+    expected_rows: Optional[int] = None,
+) -> str:
     done = Path(str(output) + ".done")
     partial = Path(str(output) + ".partial")
     deadline = time.monotonic() + timeout
@@ -355,7 +407,32 @@ def wait_for_marker(output: Path, timeout: float) -> str:
             return "complete"
         if partial.exists():
             return "partial"
+        if topology_process is not None and topology_process.poll() is not None:
+            rows = count_csv_rows(output)
+            write_partial_marker(
+                output,
+                rows,
+                expected_rows or 0,
+                f"topology exited early with code {topology_process.returncode}",
+            )
+            return "topology_exit"
+        if controller_process is not None and controller_process.poll() is not None:
+            rows = count_csv_rows(output)
+            write_partial_marker(
+                output,
+                rows,
+                expected_rows or 0,
+                f"controller exited early with code {controller_process.returncode}",
+            )
+            return "controller_exit"
         time.sleep(1)
+    rows = count_csv_rows(output)
+    write_partial_marker(
+        output,
+        rows,
+        expected_rows or 0,
+        f"timeout after {timeout:.1f} seconds",
+    )
     return "timeout"
 
 
@@ -441,6 +518,7 @@ def weighted_rewards(rows: List[Dict[str, str]], profile: str, window: int) -> L
     reward_fn = QoSReward(
         weights=WEIGHT_CONFIGS.get(profile, WEIGHT_CONFIGS["balanced"]),
         window=window,
+        normalization=os.environ.get("QOS_REWARD_NORMALIZATION", "absolute"),
     )
     rewards = []
     for _key, metrics in sorted(grouped.items()):
@@ -522,12 +600,19 @@ def run_one(
         if topology_process.poll() is not None:
             raise RuntimeError(f"topology exited early with code {topology_process.returncode}")
 
-        inject_traffic(topology_process, traffic_vars)
+        inject_traffic(topology_process, traffic_vars, run_dir)
         timeout = estimate_traffic_timeout(
             traffic_vars,
             float(args.traffic_timeout_buffer)
         )
-        status = wait_for_marker(traffic_csv, timeout)
+        expected_rows = expected_rows_from_env(traffic_vars)
+        status = wait_for_marker(
+            traffic_csv,
+            timeout,
+            topology_process=topology_process,
+            controller_process=controller_process,
+            expected_rows=expected_rows,
+        )
         if status != "complete":
             error = f"traffic status={status}"
     except Exception as exc:

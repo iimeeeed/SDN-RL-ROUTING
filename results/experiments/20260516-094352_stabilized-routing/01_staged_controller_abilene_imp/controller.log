@@ -1,11 +1,3 @@
-loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py
-loading app ryu.controller.ofp_handler
-instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/staged_controller.py of StagedController
-Loaded topology: abilene_imp
-Switches: ['c0', 'c1', 'c2', 'c3', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8']
-Hosts: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8', 'h9', 'h10', 'h11', 'h12', 'h13', 'h14', 'h15', 'h16']
-Staged config: explore_decisions=50 min_weighted_explore_rewards=10 alpha=0.1 epsilon_schedule=FixedEpsilon(epsilon=0.1) epsilon=0.1 path_cutoff=6 learned_flow_idle_timeout=1 reward_mode=weighted
-Weighted QoS feedback listener started on 127.0.0.1:9999 profile=balanced
-instantiating app ryu.controller.ofp_handler of OFPHandler
-Flow feedback window started key=(3, 'e3-h2-h15-g1') protocol=tcp
-Invalidated measured flow rules key=(3, 'e3-h2-h15-g1') hosts=h2<->h15 protocol=tcp port=5002 datapaths=0
+version https://git-lfs.github.com/spec/v1
+oid sha256:5699ac2fad8eed371464b5e9d63d76303abc4bea48284f4bf19fa8616b0b6c55
+size 1001

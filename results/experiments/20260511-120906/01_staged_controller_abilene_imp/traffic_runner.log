@@ -1,3 +1,3 @@
-Injected traffic command into topology stdin.
-Traffic generator output is captured in topology.log.
-py exec("import os, sys\nsys.path.insert(0, '/home/johndoe/Desktop/sdn-rl-routing')\nos.environ['TRAFFIC_PROTOCOLS'] = 'both'\nos.environ['TRAFFIC_PAIR_COUNT'] = '4'\nos.environ['TRAFFIC_PAIR_MODE'] = 'ends'\nos.environ['TRAFFIC_FLOWS_PER_PAIR'] = '1'\nos.environ['TRAFFIC_EPISODES'] = '24'\nos.environ['TRAFFIC_DURATION'] = '12'\nos.environ['TRAFFIC_INTERVAL'] = '1'\nos.environ['TRAFFIC_LINK_BW_Mbps'] = '100'\nos.environ['TRAFFIC_STAGGER_MIN'] = '0.2'\nos.environ['TRAFFIC_STAGGER_MAX'] = '0.5'\nos.environ['TRAFFIC_OUTPUT'] = '/home/johndoe/Desktop/sdn-rl-routing/results/experiments/20260511-120906/01_staged_controller_abilene_imp/traffic.csv'\nos.environ['TRAFFIC_PING'] = '1'\nos.environ['TRAFFIC_VERBOSE'] = '0'\nos.environ['TRAFFIC_SEED'] = '42'\nos.environ['TRAFFIC_FEEDBACK_HOST'] = '127.0.0.1'\nos.environ['TRAFFIC_FEEDBACK_PORT'] = '9999'\nos.environ['TRAFFIC_FEEDBACK_GRACE'] = '0.3'\n__import__('traffic.generate_traffic', fromlist=['run_from_env']).run_from_env(net)")
+version https://git-lfs.github.com/spec/v1
+oid sha256:4b5c29fedf5a8900615bd59ce59751a0910e667b992dacef77393d3e84d174a6
+size 1086

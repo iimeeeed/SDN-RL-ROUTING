@@ -4,6 +4,425 @@ Generated: 2026-05-22
 
 This report summarizes the progress visible in the repository: implementation status, experiment infrastructure, validation, result artifacts, and observed outcomes from completed runs.
 
+## 2026-05-27 Update: Fixes Behind the Stable Fat-Tree R-Learner Result
+
+The strongest recent result is:
+
+```text
+results/experiments/20260526-212303_fat-tree-rlearner-v16-core-bottleneck-fixedfeedback-300ep/01_rlearner_fat_tree
+```
+
+This run was the first one that showed clean, visible R-Learner improvement on
+the fat-tree topology. The main improvement was not higher throughput, which
+was already near the offered/load-limited ceiling. The clear improvement was
+RTT control: high-RTT paths disappeared and the run stabilized around low RTT
+paths.
+
+Observed evidence from the run:
+
+- Completed hundreds of clean episodes with `6` rows per episode.
+- No traffic `stderr`, controller tracebacks, skipped weighted Q updates, or
+  missing pending feedback decisions.
+- RTT improved from early unstable/high values to about `15 ms` in the stable
+  phase.
+- High-RTT flows dropped from roughly `1.8` per episode early to `0` in the
+  stable windows.
+- Q updates became consistently positive in the stable phase, with recent Q
+  positive fraction reaching `100%`.
+
+The fixes and experiment changes that produced this result were:
+
+### 1. Live QoS Feedback Was Made Reliable
+
+Files:
+
+- `traffic/generate_traffic.py`
+- `controllers/rlearner.py`
+- `experiments/run_experiment.py`
+
+What changed:
+
+- Concurrent traffic now sends all `flow_start` records first, waits for the
+  feedback grace period once, then starts all clients together.
+- The experiment runner forwards live feedback and UDP offered-load
+  environment variables reliably.
+- Controller environment values passed through `sudo -E env ...` now override
+  config defaults instead of being overwritten by the runner.
+- The R-Learner keeps feedback mappings by measured flow key and applies the
+  resulting live QoS reward to the pending routing decision.
+
+Why it mattered:
+
+Before this, traffic could run while the controller missed or misaligned the
+reward window. That made Q updates sparse, stale, or missing. After the fix,
+each measured TCP/UDP flow group produced live QoS feedback and Q updates.
+
+Simple example:
+
+```text
+flow_start(h1->h12, episode=20)
+controller selects path s5->s8
+traffic finishes and reports throughput, RTT, jitter, loss
+controller updates Q(state=h1->h12, action=s5->s8)
+```
+
+### 2. TCP and UDP Rewards Were Matched as One QoS Group
+
+File:
+
+- `controllers/rlearner.py`
+
+What changed:
+
+- The pending feedback queue no longer rejects a second pending update for the
+  same flow group when it represents a distinct routing decision.
+- When a complete QoS reward is available, the controller applies it to all
+  pending updates attached to that feedback key.
+
+Why it mattered:
+
+The reward uses TCP throughput plus UDP jitter/loss plus ping RTT. If TCP and
+UDP decisions in the same flow group are not credited together, learning sees a
+partial or misassigned signal. The fix makes the reward attribution consistent.
+
+Simple example:
+
+```text
+TCP gives throughput = 64 Mbps
+UDP gives jitter/loss = 0.33 ms / 0.12%
+ping gives RTT = 15 ms
+one combined QoS reward updates the selected path decision
+```
+
+### 3. The Reward Was Changed to Absolute QoS Scaling
+
+File:
+
+- `reward/qos_reward.py`
+
+What changed:
+
+- Added absolute normalization controlled by:
+
+```text
+QOS_REWARD_NORMALIZATION=absolute
+```
+
+- Added thresholds:
+
+```text
+QOS_THROUGHPUT_TARGET_GBPS
+QOS_RTT_BAD_MS
+QOS_JITTER_BAD_MS
+QOS_PLR_BAD_PCT
+```
+
+Why it mattered:
+
+Rolling min/max normalization made reward unstable because the meaning of
+"good" changed during the run. Absolute thresholds made the reward comparable
+across episodes.
+
+Simple example:
+
+```text
+RTT 15 ms against QOS_RTT_BAD_MS=120 -> small RTT penalty
+RTT 250 ms against QOS_RTT_BAD_MS=120 -> full RTT penalty
+```
+
+### 4. High RTT Was Explicitly Guarded
+
+File:
+
+- `reward/qos_reward.py`
+
+What changed:
+
+- Added hard RTT guard:
+
+```text
+QOS_HARD_RTT_MS
+QOS_HARD_RTT_PENALTY
+```
+
+Fat-tree v16 used:
+
+```text
+QOS_RTT_BAD_MS=120
+QOS_HARD_RTT_MS=100
+QOS_HARD_RTT_PENALTY=0.7
+```
+
+Why it mattered:
+
+Earlier runs sometimes improved throughput while choosing paths with very high
+RTT. The hard RTT guard made those paths strongly negative, so the learner
+could not treat high-throughput/high-delay paths as acceptable.
+
+Simple example:
+
+```text
+RTT = 15 ms  -> no hard penalty
+RTT = 250 ms -> hard penalty applies and pushes reward close to -1
+```
+
+The active one-line reward formula was:
+
+```text
+reward = clip(
+  w_throughput * min(throughput_gbps / throughput_target_gbps, 1)
+  - w_rtt * min(rtt_ms / rtt_bad_ms, 1)
+  - w_jitter * min(jitter_ms / jitter_bad_ms, 1)
+  - w_loss * min(loss_pct / loss_bad_pct, 1)
+  - hard_rtt_penalty * min(max(rtt_ms - hard_rtt_ms, 0) / hard_rtt_ms, 1),
+  -1,
+  1
+)
+```
+
+For fat-tree v16:
+
+```text
+w_throughput=0.10
+w_rtt=0.50
+w_jitter=0.10
+w_loss=0.30
+throughput_target_gbps=0.045
+rtt_bad_ms=120
+jitter_bad_ms=8
+loss_bad_pct=1.0
+hard_rtt_ms=100
+hard_rtt_penalty=0.7
+```
+
+### 5. The Reward Profile Was Made RTT/Loss Strict
+
+File:
+
+- `reward/qos_reward.py`
+
+What changed:
+
+- Added and used:
+
+```text
+WEIGHTED_PROFILE=rtt_loss_guard
+```
+
+With weights:
+
+```text
+throughput = 0.10
+RTT        = 0.50
+jitter     = 0.10
+loss       = 0.30
+```
+
+Why it mattered:
+
+This made the controller optimize the QoS behavior we actually wanted: avoid
+high RTT and packet loss first, then preserve throughput.
+
+Simple example:
+
+```text
+Two paths both give 64 Mbps.
+Path A has 15 ms RTT.
+Path B has 250 ms RTT.
+The RTT-heavy reward strongly prefers Path A.
+```
+
+### 6. Advantage Reward and Pair Baselines Were Added
+
+File:
+
+- `controllers/rlearner.py`
+
+What changed:
+
+- Added pair-level reward baselines:
+
+```text
+REWARD_BASELINE_SCOPE=pair
+REWARD_BASELINE_ALPHA=0.06
+```
+
+- Added scaled advantage targets:
+
+```text
+USE_ADVANTAGE_REWARD=1
+ADVANTAGE_REWARD_SCALE=3.0
+```
+
+- Added direct negative reward handling:
+
+```text
+BAD_REWARD_DIRECT_THRESHOLD=-0.10
+```
+
+Why it mattered:
+
+Pair-level baselines let the learner compare a path against recent behavior for
+the same source/destination pair. Very bad rewards bypass the advantage
+baseline and directly punish the action.
+
+Simple example:
+
+```text
+Recent h1->h12 baseline reward = -0.20
+New path reward = -0.02
+Advantage = +0.18
+The path is learned as better even if absolute reward is still near zero.
+```
+
+### 7. Candidate Paths and Exploration Were Controlled
+
+File:
+
+- `controllers/rlearner.py`
+
+What changed:
+
+- Bounded the path search and candidate set:
+
+```text
+PATH_CUTOFF=5
+MAX_CANDIDATE_PATHS=4
+MAX_PATH_WEIGHT_DELTA=1
+FILTER_TRANSIT_HOST_SWITCHES=1
+```
+
+- Reduced excessive exploration while keeping UCB:
+
+```text
+RLEARNER_SELECTION=ucb
+UCB_C=0.015
+EPSILON_TYPE=linear
+EPSILON=0.04
+EPSILON_MIN=0.002
+EPSILON_BETA=0.0015
+WARMUP_TRIALS_PER_ACTION=1
+```
+
+Why it mattered:
+
+Earlier runs sampled too many similarly bad paths for too long. The fixed setup
+still explores, but it stops repeatedly revisiting bad high-RTT choices once
+the reward makes them clearly negative.
+
+Simple example:
+
+```text
+Instead of trying dozens of long/simple paths, the learner evaluates a small
+near-shortest candidate set and quickly suppresses high-delay choices.
+```
+
+### 8. Congestion-Aware State and Path Penalties Were Added
+
+File:
+
+- `controllers/rlearner.py`
+
+What changed:
+
+- Added congestion-aware state:
+
+```text
+USE_CONGESTION_STATE=1
+PORT_STATS_INTERVAL=1
+LINK_CAPACITY_MBPS=80
+```
+
+- Added runtime path penalties:
+
+```text
+PATH_UTILIZATION_PENALTY=0.18
+PATH_OVERLAP_PENALTY=0.03
+```
+
+Why it mattered:
+
+The same source/destination pair can need different paths under different load.
+Congestion state and utilization/overlap penalties give the learner a way to
+avoid piling concurrent flows onto the same busy path.
+
+Simple example:
+
+```text
+h1->h12 and h2->h11 both want a similar path.
+If that path is already active, the overlap penalty makes another candidate
+more attractive.
+```
+
+### 9. The Experiment Was Made Routing-Limited Instead of Host-Limited
+
+Runtime command change:
+
+```text
+TOPO_HOST_BW_MBPS=1000
+TOPO_SWITCH_BW_MBPS=80
+TRAFFIC_UDP_BW_MBPS=12
+```
+
+Why it mattered:
+
+Earlier runs could be dominated by host-edge bottlenecks. In that setup, the
+learner cannot improve much by changing routes. The successful fat-tree run
+made switch/core links the meaningful bottleneck, so routing decisions affected
+RTT and congestion.
+
+Simple example:
+
+```text
+If the host link is the bottleneck, every route looks similar.
+If switch links are the bottleneck, choosing a less congested path lowers RTT.
+```
+
+### 10. Plotting Was Updated to Diagnose Learning
+
+File:
+
+- `analysis/plot_experiment_run.py`
+
+What changed:
+
+- Added parsing for Q updates and path selections.
+- Added action learning diagnostics.
+- Generated curve-only, rolling-mean plots.
+- Preserved controller-reported live reward when available.
+
+Why it mattered:
+
+The important learning signal was not obvious from raw scatter-like plots.
+Smoothed curves and Q diagnostics showed that RTT stabilized and Q values
+became positive.
+
+Simple example:
+
+```text
+Raw rewards hover near 0 because the reward is strict.
+Q diagnostics still show the learner prefers low-RTT actions.
+```
+
+### Summary of Why the Fat-Tree v16 Run Worked
+
+The good result came from the combination of:
+
+1. Clean live feedback timing.
+2. Correct reward-to-action attribution.
+3. Absolute QoS reward thresholds.
+4. Strong high-RTT punishment.
+5. Pair-level advantage learning.
+6. Controlled exploration and candidate paths.
+7. Congestion-aware state and path penalties.
+8. A topology/load setup where routing choices actually affect RTT.
+
+The result should be described as strong and stable, not perfect. The run shows
+visible learning through RTT reduction and high-RTT path elimination. Throughput
+mostly stays near its ceiling, and reward remains near zero because the reward
+function is intentionally strict: good paths receive small positive or
+near-zero reward, while bad high-RTT paths receive large negative reward.
+
 ## Executive Summary
 
 The project has progressed from basic SDN routing bring-up to a working experiment platform for comparing topology-aware routing controllers under Mininet/Ryu. The repository now includes:

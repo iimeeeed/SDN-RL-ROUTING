@@ -32,6 +32,7 @@ history = reward_fn.get_history()           # list of past reward scalars
 from __future__ import annotations
 
 from collections import deque
+import os
 from typing import Dict, List, Optional, Tuple
 
 
@@ -49,6 +50,9 @@ WEIGHT_CONFIGS: Dict[str, Tuple[float, float, float, float]] = {
     "throughput_prioritised": (0.50, 0.20, 0.15, 0.15),
     "balanced":               (0.40, 0.30, 0.15, 0.15),   # default
     "delay_prioritised":      (0.25, 0.40, 0.20, 0.15),
+    "qos_strict":             (0.25, 0.35, 0.15, 0.25),
+    "loss_delay_strict":      (0.15, 0.35, 0.15, 0.35),
+    "rtt_loss_guard":         (0.10, 0.50, 0.10, 0.30),
 }
 
 
@@ -93,11 +97,47 @@ class QoSReward:
         weights: Tuple[float, float, float, float] = WEIGHT_CONFIGS["balanced"],
         window: int = 20,
         rtt_clip_ms: Optional[float] = None,
+        normalization: str = "rolling",
+        throughput_target_gbps: Optional[float] = None,
+        rtt_bad_ms: Optional[float] = None,
+        jitter_bad_ms: Optional[float] = None,
+        plr_bad_pct: Optional[float] = None,
+        jitter_clip_ms: Optional[float] = None,
+        plr_clip_pct: Optional[float] = None,
     ) -> None:
         self._validate_weights(weights)
         self.w1, self.w2, self.w3, self.w4 = weights
         self.window = window
         self.rtt_clip_ms = rtt_clip_ms
+        jitter_clip_raw = os.environ.get("QOS_JITTER_CLIP_MS", "")
+        plr_clip_raw = os.environ.get("QOS_PLR_CLIP_PCT", "")
+        self.jitter_clip_ms = (
+            jitter_clip_ms if jitter_clip_ms is not None
+            else (float(jitter_clip_raw) if jitter_clip_raw.strip() else None)
+        )
+        self.plr_clip_pct = (
+            plr_clip_pct if plr_clip_pct is not None
+            else (float(plr_clip_raw) if plr_clip_raw.strip() else None)
+        )
+        self.normalization = normalization
+        self.throughput_target_gbps = (
+            throughput_target_gbps if throughput_target_gbps is not None
+            else float(os.environ.get("QOS_THROUGHPUT_TARGET_GBPS", "1.0"))
+        )
+        self.rtt_bad_ms = (
+            rtt_bad_ms if rtt_bad_ms is not None
+            else float(os.environ.get("QOS_RTT_BAD_MS", "500"))
+        )
+        self.jitter_bad_ms = (
+            jitter_bad_ms if jitter_bad_ms is not None
+            else float(os.environ.get("QOS_JITTER_BAD_MS", "50"))
+        )
+        self.plr_bad_pct = (
+            plr_bad_pct if plr_bad_pct is not None
+            else float(os.environ.get("QOS_PLR_BAD_PCT", "10"))
+        )
+        self.hard_rtt_ms = float(os.environ.get("QOS_HARD_RTT_MS", "0") or 0)
+        self.hard_rtt_penalty = float(os.environ.get("QOS_HARD_RTT_PENALTY", "0") or 0)
 
         # Rolling buffers — one deque per raw metric
         self._tp_buf:  deque[float] = deque(maxlen=window)
@@ -144,11 +184,20 @@ class QoSReward:
             rtt = min(rtt, self.rtt_clip_ms)
         jit = episode_log["jitter_ms"]
         plr = episode_log["plr_pct"]
+        if self.jitter_clip_ms is not None:
+            jit = min(jit, self.jitter_clip_ms)
+        if self.plr_clip_pct is not None:
+            plr = min(plr, self.plr_clip_pct)
 
         # --- Degenerate input guard ---
         # Zero throughput means the path failed entirely; return minimum reward.
         if tp <= 0.0:
             reward = -1.0
+            self._reward_history.append(reward)
+            return reward
+
+        if self.normalization == "absolute":
+            reward = self._compute_absolute_reward(tp, rtt, jit, plr)
             self._reward_history.append(reward)
             return reward
 
@@ -186,6 +235,34 @@ class QoSReward:
 
         self._reward_history.append(reward)
         return reward
+
+    def _compute_absolute_reward(
+        self,
+        tp: float,
+        rtt: float,
+        jit: float,
+        plr: float,
+    ) -> float:
+        if self.throughput_target_gbps <= 0:
+            raise ValueError("throughput_target_gbps must be > 0")
+        if self.rtt_bad_ms <= 0 or self.jitter_bad_ms <= 0 or self.plr_bad_pct <= 0:
+            raise ValueError("absolute QoS penalty thresholds must be > 0")
+
+        tp_n = min(tp / self.throughput_target_gbps, 1.0)
+        rtt_n = min(rtt / self.rtt_bad_ms, 1.0)
+        jit_n = min(jit / self.jitter_bad_ms, 1.0)
+        plr_n = min(plr / self.plr_bad_pct, 1.0)
+
+        reward = (
+            + self.w1 * tp_n
+            - self.w2 * rtt_n
+            - self.w3 * jit_n
+            - self.w4 * plr_n
+        )
+        if self.hard_rtt_ms > 0 and self.hard_rtt_penalty > 0 and rtt > self.hard_rtt_ms:
+            excess = min((rtt - self.hard_rtt_ms) / self.hard_rtt_ms, 1.0)
+            reward -= self.hard_rtt_penalty * excess
+        return max(-1.0, min(1.0, reward))
 
     def get_history(self) -> List[float]:
         """Return a copy of all reward scalars computed so far."""

@@ -1,2 +1,3 @@
-sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
-sudo: a password is required
+version https://git-lfs.github.com/spec/v1
+oid sha256:27577ed2ce2a1870e112421b66c34fbe98e8888375f4fcf9a0c6989b245fe69c
+size 164

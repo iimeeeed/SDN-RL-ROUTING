@@ -1,18 +1,3 @@
-loading app /home/johndoe/Desktop/sdn-rl-routing/controllers/dijkstra.py
-loading app ryu.controller.ofp_handler
-instantiating app /home/johndoe/Desktop/sdn-rl-routing/controllers/dijkstra.py of DijkstraController
-Loaded topology: abilene
-Switches: ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
-Hosts: ['h1', 'h2', 'h3', 'h4', 'h5']
-Dijkstra controller ready learned_flow_idle_timeout=1
-instantiating app ryu.controller.ofp_handler of OFPHandler
-Switch connected: dpid=1
-Switch connected: dpid=2
-Switch connected: dpid=3
-Switch connected: dpid=4
-Switch connected: dpid=5
-Switch connected: dpid=6
-Switch connected: dpid=7
-Handling unicast packet: h1 -> h5
-Installing path h1 -> h5: s1 -> s4 -> s7
-Installing path h5 -> h1: s7 -> s4 -> s1
+version https://git-lfs.github.com/spec/v1
+oid sha256:65e239956f331a7d7a90dd6336ada0f3d52e72e64633a1a639c3ffcc4fb239ff
+size 733
