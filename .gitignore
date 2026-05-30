@@ -18,5 +18,11 @@ env/
 # Mininet/Ryu temporary files
 *.pid
 *.pcap
+
 # PDF files
 *.pdf
+
+# Large results and logs
+*.log
+results/experiments/
+results/plots/
