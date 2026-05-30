@@ -549,7 +549,7 @@ def run(net,
                 send_live_feedback({
                     "event": "flow_start",
                     "episode": episode_index + 1,
-                    "flow_id": flow_id,
+                    "flow_id": flow["flow_id"],
                     "src": flow["src"],
                     "dst": flow["dst"],
                     "protocol": flow["protocol"],

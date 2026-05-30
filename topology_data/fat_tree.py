@@ -37,6 +37,10 @@ HOST_TO_SWITCH = {
     "h12": "s8",
 }
 
+# Fat-tree host-facing switches should not be used as transit switches unless
+# they are the source or destination edge for the measured flow.
+HOST_SWITCHES_ARE_TRANSIT = False
+
 HOST_TO_IP = {
     f"h{i}": f"10.0.0.{i}" for i in range(1, 13)
 }

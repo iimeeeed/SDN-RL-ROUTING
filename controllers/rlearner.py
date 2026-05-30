@@ -96,12 +96,7 @@ class RLearnerController(app_manager.RyuApp):
 		self.max_path_weight_delta = float(
 			os.environ.get("MAX_PATH_WEIGHT_DELTA", "1")
 		)
-		self.filter_transit_host_switches = (
-			os.environ.get("FILTER_TRANSIT_HOST_SWITCHES", "1")
-			.strip()
-			.lower()
-			in ("1", "true", "yes", "on")
-		)
+		self.filter_transit_host_switches = self.parse_transit_host_filter()
 		self.action_selection = os.environ.get("RLEARNER_SELECTION", "ucb").lower()
 		self.ucb_c = float(os.environ.get("UCB_C", "0.35"))
 		self.path_overlap_penalty = float(
@@ -181,6 +176,7 @@ class RLearnerController(app_manager.RyuApp):
 		self.port_stats = {}
 		self.port_utilization = defaultdict(float)
 		self.host_switches = set(self.host_to_switch.values())
+		self.filtered_transit_host_switches = self.build_filtered_transit_host_switches()
 		self.qos_reward = QoSReward(
 			weights=WEIGHT_CONFIGS[self.weighted_profile],
 			window=self.baseline_window,
@@ -233,6 +229,23 @@ class RLearnerController(app_manager.RyuApp):
 			self.start_feedback_listener()
 		if self.port_stats_interval > 0:
 			self.monitor_thread = hub.spawn(self.port_stats_monitor)
+
+	def parse_transit_host_filter(self) -> bool:
+		raw = os.environ.get("FILTER_TRANSIT_HOST_SWITCHES", "auto")
+		value = raw.strip().lower()
+		if value in ("1", "true", "yes", "on"):
+			return True
+		if value in ("0", "false", "no", "off"):
+			return False
+		return not bool(getattr(self.topology, "HOST_SWITCHES_ARE_TRANSIT", False))
+
+	def build_filtered_transit_host_switches(self) -> set:
+		if not self.filter_transit_host_switches:
+			return set()
+		explicit = getattr(self.topology, "TRANSIT_HOST_SWITCH_FILTER", None)
+		if explicit is not None:
+			return set(explicit)
+		return set(self.host_switches)
 
 	def load_topology_module(self, module_name):
 		try:
@@ -591,7 +604,10 @@ class RLearnerController(app_manager.RyuApp):
 		dst_switch: str,
 	) -> bool:
 		for switch in path[1:-1]:
-			if switch in self.host_switches and switch not in (src_switch, dst_switch):
+			if (
+				switch in self.filtered_transit_host_switches
+				and switch not in (src_switch, dst_switch)
+			):
 				return True
 		return False
 

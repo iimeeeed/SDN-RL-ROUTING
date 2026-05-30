@@ -18,3 +18,5 @@ env/
 # Mininet/Ryu temporary files
 *.pid
 *.pcap
+# PDF files
+*.pdf

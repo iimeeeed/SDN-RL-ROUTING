@@ -182,6 +182,20 @@ def write_episode_metrics(flow_metrics: pd.DataFrame, output_path: Path, window:
     return episode_metrics
 
 
+def set_reward_axis(ax, *series: pd.Series) -> None:
+    values = pd.concat([s.dropna() for s in series if s is not None and not s.dropna().empty])
+    if values.empty:
+        return
+    ymin = float(values.min())
+    ymax = float(values.max())
+    span = max(ymax - ymin, 0.05)
+    bottom = ymin - span * 0.08
+    top = max(0.02, ymax + span * 0.08)
+    if ymax <= 0:
+        top = min(top, 0.05)
+    ax.set_ylim(bottom, top)
+
+
 def plot(
     flow_metrics: pd.DataFrame,
     episode_metrics: pd.DataFrame,
@@ -208,6 +222,7 @@ def plot(
         label=f"{window}-flow mean",
     )
     ax.axhline(0, color="black", linewidth=0.8, alpha=0.6)
+    set_reward_axis(ax, flow_metrics["weighted_reward"], flow_metrics["reward_rolling_mean"])
     ax.set_title("Weighted Reward Per Completed Flow Group")
     ax.set_xlabel("Decision / flow group")
     ax.set_ylabel("Reward")
@@ -228,6 +243,11 @@ def plot(
         label=f"{window}-episode mean",
     )
     ax.axhline(0, color="black", linewidth=0.8, alpha=0.6)
+    set_reward_axis(
+        ax,
+        episode_metrics["weighted_reward"],
+        episode_metrics["weighted_reward_rolling_mean"],
+    )
     ax.set_title("Episode Reward Trend")
     ax.set_xlabel("Episode")
     ax.set_ylabel("Reward")
@@ -398,7 +418,7 @@ def main() -> int:
         raise ValueError(f"No complete TCP/UDP flow groups found in {traffic_csv}")
 
     controller_rewards = parse_controller_rewards(controller_log)
-    if not controller_rewards.empty and len(controller_rewards) == len(flow_metrics):
+    if not controller_rewards.empty:
         flow_metrics = flow_metrics.merge(controller_rewards, on="decision", how="left")
         flow_metrics["computed_weighted_reward"] = flow_metrics["weighted_reward"]
         flow_metrics["weighted_reward"] = flow_metrics["controller_weighted_reward"].fillna(

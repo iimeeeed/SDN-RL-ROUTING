@@ -1,0 +1,11 @@
+complete=0
+error=injected traffic exception
+Traceback (most recent call last):
+  File "<string>", line 24, in <module>
+  File "/home/johndoe/Desktop/sdn-rl-routing/traffic/generate_traffic.py", line 639, in run_from_env
+    return run(
+  File "/home/johndoe/Desktop/sdn-rl-routing/traffic/generate_traffic.py", line 584, in run
+    write_result(build_result_record(flow, stdout, stderr, ping_output))
+  File "/home/johndoe/Desktop/sdn-rl-routing/traffic/generate_traffic.py", line 457, in write_result
+    print(
+BrokenPipeError: [Errno 32] Broken pipe

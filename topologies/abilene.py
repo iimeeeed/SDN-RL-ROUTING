@@ -34,11 +34,12 @@ def env_int(name, default):
 
 
 def build_topology():
-    host_bw = env_int(
-        "TOPO_HOST_BW_MBPS",
+    host_bw = env_int("TOPO_HOST_BW_MBPS", 1000)
+    backbone_bw = env_int(
+        "TOPO_BACKBONE_BW_MBPS",
         env_int("TRAFFIC_LINK_BW_Mbps", 100),
     )
-    backbone_bw = env_int("TOPO_BACKBONE_BW_MBPS", 1000)
+    max_queue_size = env_int("TOPO_MAX_QUEUE_SIZE", 100)
 
     net = Mininet(
         controller=RemoteController,
@@ -93,6 +94,7 @@ def build_topology():
             switches[switch],
             bw=host_bw,
             delay="1ms",
+            max_queue_size=max_queue_size,
             r2q=10000
         )
 
@@ -121,6 +123,7 @@ def build_topology():
             switches[right],
             bw=backbone_bw,
             delay="3ms",
+            max_queue_size=max_queue_size,
             r2q=100000
         )
 
@@ -139,6 +142,7 @@ def build_topology():
     info(f"    Total links: {total_links}\n")
     info(f"    Host bw: {host_bw} Mbps\n")
     info(f"    Backbone bw: {backbone_bw} Mbps\n")
+    info(f"    Max queue size: {max_queue_size} packets\n")
 
     # Topological Complexity Index: cyclomatic complexity of backbone
     # = (E - N + 1) / E where E is backbone edges and N is switches
