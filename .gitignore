@@ -24,5 +24,4 @@ env/
 
 # Large results and logs
 *.log
-results/experiments/
-results/plots/
+results/

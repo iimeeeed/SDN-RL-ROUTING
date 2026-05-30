@@ -1,2 +1,0 @@
-dst,duration_s,episode,port,protocol,src,throughput_mbps,timestamp
-h5,5,1,5001,tcp,h1,94.6,2026-05-10T17:22:00.154589Z
