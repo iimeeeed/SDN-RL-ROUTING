@@ -38,6 +38,10 @@ HOST_TO_SWITCH = {
     "h5": "s7",
 }
 
+# Abilene models backbone PoPs. A switch can have a directly attached host and
+# still be a valid transit switch for other backbone paths.
+HOST_SWITCHES_ARE_TRANSIT = True
+
 HOST_TO_IP = {
     f"h{i}": f"10.0.0.{i}" for i in range(1, 6)
 }

@@ -1,0 +1,51 @@
+experiment:
+  name: stabilized-routing
+  results_dir: results/experiments
+  controller_start_wait: 4
+  topology_start_wait: 8
+  traffic_timeout_buffer: 120
+  stop_timeout: 8
+  cleanup_timeout: 60
+  cleanup: true
+  fail_fast: false
+
+matrix:
+  controllers:
+    - dijkstra
+    - rlearner
+    - roptimizer
+    - staged_controller
+  topologies:
+    - abilene
+
+controller_env:
+  REWARD_MODE: weighted
+  LEARNED_FLOW_IDLE_TIMEOUT: "1"
+  PATH_CUTOFF: "6"
+  EXPLORE_DECISIONS: "50"
+  Q_GAMMA: "0.8"
+  EPSILON_TYPE: fixed
+  EPSILON: "0.1"
+  BASELINE_WINDOW: "20"
+  POLICY_BIAS: "0.95"
+  OPTIMIZER_EPSILON: "0.0"
+  WEIGHTED_PROFILE: balanced
+  MIN_WEIGHTED_EXPLORE_REWARDS: "10"
+
+traffic:
+  pair_count: 2
+  pair_mode: ends
+  pairs: ""
+  protocols: both
+  flows_per_pair: 1
+  episodes: 2
+  duration: 10
+  interval: 1
+  link_bw_mbps: 100
+  stagger_min: 1
+  stagger_max: 3
+  ping: true
+  verbose: true
+  seed: 1
+  feedback_grace: 0.2
+  concurrent: false

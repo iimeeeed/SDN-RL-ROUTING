@@ -17,6 +17,9 @@ This controller:
 
 import os
 import sys
+
+
+
 import importlib
 import networkx as nx
 
@@ -56,6 +59,9 @@ class DijkstraController(app_manager.RyuApp):
         self.host_to_mac = self.topology.HOST_TO_MAC
         self.port_map = self.topology.PORT_MAP
 
+        self.dpid_to_switch_map = getattr(self.topology, "DPID_TO_SWITCH", None)
+        self.switch_to_dpid_map = getattr(self.topology, "SWITCH_TO_DPID", None)
+
         self.mac_to_host = {
             mac: host for host, mac in self.host_to_mac.items()
         }
@@ -64,9 +70,17 @@ class DijkstraController(app_manager.RyuApp):
             ip: host for host, ip in self.host_to_ip.items()
         }
 
+        self.learned_flow_idle_timeout = int(
+            os.environ.get("LEARNED_FLOW_IDLE_TIMEOUT", "1")
+        )
+
         self.logger.info("Loaded topology: %s", topology_name)
         self.logger.info("Switches: %s", self.topology.SWITCHES)
         self.logger.info("Hosts: %s", list(self.host_to_switch.keys()))
+        self.logger.info(
+            "Dijkstra controller ready learned_flow_idle_timeout=%s",
+            self.learned_flow_idle_timeout
+        )
 
     def load_topology_module(self, module_name):
         try:
@@ -83,9 +97,17 @@ class DijkstraController(app_manager.RyuApp):
             return importlib.import_module(module_name)
 
     def dpid_to_switch(self, dpid):
+        if self.dpid_to_switch_map:
+            switch_name = self.dpid_to_switch_map.get(dpid)
+            if switch_name:
+                return switch_name
         return f"s{dpid}"
 
     def switch_to_dpid(self, switch_name):
+        if self.switch_to_dpid_map:
+            if switch_name in self.switch_to_dpid_map:
+                return self.switch_to_dpid_map[switch_name]
+            raise KeyError(f"Unknown switch name: {switch_name}")
         return int(switch_name.replace("s", ""))
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
@@ -215,7 +237,8 @@ class DijkstraController(app_manager.RyuApp):
                 datapath=datapath,
                 priority=10,
                 match=match,
-                actions=actions
+                actions=actions,
+                idle_timeout=self.learned_flow_idle_timeout
             )
 
     def install_bidirectional_path(self, host_a, host_b):
@@ -265,6 +288,11 @@ class DijkstraController(app_manager.RyuApp):
         if eth.ethertype == ether_types.ETH_TYPE_LLDP:
             return
 
+        # Silently drop IPv6 multicast and broadcast — not handled by this controller
+        if eth.dst.startswith("33:33:") or eth.dst == "ff:ff:ff:ff:ff:ff":
+            self.logger.debug("Dropping IPv6 multicast/broadcast packet")
+            return
+
         src_mac = eth.src
         dst_mac = eth.dst
 
@@ -284,6 +312,8 @@ class DijkstraController(app_manager.RyuApp):
                 self.logger.info("Unknown ARP destination IP: %s", arp_pkt.dst_ip)
                 return
 
+            self.logger.info("Handling ARP packet: %s -> %s", src_host, dst_host)
+
             self.install_bidirectional_path(src_host, dst_host)
             self.forward_current_packet(msg, src_host, dst_host)
             return
@@ -295,6 +325,8 @@ class DijkstraController(app_manager.RyuApp):
                 dst_mac
             )
             return
+
+        self.logger.info("Handling unicast packet: %s -> %s", src_host, dst_host)
 
         self.install_bidirectional_path(src_host, dst_host)
         self.forward_current_packet(msg, src_host, dst_host)

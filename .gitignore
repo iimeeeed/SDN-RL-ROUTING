@@ -6,15 +6,9 @@ __pycache__/
 .venv/
 venv/
 env/
+.*/
 
-# Results and logs
-*.log
-*.out
-*.csv
-results/*.csv
-results/*.json
-results/*.png
-results/*.pdf
+
 
 # OS/editor
 .DS_Store

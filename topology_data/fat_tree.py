@@ -5,13 +5,13 @@ Must match topologies/fat_tree.py.
 
 Required:
 - Total nodes: 20
-- Total links: 36
-- TCI: 0.85
+- Total links: 40
+- TCI: 0.75
 
 Implementation:
 - 8 switches
 - 12 hosts
-- 24 switch links
+- 28 switch links
 - 12 host links
 """
 
@@ -37,6 +37,10 @@ HOST_TO_SWITCH = {
     "h12": "s8",
 }
 
+# Fat-tree host-facing switches should not be used as transit switches unless
+# they are the source or destination edge for the measured flow.
+HOST_SWITCHES_ARE_TRANSIT = False
+
 HOST_TO_IP = {
     f"h{i}": f"10.0.0.{i}" for i in range(1, 13)
 }
@@ -57,16 +61,10 @@ BACKBONE_LINKS = [
     ("s3", "s5", 1), ("s3", "s6", 1), ("s3", "s7", 1), ("s3", "s8", 1),
     ("s4", "s5", 1), ("s4", "s6", 1), ("s4", "s7", 1), ("s4", "s8", 1),
     
-    # Aggregation layer - full mesh (15 edges)
+    # Aggregation layer - full mesh (6 edges)
     ("s5", "s6", 1), ("s5", "s7", 1), ("s5", "s8", 1),
     ("s6", "s7", 1), ("s6", "s8", 1),
     ("s7", "s8", 1),
-    
-    # Additional cross-layer redundancy
-    ("s1", "s5", 2), ("s1", "s6", 2), ("s2", "s7", 2), ("s2", "s8", 2),
-    ("s3", "s5", 2), ("s3", "s6", 2), ("s4", "s7", 2), ("s4", "s8", 2),
-    ("s1", "s7", 1), ("s1", "s8", 1), ("s2", "s5", 2), ("s2", "s6", 2),
-    ("s3", "s7", 1), ("s3", "s8", 1), ("s4", "s5", 2), ("s4", "s6", 2),
 ]
 
 # Port map must match topologies/fat_tree.py link creation order.
